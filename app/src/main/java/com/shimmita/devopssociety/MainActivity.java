@@ -270,7 +270,7 @@ public class MainActivity extends AppCompatActivity {
 
         promptInfo_dialog = new BiometricPrompt.PromptInfo.Builder()
 
-                .setTitle("DevOPS BIOMETRICS DETECTION")
+                .setTitle(getString(R.string.fingerprint_title_alert))
                 .setSubtitle("Fingerprint Security Encryption Enabled\n")
                 .setDescription(" Developers Society Says Unlock with fingerprint technology to Continue")
                 // .setNegativeButtonText("Cancel") if set device credential should be off
