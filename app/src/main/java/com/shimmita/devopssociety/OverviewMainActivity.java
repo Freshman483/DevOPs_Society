@@ -31,7 +31,6 @@ public class OverviewMainActivity extends AppCompatActivity {
         animationDrawable.setExitFadeDuration(4000);
         animationDrawable.start();
 
-
         descriptionTitleOverview = new String[]
                 {
                         "Software Engineering",

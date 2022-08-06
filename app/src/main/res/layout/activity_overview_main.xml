@@ -3,14 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/animationlist_of_gradient_items_of_main_overview"
     android:layout_height="match_parent"
     tools:context=".OverviewMainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewMainOverview"
         android:layout_width="0dp"
-        android:background="#E0D7DB"
+        android:background="@drawable/animationlist_of_gradient_items_of_main_overview"
         android:layout_height="0dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="1dp"
