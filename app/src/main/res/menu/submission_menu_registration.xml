@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<item
+    android:title="Submit Now"
+    android:id="@+id/submit_now_registration"
+    android:icon="@drawable/ic_round_send_24"
+    app:showAsAction="always"/>
+
+    <item
+        android:title="Not Kenyan (Foreigner)"
+        android:id="@+id/submit_foreigner_registration"
+        android:icon="@drawable/ic_baseline_touch_app_here"
+        app:showAsAction="always"/>
+</menu>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/forum"
+        android:duration="3500"/>
+    <item android:drawable="@drawable/coding_zone"
+        android:duration="3500"/>
+    <item android:drawable="@drawable/wide_monitor_2"
+        android:duration="3500"/>
+    <item android:drawable="@drawable/hacker_monitor"
+        android:duration="3500"/>
+    <item android:drawable="@drawable/hacker1"
+        android:duration="3500"/>
+    <item android:drawable="@drawable/hacker_masked1"
+        android:duration="3500"/>
+    <item android:drawable="@drawable/android"
+        android:duration="3500"/>
+    <item android:drawable="@drawable/kali_light_mode"
+        android:duration="3500"/>
+
+</animation-list>

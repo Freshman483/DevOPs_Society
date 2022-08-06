@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "497110797679",
+    "project_id": "devops-society-7c416",
+    "storage_bucket": "devops-society-7c416.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:497110797679:android:4cf0b0f4921d1682946c9a",
+        "android_client_info": {
+          "package_name": "com.shimmita.devopssociety"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "497110797679-chkcddpm9d9i46k6jqesl4beq4c3sh3q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAzylgeUivcShbaAz_uDMcvnPbMDJJfQE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "497110797679-chkcddpm9d9i46k6jqesl4beq4c3sh3q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

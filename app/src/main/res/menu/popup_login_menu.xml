@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="@string/login_now"
+        android:id="@+id/loginNow"
+        android:icon="@drawable/ic_round_send_24"
+        app:showAsAction="always"/>
+
+    <item
+        android:title="@string/forgotten_login_credentials"
+        android:id="@+id/forgottenCredential"
+        android:icon="@drawable/ic_baseline_touch_app_here"
+        app:showAsAction="always"/>
+
+</menu>

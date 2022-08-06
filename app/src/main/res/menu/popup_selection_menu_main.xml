@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/account_login"
+        android:icon="@drawable/ic_baseline_account_login"
+        android:title="@string/login_account"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/account_creation"
+        android:icon="@drawable/ic_round_person_add"
+        android:title="@string/create_account"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/account_aboutdeveloper"
+        android:icon="@drawable/ic_baseline_self_improvement_developer"
+        android:title="@string/developer"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/account_overview"
+        android:icon="@drawable/ic_baseline_menu_overview"
+        android:title="@string/overview"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/forum"
+        android:icon="@drawable/ic_baseline_speaker_24"
+        android:title="@string/enroll_into_the_society_s_forum"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/trending"
+        android:icon="@drawable/ic_baseline_360_24"
+        android:title="@string/whats_trending_in_it_field"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/jobSection"
+        android:icon="@drawable/ic_baseline_cloud_upload_24"
+        android:title="@string/post_a_job_for_a_computer_mercenery"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/jobSectionDo"
+        android:icon="@drawable/ic_baseline_cloud_download_24"
+        android:title="@string/computer_mercenery_get_a_job_for_you"
+        app:showAsAction="ifRoom" />
+
+
+    <item
+        android:id="@+id/otherDevOpsProducts"
+        android:icon="@drawable/ic_baseline_whatshot_others"
+        android:title="@string/other_devops_applications_and_products"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/account_share"
+        android:icon="@drawable/ic_baseline_share"
+        android:title="@string/share"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/account_exit"
+        android:icon="@drawable/ic_baseline_exit"
+        android:title="@string/quit_app"
+        app:showAsAction="ifRoom" />
+
+</menu>

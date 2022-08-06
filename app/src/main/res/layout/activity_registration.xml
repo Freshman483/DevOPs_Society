@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent_registration_constraint"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/animation_gradient_list"
+    tools:context=".Registration">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/parent_reg_linear_in_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="9dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/image_person_Registration"
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/animation_gradient_list"
+                android:src="@drawable/kali_light_mode" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutPassword_registratrion"
+                style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/animation_gradient_list"
+                android:hint="@string/password"
+                app:hintAnimationEnabled="true"
+                android:textColorHint="#DDA8B315"
+                app:endIconMode="password_toggle"
+                app:errorEnabled="true"
+                app:helperText="enter password"
+                app:helperTextEnabled="true"
+                app:helperTextTextColor="@color/white">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/material_editText_input_password1_registration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_confirmation_passd"
+                style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/animation_gradient_list"
+                android:hint="@string/password_confirmation"
+                app:endIconMode="password_toggle"
+                app:errorEnabled="true"
+                android:textColorHint="#DDA8B315"
+                app:helperText="confirm password"
+                app:helperTextEnabled="true"
+                app:helperTextTextColor="@color/white">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/material_editText_input_password2_registration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_emailReg"
+                style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/animation_gradient_list"
+                android:hint="@string/enter_your_email_address"
+                app:errorEnabled="true"
+                android:textColorHint="#DDA8B315"
+                app:helperText="enter Email"
+                app:helperTextEnabled="true"
+                app:helperTextTextColor="@color/white">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/material_editText_input_email_registration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_username_reg"
+                style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/animation_gradient_list"
+                android:hint="@string/enter_a_name_to_be_used_as_your_profile_name"
+                android:textColorHint="#DDA8B315"
+                app:errorEnabled="true"
+                app:helperText="name (account profile identity name)"
+                app:helperTextEnabled="true"
+                app:helperTextTextColor="@color/white">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/material_editText_input_username_registration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapWords" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_phoneNumber_registration"
+                style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/animation_gradient_list"
+                android:hint="enter phone number"
+                app:errorEnabled="true"
+                app:helperText="+254..."
+                app:helperTextEnabled="true"
+                android:textColorHint="#DDA8B315"
+
+                app:helperTextTextColor="@color/white">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/material_editText_input_phoneNumber_registration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="#BBCDA7"
+                android:text="Select County:"
+                android:textSize="20sp"
+                android:textStyle="italic|bold" />
+
+            <Spinner
+                android:id="@+id/spinner_registration_county"
+                style="@style/Widget.AppCompat.Spinner.Underlined"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:background="@color/purple_500"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:focusedByDefault="true"
+                android:saveEnabled="true"
+                android:scrollbarFadeDuration="@integer/material_motion_duration_long_2"
+                android:scrollbarSize="@dimen/cardview_default_elevation"
+                android:spinnerMode="dialog" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#BBCDA7"
+                android:text="Your Passion Majorly:"
+                android:textSize="20sp"
+                android:textStyle="italic|bold" />
+
+            <Spinner
+                android:id="@+id/spinner_registration_passion"
+                style="@style/Widget.AppCompat.Spinner.Underlined"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:background="@color/purple_500"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:focusedByDefault="true"
+                android:saveEnabled="true"
+                android:scrollbarFadeDuration="@integer/material_motion_duration_long_2"
+                android:scrollbarSize="@dimen/cardview_default_elevation"
+                android:spinnerMode="dialog" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#BBCDA7"
+                android:text="Level Of Knowledge:"
+                android:textSize="20sp"
+                android:textStyle="italic|bold" />
+
+            <Spinner
+                android:id="@+id/spinner_registration_passion_level_of_knowledge"
+                style="@style/Widget.AppCompat.Spinner.Underlined"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:background="@color/purple_700"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:focusedByDefault="true"
+                android:saveEnabled="true"
+                android:scrollbarFadeDuration="@integer/material_motion_duration_long_2"
+                android:scrollbarSize="@dimen/cardview_default_elevation"
+                android:spinnerMode="dialog" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#BBCDA7"
+                android:text="Please Select Gender:"
+                android:textSize="20sp"
+                android:textStyle="italic|bold" />
+
+            <Spinner
+                android:id="@+id/spinner_registration_gender"
+                style="@style/Widget.AppCompat.Spinner.Underlined"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:background="@color/purple_700"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:focusedByDefault="true"
+                android:saveEnabled="true"
+                android:scrollbarFadeDuration="@integer/material_motion_duration_long_2"
+                android:scrollbarSize="@dimen/cardview_default_elevation"
+                android:spinnerMode="dialog" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#BBCDA7"
+                android:text="Current Level Of Study:"
+                android:textSize="20sp"
+                android:textStyle="italic|bold" />
+
+            <Spinner
+                android:id="@+id/spinner_registration_occupation"
+                style="@style/Widget.AppCompat.Spinner.Underlined"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:background="#614898"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:focusedByDefault="true"
+                android:saveEnabled="true"
+                android:scrollbarFadeDuration="@integer/material_motion_duration_long_2"
+                android:scrollbarSize="@dimen/cardview_default_elevation"
+                android:spinnerMode="dialog" />
+
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingActionButonRegistration"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:onClick="functionFloatingButtonSubmitClicked"
+                android:src="@drawable/ic_round_send_24"
+                app:backgroundTint="#F57F17"
+                app:rippleColor="#7E6C04D3" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

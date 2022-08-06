@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/trackingDevice"
+        android:icon="@drawable/ic_baseline_location_on_24"
+        android:title="@string/mobile_tracking_app_for_free"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/comrades"
+        android:icon="@drawable/ic_baseline_work_24"
+        android:title="@string/meet_working_comrades_in_it_fields"
+        app:showAsAction="ifRoom" />
+
+
+    <item
+        android:id="@+id/navigation"
+        android:icon="@drawable/ic_baseline_navigation_24"
+        android:title="@string/navigate_safely_and_concisely"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/professionals"
+        android:icon="@drawable/ic_baseline_self_improvement_24"
+        android:title="@string/meet_team_professionals_devops"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/reverseEngineer"
+        android:icon="@drawable/ic_baseline_app_settings_alt_24"
+        android:title="@string/reverse_engineer_app_for_free_use"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/masenoMarketing"
+        android:icon="@drawable/ic_baseline_transfer_within_a_station_24"
+        android:title="@string/easier_marketing_for_comrade"
+        app:showAsAction="always" />
+
+
+</menu>

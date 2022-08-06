@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="3dp"
+    android:id="@+id/parentDeveloperConstraint"
+    android:background="#EE745580"
+    tools:context=".Developer">
+
+    <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+        android:id="@+id/cardviewParent"
+        style="@style/Widget.Material3.Chip.Suggestion.Elevated"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:autoLink="email|phone"
+            android:background="#1E1813"
+            android:id="@+id/textviewDeveloper"
+            android:visibility="invisible"
+            android:padding="5dp"
+            android:text="@string/details_developer"
+            android:textAllCaps="true"
+            android:textColor="#C192B6"
+            android:textColorHighlight="#1E57A5"
+            android:textIsSelectable="true"
+            android:textStyle="italic|bold" />
+
+    </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

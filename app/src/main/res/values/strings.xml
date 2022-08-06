@@ -1,0 +1,104 @@
+<resources>
+    <string name="app_name"><b><i>DevOPs Society</i></b></string>
+    <string name="description_DevOPs_Alert">
+        <i>\nDevOPS Society Has Been Designed Solely To Create Job Connections and Enhancement of Skills to
+        Those Members With Agile Skills In One Or More Of The Following Sections Of Computing:\n
+
+            <b>\n1.Software Engineering And Technics\n
+        \n2.Linux Guy And Reverse Engineering\n
+        \n3.Cyber Security And Computer Forensics\n
+        \n4.Networks Engineering\n
+        \n5.Database and Wizards\n
+        \n6.Web Development Technics\n
+        \n7.Machine Learning And Artificial Intelligence (A.I)\n \n \n
+            </b>
+
+        \t <b> A Brief Overview;</b>
+        \n1.DevOps->Developers\n
+       \n2.Tecnofix->Fix The Real World Problem Using The Modern
+        Technology.\n
+        \n3.Achievement is Going To Be Done By Bringing Up Together The Enthusiastic Upcoming Developers And Already Being Developers From Different Angles Of The Country To Be Working Together In Sharing Ideas And Clarification Of Common Errors Among Developers.\n
+        \n4.Also Most Of The Students With Panasonic Skills In Computing After Graduating From Universities and Colleges
+        End Up Wasting Time In Search Of Jobs, Here DevOPS Will Deal With The Issue With No Remorse To Its Maximum Capability So That Such Students Gets Their Place(s) Of Interest Majestically By Marketing Skills They Having In Works.\n
+        \n5.Become A Developers Society Member Officially And Enjoy Reality of Your Royalties !.\n
+        \nAre You Interested In Joining This Society To Elevate
+        Your Skills and Have A Possibility Of Securing Job In Kenya?.
+        </i>
+        \n
+        \n
+    </string>
+    <string name="lets_get_started">Lets Get Started</string>
+    <string name="titleDevOps"><b>DevOPS Society Tecnofix</b>\n<i>(Shimmita The Administrator)</i></string>
+    <string name="positBtn">Accept</string>
+    <string name="negBtn">Decline</string>
+    <string name="quit_app"><b>Quit Application</b></string>
+    <string name="overview"><i>Developers Society Overview,A Quick View</i></string>
+    <string name="create_account"><i>Create New Developers Society Account</i></string>
+    <string name="login_account"><i>Login Into Developers Society Account</i></string>
+    <string name="share"><i>Share Application</i></string>
+    <string name="developer"><i>Shimmita The Administrator @DevOPS</i></string>
+    <string name="password">enter password</string>
+    <string name="password_confirmation">password confirmation</string>
+    <string name="enter_your_email_address">enter your email address</string>
+    <string name="enter_a_name_to_be_used_as_your_profile_name">enter full name @(least two)</string>
+    <string name="promp_head_spinner">select your county of residence</string>
+    <string name="login_now">Login Now</string>
+    <string name="forgotten_login_credentials">Forgotten Login Credentials ?</string>
+    <string name="spinner_dialog_knowlege_title">Be open for better categorisation.</string>
+    <string name="passion_spinner_prompt_tittle">Select Your Place Of Interest</string>
+    <string name="registration_activity_title">DevOPS Society Registration</string>
+
+    <string name="details_developer">
+          NAME        :    SHIMITA  DOUGLAS OUNDO.\n \n
+        \nOCCUPATION  :    STUDENT @ MASENO UNIVERSITY.\n \n
+        \nSCHOOL OF   :    COMPUTING AND INFORMATICS\n \n
+        \nDEGREE      :    INFORMATION TECHNOLOGY (IT).\n \n
+        \nFOUNDER     :    DEVELOPERS SOCIETY (DEVOPS).\n \n
+        \nASPIRATIONS :    SOFTWARE AND REVERSE ENGINEERING.\n \n
+        \nHOBBIES     :    MUSIC,FOOTBALL,TECHNOLOGY.\n \n
+        \nNATIONALITY :    KENYAN.\n \n
+        \nRESIDENCE   :    MOMBASA (Mikindani)\n \n
+        \nBORN TOWN   :    BUSIA\n \n
+        \nPLACES LIVED:    BUSIA,KITALE,MOMBASA.\n \n
+        \nCONTACT     :    +254757450727\n \n
+        \nEMAIL       :    shimitadouglas@gmail.com\n \n
+        \nGITHUB      :   @FRESHMAN483\n \n
+        \nLANGUAGES   : PYTHON,JAVA,KOTLIN,JAVASCRIPT,C++; \n \n \n \n
+        \nQUOTE->In technology magic never happens, Knowledge makes it happen!\n \n
+
+
+    </string>
+    <string name="mobile_tracking_app_for_free"><i>Mobile Tracking App For free</i></string>
+    <string name="meet_working_comrades_in_it_fields"><i>Meet Working Comrades In IT Fields</i></string>
+    <string name="navigate_safely_and_concisely"><i>Navigate Safely And Concisely</i></string>
+    <string name="meet_team_professionals_devops"><i>Meet Team Professionals @DevOPS</i></string>
+    <string name="reverse_engineer_app_for_free_use"><i>Reverse Engineer App For free Use!</i></string>
+    <string name="easier_marketing_for_comrade"><i>Easier Marketing For Comrade</i></string>
+    <string name="about"><b>About</b></string>
+    <string name="refresh"><b>Refresh</b></string>
+    <string name="rate_devops_app"><b>Rate DevOPS App</b></string>
+    <string name="help"><b>Help</b></string>
+    <string name="message_me"><b>Message Me</b></string>
+    <string name="call_me"><b>Call Me</b></string>
+    <string name="other_devops_applications_and_products"><i>Other DevOPS Applications And Products</i></string>
+    <string name="computer_mercenery_get_a_job_for_you"><i>Computer Mercenary Get A JOB For You</i></string>
+    <string name="post_a_job_for_a_computer_mercenery"><i>Post A JOB For A Computer Mercenary</i></string>
+    <string name="whats_trending_in_it_field"><i>Whats Trending in IT Field Of Today ?</i></string>
+    <string name="enroll_into_the_society_s_forum"><i>Enroll Into DevOPs Society Forum For More</i></string>
+    <string name="title_here">Title Here</string>
+    <string name="description_here">Description here</string>
+    <string name="helpTextInquiry">\n
+        DevOps Society,Is An Application and Platform Which Has Been Developed By An Information Technology Student (I.T),From Maseno University With The Sole Purpose Of Enabling All Students Who Have Valid Dreams In Any Field Of Computing To Achieve Them.
+        \n\nThere Are Two Sections Of Using This Application.
+        \n1,The Offline Mode Which,Is Only Available When One Selects The Quick View Or The OverView Menu.With This Mode Some Functionalities Are limited.
+        \n\n2,The Online Mode Which,Requires One To Be Connected To The Internet For Registration Of Account With The DevOPs Society If He or She Doesn\'t Have The Account.
+        \n\nIf One Owns An Account Then He or She Is required To Login Using The Valid Account Credentials.In case of Password Recovery,One Is Required To Contact the Administrator @ DevOps Society By Means Provided On the Platform, For Security Reasons.
+        \n\nOnce One Is Logged In Some Features will Automatically be Rendered In Offline Mode While One is Still Logged In Their Respective Account,This Will Ensure That No extra Internet Data Is Surcharged To The Members,Since DevOps Society Cares For Them.
+        \n\nActive Members In The Society will Be,Their Privileges Raised To Administrative Roles In Such A Way That They Will Be Able To Work On Jobs Posted By Clients From Different places For Payment Lucratively With No Delay To Their M-PESA Accounts,Managing DevOps Members Account And Other More Essential Roles @DevOPs.
+        \n\nNew Members In The Society Will Gain Unique And On Point Computing Study Materials,And That,Will Be Their Hands Held By The Professionals @DevOps to Ensure That They Too Shine Brighter Than Before Their Enrollment Into The Society.\nFrom There,They Will Also Be Given Administrative Roles @DevOPs.
+        \n\nPost A Job Menu Is For Any Member Who Has Come Across A Job and Feels Like He Or She Can Repost It On To The Platform So That Any Member Who Have Computerised Skills Of Solving It Can Work On It Right On The Spot.\nIf The Job Is Done Successfully,The One Posted The Job Will be Given Some Earnings For Motivational Spirit.
+        \n\nWith The Menu Get A Job For You,One Will Be Able To Work With The Job that Suits His Her Capability.
+        \n<b>NOTE</b>,Post A Job And Get A Job Menu Works Only Online.
+        \n\nLastly,There is A DevOps Forum Which Is Available from the Main Menu Which Ensures That Members In Need Of Clarifications In Software,Networking,Database,Web Development,Hacking Techniques And Many More In The World Of Computing Gets Clarified.\n\n
+    </string>
+</resources>
