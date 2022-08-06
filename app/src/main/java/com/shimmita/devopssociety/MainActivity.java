@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.refresh:
 
-                new SpeechClass(this,"Refresh Successful");
+                new SpeechClass(this, "Refresh Successful");
                 Toast.makeText(this, "Refresh", Toast.LENGTH_SHORT).show();
 
                 item.setChecked(!item.isChecked());
@@ -143,11 +143,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void dialogAlertForHelpingMember() {
-        String text="DevOps Society Says I  Should Read The Message For You, Should I?";
+        String text = "DevOps Society Says I  Should Read The Message For You, Should I?";
 
-        String helpMessage=getString(R.string.helpTextInquiry);
+        String helpMessage = getString(R.string.helpTextInquiry);
 
-        new SpeechClass(this,text);
+        new SpeechClass(this, text);
         new androidx.appcompat.app.AlertDialog.Builder(this)
                 .setTitle("Android Response\n")
                 .setMessage(text)
@@ -156,8 +156,8 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton("Yes,Do Read It", (dialogInterface, i) -> {
                     dialogInterface.dismiss();
 
-                  //inner dialog
-                    new SpeechClass(MainActivity.this,helpMessage);
+                    //inner dialog
+                    new SpeechClass(MainActivity.this, helpMessage);
                     new androidx.appcompat.app.AlertDialog.Builder(MainActivity.this)
                             .setIcon(R.drawable.ic_baseline_message_textmessage)
                             .setTitle("Help Message")
@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
                             .setMessage(helpMessage)
                             .setPositiveButton("thats, great", (dialogInterface1, i1) -> {
                                 dialogInterface1.dismiss();
-                                new SpeechClass(MainActivity.this,"").textToSpeech.shutdown();
+                                new SpeechClass(MainActivity.this, "").textToSpeech.shutdown();
                             })
                             .create()
                             .show();
@@ -196,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void imageViewOnclickListener() {
         imageView.setOnClickListener(view -> {
-            new SpeechClass(this,"DevOps,Society");
+            new SpeechClass(this, "DevOps,Society");
             appCompatButton_start.startAnimation(animation);
             Toast.makeText(MainActivity.this, "DevOps Society,The KE Software Lions!", Toast.LENGTH_LONG).show();
         });
@@ -281,7 +281,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void alertBypassFingerprint() {
-        new SpeechClass(MainActivity.this,"Access,Denied");
+        new SpeechClass(MainActivity.this, "Access,Denied");
         new AlertDialog.Builder(this)
                 .setTitle("Security Guard")
                 .setCancelable(false)
@@ -308,7 +308,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void alertDialog() {
         //speech class initialisation
-        new SpeechClass(this,"Welcome To Developers Society Kenya,@DevOPS");
+        new SpeechClass(this, "Welcome To Developers Society Kenya,@DevOPS");
 
         materialAlertDialogBuilder = new MaterialAlertDialogBuilder(this);
         materialAlertDialogBuilder.setTitle(R.string.titleDevOps);
@@ -342,19 +342,23 @@ public class MainActivity extends AppCompatActivity {
         popupMenu.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
                 case R.id.account_login:
+                   /* progressDialog.setTitle("Service Login");
+                    progressDialog.show();*/
+                    //progressDialog.dismiss();
+                    //finish();
                     Toast.makeText(MainActivity.this, "Account Login", Toast.LENGTH_LONG).show();
-                    progressDialog.setTitle("Service Login");
-                    progressDialog.show();
                     startActivity(new Intent(MainActivity.this, Login.class));
                     CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");
-                    finish();
                     return true;
+
                 case R.id.account_creation:
+//                    progressDialog.setTitle("Service Registration");
+//                    progressDialog.show();
+
                     Toast.makeText(MainActivity.this, "Account Creation", Toast.LENGTH_LONG).show();
-                    progressDialog.setTitle("Service Registration");
-                    progressDialog.show();
-                    startActivity(new Intent(MainActivity.this, Registration.class));
-                    finish();
+                    startActivity(new Intent(MainActivity.this, Registration.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                    CustomIntent.customType(MainActivity.this,"fadein-to-fadeout");
+
                     return true;
                 case R.id.account_overview:
                     Toast.makeText(MainActivity.this, "Account Overview", Toast.LENGTH_LONG).show();
