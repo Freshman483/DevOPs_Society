@@ -128,7 +128,7 @@ public class Login extends AppCompatActivity {
 
         if (TextUtils.isEmpty(emailValue)) {
             new AlertDialog.Builder(Login.this)
-                    .setTitle("Null Credentials Unacceptable")
+                    .setTitle("Credentials Unacceptable !")
                     .setMessage("email is empty,please enter your email.")
                     .create()
                     .show();
@@ -136,15 +136,15 @@ public class Login extends AppCompatActivity {
             new MakeVibrator(Login.this);
         } else if (!(emailValue.contains("@") && emailValue.contains(".com") || (emailValue.contains("gmail")) || emailValue.contains("yahoo"))) {
             new AlertDialog.Builder(Login.this)
-                    .setTitle("Invalid Email Address")
-                    .setMessage("email is invalid,please enter a valid email address which you registered with DEVOPS Society!")
+                    .setTitle("Email Address !")
+                    .setMessage("email is invalid,please enter a valid email address which you registered with DevOPS Society.")
                     .create()
                     .show();
             email.requestFocus();
             new MakeVibrator(Login.this);
         } else if (TextUtils.isEmpty(passwordValue)) {
             new AlertDialog.Builder(Login.this)
-                    .setTitle("Null Credentials Unacceptable")
+                    .setTitle("Credentials Unacceptable !")
                     .setMessage("password is empty,please enter your password.")
                     .create()
                     .show();
