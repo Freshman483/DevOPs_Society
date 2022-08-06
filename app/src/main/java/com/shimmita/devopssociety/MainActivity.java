@@ -40,7 +40,6 @@ import maes.tech.intentanim.CustomIntent;
 public class MainActivity extends AppCompatActivity {
 
     SpeechClass speechClass;
-
     private static final int CODE = 1033;
     private static final String TAG = "MainActivity";
     public static int count = 0;
@@ -368,7 +367,6 @@ public class MainActivity extends AppCompatActivity {
                     share_intent.setType("text/plain");
                     share_intent.putExtra(Intent.EXTRA_TEXT, "Hey Download DevOPS Society (Developers Society) App From Playstore and Promote The Application Purposiveness @ShimitaDouglas!.");
                     startActivity(share_intent);
-                    finish();
                     return true;
                 case R.id.account_aboutdeveloper:
                     progressDialog.setTitle("DEVELOPER");
