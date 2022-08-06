@@ -55,7 +55,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
           if (imageLocksConstructor[position]==R.drawable.ic_baseline_lock_24)
           {
               //animation
-              animation=AnimationUtils.loadAnimation(context,R.anim.abc_popup_enter);
+              animation=AnimationUtils.loadAnimation(context,R.anim.push_left_in);
               view.startAnimation(animation);
               //
 
@@ -73,7 +73,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
           else
           {
               //animation
-              animation=AnimationUtils.loadAnimation(context,R.anim.abc_popup_exit);
+              animation=AnimationUtils.loadAnimation(context,R.anim.push_right_in);
               view.startAnimation(animation);
               //
 
