@@ -60,16 +60,10 @@ public class Login extends AppCompatActivity {
         parentLayout = findViewById(R.id.parentConstraintLayout_login);
         animation = AnimationUtils.loadAnimation(this, R.anim.rotation);
 
-
-        pg = new ProgressDialog(Login.this);
-        String loginDialogStatus = "Login In...";
-        pg.setTitle(loginDialogStatus);
-        pg.create();
-
-        animationDrawable=(AnimationDrawable)parentLayout.getBackground();
+        /*animationDrawable=(AnimationDrawable)parentLayout.getBackground();
         animationDrawable.setEnterFadeDuration(3000);
         animationDrawable.setExitFadeDuration(3000);
-        animationDrawable.start();
+        animationDrawable.start();*/
 
         //checkInternet();
     }
