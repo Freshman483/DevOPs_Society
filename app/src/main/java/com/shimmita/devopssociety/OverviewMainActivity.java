@@ -1,5 +1,6 @@
 package com.shimmita.devopssociety;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,15 +16,22 @@ public class OverviewMainActivity extends AppCompatActivity {
 
     AdapterTwoMainOverview adapterTwoMainOverview;
 
+    AnimationDrawable animationDrawable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overview_main);
-
-        this.setTitle("Overview Window ");
+        this.setTitle("Main Overview Window");
 
         recyclerView = findViewById(R.id.recyclerViewMainOverview);
+
+        animationDrawable=(AnimationDrawable)recyclerView.getBackground();
+        animationDrawable.setEnterFadeDuration(4000);
+        animationDrawable.setExitFadeDuration(4000);
+        animationDrawable.start();
+
+
         descriptionTitleOverview = new String[]
                 {
                         "Software Engineering",
@@ -99,6 +107,7 @@ public class OverviewMainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(gridLayoutManager);
+
 
 
     }
