@@ -50,8 +50,8 @@ public class AdapterTwoMainOverview extends RecyclerView.Adapter<AdapterTwoMainO
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                animationForLocked = AnimationUtils.loadAnimation(context, R.anim.abc_popup_enter);
-                animationForOpen = AnimationUtils.loadAnimation(context, R.anim.abc_popup_exit);
+                animationForLocked = AnimationUtils.loadAnimation(context, R.anim.push_left_in);
+                animationForOpen = AnimationUtils.loadAnimation(context, R.anim.push_right_in);
 
                 if (imageLocks[position] == R.drawable.ic_baseline_lock_24) {
                     view.startAnimation(animationForOpen);
