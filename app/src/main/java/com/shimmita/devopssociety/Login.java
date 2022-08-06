@@ -60,10 +60,10 @@ public class Login extends AppCompatActivity {
         parentLayout = findViewById(R.id.parentConstraintLayout_login);
         animation = AnimationUtils.loadAnimation(this, R.anim.rotation);
 
-        /*animationDrawable=(AnimationDrawable)parentLayout.getBackground();
+        animationDrawable=(AnimationDrawable)parentLayout.getBackground();
         animationDrawable.setEnterFadeDuration(3000);
         animationDrawable.setExitFadeDuration(3000);
-        animationDrawable.start();*/
+        animationDrawable.start();
 
         //checkInternet();
     }
@@ -187,18 +187,4 @@ public class Login extends AppCompatActivity {
         }
     }
 
-
-    @Override
-    public void onBackPressed() {
-
-        System.gc();
-        Runtime.getRuntime().exit(0);
-        super.onBackPressed();
-    }
-
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-
-       // checkInternet();
-    }
 }

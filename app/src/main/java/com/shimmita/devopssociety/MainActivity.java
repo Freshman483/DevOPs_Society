@@ -373,12 +373,13 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(share_intent);
                     return true;
                 case R.id.account_aboutdeveloper:
-                    progressDialog.setTitle("DEVELOPER");
+                  /*  progressDialog.setTitle("DEVELOPER");
                     progressDialog.setMessage("Fetching...");
-                    progressDialog.show();
+                    progressDialog.show();*/
+
                     Toast.makeText(MainActivity.this, "Account About Developer", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(MainActivity.this, Developer.class));
-                    finish();
+                    CustomIntent.customType(MainActivity.this,"fadein-to-fadeout");
                     return true;
 
                 case R.id.forum:
