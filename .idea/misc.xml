@@ -7,6 +7,11 @@
         <entry key="../../../layout/custom_preview.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/animation.xml" value="0.1505" />
         <entry key="app/src/main/res/drawable/animation_gradient_list.xml" value="0.1295" />
+        <entry key="app/src/main/res/drawable/gradient_five_main_overview.xml" value="0.1665" />
+        <entry key="app/src/main/res/drawable/gradient_four_main_overview.xml" value="0.1665" />
+        <entry key="app/src/main/res/drawable/gradient_one_main_overview.xml" value="0.1665" />
+        <entry key="app/src/main/res/drawable/gradient_three_main_overview.xml" value="0.1665" />
+        <entry key="app/src/main/res/drawable/gradient_two_main_overview.xml" value="0.1665" />
         <entry key="app/src/main/res/drawable/gravity4.xml" value="0.1295" />
         <entry key="app/src/main/res/drawable/gravity_1.xml" value="0.1295" />
         <entry key="app/src/main/res/drawable/gravity_2.xml" value="0.1285" />
