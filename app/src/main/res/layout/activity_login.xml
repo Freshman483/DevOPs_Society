@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="1dp"
+    android:layout_marginBottom="10dp"
     android:overScrollMode="always"
-    android:background="@color/teal_200"
     android:scrollbars="vertical"
     tools:context=".Login">
 
@@ -14,7 +14,10 @@
         android:id="@+id/parentConstraintLayout_login"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
         android:layout_margin="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/animationlist_of_gradient_items_of_main_overview"
         android:overScrollMode="always"
         android:scrollbars="vertical">
 
@@ -88,10 +91,13 @@
                 android:id="@+id/floating_button_login"
                 android:layout_width="71dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:baselineAlignBottom="true"
+                android:foregroundGravity="center_horizontal"
                 android:onClick="functionFloatingButtonLoginClicked"
                 android:src="@drawable/ic_round_send_24"
+                android:theme="@style/CardView"
                 app:fabSize="auto"
-
                 app:rippleColor="#BA0E0E" />
         </com.google.android.material.textfield.TextInputLayout>
 

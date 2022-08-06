@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -43,6 +44,8 @@ public class Login extends AppCompatActivity {
     String emailValue, passwordValue;
     ProgressDialog pg;
 
+    AnimationDrawable animationDrawable;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +66,10 @@ public class Login extends AppCompatActivity {
         pg.setTitle(loginDialogStatus);
         pg.create();
 
+        animationDrawable=(AnimationDrawable)parentLayout.getBackground();
+        animationDrawable.setEnterFadeDuration(3000);
+        animationDrawable.setExitFadeDuration(3000);
+        animationDrawable.start();
 
         //checkInternet();
     }

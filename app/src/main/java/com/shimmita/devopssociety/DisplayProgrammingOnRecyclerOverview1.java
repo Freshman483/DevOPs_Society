@@ -1,5 +1,6 @@
 package com.shimmita.devopssociety;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,12 +16,19 @@ public class DisplayProgrammingOnRecyclerOverview1 extends AppCompatActivity {
     String[] titlesConstructor;
     String[] descriptionConstructor;
     MyAdapter myAdapter;
+    AnimationDrawable animationDrawable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.display_programming_on_recycler_overview1);
         recyclerView = findViewById(R.id.recyclerView);
+
+        animationDrawable=(AnimationDrawable)recyclerView.getBackground();
+        animationDrawable.setEnterFadeDuration(1000);
+        animationDrawable.setExitFadeDuration(1000);
+        animationDrawable.start();
+
 
         titlesConstructor = new String[]{
                 "Python",
