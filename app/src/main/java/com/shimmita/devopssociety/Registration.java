@@ -30,6 +30,9 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Comparator;
 import java.util.Locale;
@@ -38,8 +41,12 @@ import java.util.Objects;
 public class Registration extends AppCompatActivity {
 
     FirebaseAuth auth;
+    FirebaseUser firebaseUser;
+    FirebaseFirestore firebaseFirestore;
+    DocumentReference documentReference;
+
     private static final String TAG = "RegistrationLog";
-    static String string1, string2, string3, string4, string5;
+    static String string1, string2, string3, string4, string5,string6;
     Database db;
     TextInputEditText password_registration,
             confirm_password_registration,
@@ -121,13 +128,14 @@ public class Registration extends AppCompatActivity {
             "Advanced Mode Level",
             "Professional Level"
     };
-    String[] gender = {"Male",
-            "Female",
-            "Other"};
+    String[] gender =
+            {"Male",
+                    "Female",
+                    "Other"};
     String[] occupation = {"University Undergraduate Student",
             "University PostGraduate Student",
-            "University Graduate Student",
-            "College Diploma Student"};
+            "University Graduate Student"
+    };
 
     String[] universitiesInKenya = {
             "Maseno University",
@@ -263,6 +271,7 @@ public class Registration extends AppCompatActivity {
         spinner_level_of_knowledge = findViewById(R.id.spinner_registration_passion_level_of_knowledge);
         spinner_gender = findViewById(R.id.spinner_registration_gender);
         spinner_occupation = findViewById(R.id.spinner_registration_occupation);
+        spinnerUniversityRegistrationName = findViewById(R.id.spinner_registration_universityName);
 
 
         spinner_county.setPrompt(getString(R.string.promp_head_spinner));
@@ -308,6 +317,14 @@ public class Registration extends AppCompatActivity {
         spinner_occupation.setAdapter(arrayAdapter_occupation);
         spinner_occupation.requestFocus();
 
+
+        spinnerUniversityRegistrationName.setPrompt("Select The University Attended ");
+        arrayAdapter_universityName = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, universitiesInKenya);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            arrayAdapter_universityName.sort(Comparator.naturalOrder());
+        }
+        spinnerUniversityRegistrationName.setAdapter(arrayAdapter_universityName);
+        spinnerUniversityRegistrationName.requestFocus();
 
         //
         spinner_county.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -379,6 +396,20 @@ public class Registration extends AppCompatActivity {
             }
         });
 
+       spinnerUniversityRegistrationName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+           @Override
+           public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+               string6=adapterView.getSelectedItem().toString();
+               Toast.makeText(Registration.this, "Selected: "+string6, Toast.LENGTH_LONG).show();
+           }
+
+           @Override
+           public void onNothingSelected(AdapterView<?> adapterView) {
+
+               spinnerUniversityRegistrationName.requestFocus();
+           }
+       });
+
         //
 
 /*
@@ -400,6 +431,7 @@ public class Registration extends AppCompatActivity {
         Log.d(TAG, "\nregistrationCredentialCheck: passion->" + string3);
         Log.d(TAG, "\nregistrationCredentialCheck: gender->" + string4);
         Log.d(TAG, "\nregistrationCredentialCheck: ocuupation->" + string5);
+        Log.d(TAG, "\nregistrationCredentialCheck: universityName->" + string6);
         Log.d(TAG, "\nonCreate: END");
 
     }
@@ -526,17 +558,16 @@ public class Registration extends AppCompatActivity {
                     phoneNumber_registration.setError(" ERROR: Very Incorrectly Typed Number !");
                     phoneNumber_registration.requestFocus();
                     new MakeVibrator(Registration.this);
+
                 } else //Everything @finest
                 {
-
-                    Toast.makeText(Registration.this, "Yes Passwords Matching Ok\nyou can  proceed now", Toast.LENGTH_LONG).show();
-
                     Log.d(TAG, "\n\nregistrationCredentialCheck: FloatingButtonBEGIN\n");
                     Log.d(TAG, "\nregistrationCredentialCheck: county-> " + string1);
                     Log.d(TAG, "\nregistrationCredentialCheck: passion->" + string2);
                     Log.d(TAG, "\nregistrationCredentialCheck: knowledge->" + string3);
                     Log.d(TAG, "\nregistrationCredentialCheck: gender->" + string4);
                     Log.d(TAG, "\nregistrationCredentialCheck: ocupation->" + string5);
+                    Log.d(TAG, "\nregistrationCredentialCheck: universityName->" + string6);
                     Log.d(TAG, "\nregistrationCredentialCheck: FloatingButtonEND");
 
                     registerUser(emailReg, passwordReg);
@@ -560,24 +591,30 @@ public class Registration extends AppCompatActivity {
     }
 
     private void registerUser(String emailReg, String passwordReg) {
+        ProgressDialog pg = new ProgressDialog(Registration.this);
+        pg.setTitle(usernameReg.toUpperCase(Locale.ROOT));
+        pg.setMessage("registering ");
+        pg.create();
+        pg.show();
+
         auth.createUserWithEmailAndPassword(emailReg, passwordReg).addOnCompleteListener(Registration.this, task -> {
             if (task.isSuccessful()) {
-                ProgressDialog pg = new ProgressDialog(Registration.this);
-                pg.setTitle("Registering " + usernameReg + "...");
-                pg.create();
-                pg.show();
+              pg.dismiss();
+
                 new MaterialAlertDialogBuilder(Registration.this)
-                        .setTitle(usernameReg + "REGISTRATION: SUCCESSFUL")
-                        .setMessage("Welcome to DevOPS  Society Family Your Credentials Are Now Saved Successfully\n" +
-                                "in Our Realtime Database System. Please Don't Forget Your Username,Email and Password !\n" +
-                                "are of the Unique Identifiers To your DevOps Society Account.\n" +
-                                "USERNAME:" + usernameReg + "\n EMAIL:" + emailReg + "\nPASSWORD:" + passwordReg + "\n" +
+                        .setTitle("REGISTRATION SUCCESSFUL\n\n")
+                        .setMessage("\t(Account Holder: "+usernameReg.toUpperCase(Locale.ROOT)+")\n" +
+                                "\nWelcome To Developers  Society Family, Your Credentials Are Now Saved Successfully" +
+                                "Please Don't Forget Your Username,Email and Password!." +
+                                "These Are the Unique Identifiers of Your DevOps Society Account.\n" +
+                                "\nUSERNAME:" + usernameReg + "\n\n EMAIL:" + emailReg + "\n\nPASSWORD:" + passwordReg + "\n" +
                                 "\nYour Other Selected Details Are:\n" + "" +
-                                "COUNTY:" + string1 + "\n" +
-                                "PASSION:" + string2 + "" +
-                                "\nKNOWLEDGE:" + string3 + "" +
-                                "\nGENDER" + string4 + "" +
-                                "\nOCCUPATION:" + string5 + "\n")
+                                "\nCOUNTY: " + string1 + "\n" +
+                                "\nPASSION: " + string2 + "\n" +
+                                "\nKNOWLEDGE: " + string3 + "\n" +
+                                "\nGENDER:  " + string4 + "\n" +
+                                "\nOCCUPATION: " + string5 +"\n"+
+                                "\nUniversity Attended: "+string6+"\n\n")
                         .setIcon(R.drawable.ic_baseline_check_24)
                         .setCancelable(false)
                         .setPositiveButton("Ok,Login", (dialog, which) -> {
@@ -586,11 +623,18 @@ public class Registration extends AppCompatActivity {
                         })
                         .create()
                         .show();
+
+
+
             } else {
+                pg.dismiss();
+
                 new MakeVibrator(Registration.this);
                 new AlertDialog.Builder(this)
                         .setTitle("REGISTRATION FAILED!")
-                        .setMessage("Dear (" + usernameReg.toUpperCase(Locale.ROOT) + ") Your Registration Was Unsuccessful This Might Be Due To:\n" +
+                        .setMessage("Dear (" + usernameReg.toUpperCase(Locale.ROOT) + ") " +
+                                "Your Registration Was Unsuccessful This Might Be Due To:\n" +
+                                "\nMajor Reason:\n"+task.getException().getMessage().toUpperCase(Locale.ROOT)+"\n\nOther Reasons Include:\n"+
                                 "\n1.Internet Connectivity Issues,If So Please Turn On The Internet And Retry The Registration Process Again." +
                                 "\n " +
                                 "\n2.Internal Server Errors; i.e Server Was Down During Your registration Process; Try Again.\n" +

@@ -309,15 +309,6 @@
                 android:spinnerMode="dialog" />
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="#BBCDA7"
-                android:text="Select Current Date Of Joining Developers Society"
-                android:textSize="20sp"
-                android:textStyle="italic|bold" />
-
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/floatingActionButonRegistration"
                 android:layout_width="100dp"
