@@ -128,16 +128,126 @@ public class Registration extends AppCompatActivity {
             "University PostGraduate Student",
             "University Graduate Student",
             "College Diploma Student"};
+
+    String[] universitiesInKenya = {
+            "Maseno University",
+            "Nairobi University",
+            "Laikipia University",
+            "Meru University",
+            "Gretsa University",
+            "DayStar University",
+            "Garissa University",
+            "Technical University Of Mombasa",
+            "Pwani University",
+            "Jomo Kenyatta University",
+            "Kenyatta University",
+            "Moi University",
+            "Chuka University",
+            "Kibabii University",
+            "Saint Paul's University",
+            "Maasai Mara University",
+            "Alupe University",
+            "Kisii University",
+            "Adventist University Of Africa",
+            "Africa International University",
+            "Africa Nazarene University",
+            "Amref International University",
+            "Dedan Kimathi University",
+            "Egerton University",
+            "Great Lakes University",
+            "International Leadership University",
+            "Jaramogi Oginga Odinga University",
+            "Kabarak University",
+            "KAG University",
+            "Karatina Universty",
+            "KCA University",
+            "Kenya Highlands University",
+            "Kenya Methodist University",
+            "Kirinyaga University",
+            "Kirir Women's University",
+            "Lukenya University",
+            "Machakos University",
+            "Management University Of Africa",
+            "Masinde Muliro University",
+            "Mount Kenya University",
+            "Multimedia University ",
+            "Murang'a University",
+            "Pan Africa Christian University",
+            "Pioneer International University",
+            "RAF International University",
+            "Riara University",
+            "Rongo University",
+            "Scott Christian University",
+            "South Eastern Kenya University",
+            "Taita Taveta Universty",
+            "Strathmore University",
+            "Technical university Of Kenya",
+            "Catholic University Of Eastern Africa",
+            "East African University",
+            "Presbyterian University",
+            "Umma University",
+            "United States International university",
+            "Baraton University",
+            "Embu University",
+            "Kabianga University",
+            "Zetech University",
+            "Uzima University",
+            "University Of Eldoret",
+            "Turkana University",
+            "Tom Mboya University",
+            "Tharaka University",
+            "Tangaza University",
+            "Koitaleel Samoei University",
+            "Kaimosi Univesity",
+            "SEKU University",
+            "Bomet University",
+            "Co-operative University Of Kenya",
+            "Marist International University",
+            "Management University of Africa",
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    };
+
+
     ArrayAdapter<String> arrayAdapter_counties;
     ArrayAdapter<String> arrayAdapter_passion;
     ArrayAdapter<String> arrayAdapter_level_of_knowledge;
     ArrayAdapter<String> arrayAdapter_gender;
     ArrayAdapter<String> arrayAdapter_occupation;
+    ArrayAdapter<String> arrayAdapter_universityName;
+
     Spinner spinner_county,
             spinner_passion,
             spinner_level_of_knowledge,
             spinner_gender,
-            spinner_occupation;
+            spinner_occupation,
+            spinnerUniversityRegistrationName;
 
     //String selected_county, selected_level_of_knowledge, selected_passion, selected_gender, selected_ocupation_level_of_study;
 
@@ -154,7 +264,7 @@ public class Registration extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
 
         auth = FirebaseAuth.getInstance();
-       // db = new Database(Registration.this);
+        // db = new Database(Registration.this);
 
         checkInternet();
 
@@ -393,13 +503,11 @@ public class Registration extends AppCompatActivity {
             username_registration.requestFocus();
             new MakeVibrator(Registration.this);
 
-        }
-        else if (!(usernameReg.contains(" ")))
-        {
+        } else if (!(usernameReg.contains(" "))) {
             new AlertDialog.Builder(Registration.this)
                     .setTitle("Profile Name Validation")
                     .setIcon(R.drawable.hacker_masked1)
-                    .setMessage("please enter a valid name. the name("+usernameReg+")is invalid")
+                    .setMessage("please enter a valid name. the name(" + usernameReg + ")is invalid")
                     .setCancelable(false)
                     .setPositiveButton("validate", (dialogInterface, i) -> {
                         username_registration.requestFocus();
@@ -408,11 +516,7 @@ public class Registration extends AppCompatActivity {
                     })
                     .create()
                     .show();
-        }
-
-
-
-        else if (TextUtils.isEmpty(phoneNumberReg)) {
+        } else if (TextUtils.isEmpty(phoneNumberReg)) {
             phoneNumber_registration.setError("cannot be empty !");
             phoneNumber_registration.requestFocus();
             new MakeVibrator(Registration.this);
@@ -450,9 +554,7 @@ public class Registration extends AppCompatActivity {
                     phoneNumber_registration.setError(" ERROR: Very Incorrectly Typed Number !");
                     phoneNumber_registration.requestFocus();
                     new MakeVibrator(Registration.this);
-                }
-
-                else //Everything @finest
+                } else //Everything @finest
                 {
 
                     Toast.makeText(Registration.this, "Yes Passwords Matching Ok\nyou can  proceed now", Toast.LENGTH_LONG).show();
@@ -488,10 +590,10 @@ public class Registration extends AppCompatActivity {
     private void registerUser(String emailReg, String passwordReg) {
         auth.createUserWithEmailAndPassword(emailReg, passwordReg).addOnCompleteListener(Registration.this, task -> {
             if (task.isSuccessful()) {
-                 ProgressDialog pg = new ProgressDialog(Registration.this);
-                            pg.setTitle("Registering "+usernameReg+"...");
-                            pg.create();
-                            pg.show();
+                ProgressDialog pg = new ProgressDialog(Registration.this);
+                pg.setTitle("Registering " + usernameReg + "...");
+                pg.create();
+                pg.show();
                 new MaterialAlertDialogBuilder(Registration.this)
                         .setTitle(usernameReg + "REGISTRATION: SUCCESSFUL")
                         .setMessage("Welcome to DevOPS  Society Family Your Credentials Are Now Saved Successfully\n" +
@@ -593,6 +695,7 @@ public class Registration extends AppCompatActivity {
         checkInternet();
 
     }
+
     private void checkInternet() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeInfo = connectivityManager.getActiveNetworkInfo();
@@ -609,6 +712,8 @@ public class Registration extends AppCompatActivity {
                     }).create()
                     .show();
         }
+
+
     }
 
 }

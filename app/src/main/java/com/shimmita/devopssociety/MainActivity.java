@@ -289,7 +289,6 @@ public class MainActivity extends AppCompatActivity {
                 .setMessage("DevOPS Society Has Detected Fingerprint Bypass.You Cannot Proceed Without Biometric Authentication !")
                 .setPositiveButton("Lets Biometric Authenticate", (dialogInterface, i) -> {
                     dialogInterface.dismiss();
-
                     //Replace mysnackbar With Alert Dialog That is not cancellable to Void Bug error,System Crash
                     mysnack = Snackbar.make(constraintLayout_parent, "Resolve Fingerprint Bypass ", Snackbar.LENGTH_INDEFINITE).setTextColor(Color.YELLOW).setBackgroundTint(Color.DKGRAY);
                     mysnack.setAction("Fingerprint", view -> fingerprintAuthentication());
@@ -369,7 +368,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent share_intent = new Intent(Intent.ACTION_SEND);
                     share_intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     share_intent.setType("text/plain");
-                    share_intent.putExtra(Intent.EXTRA_TEXT, "Hey Download DevOPS Society (Developers Society) App From Playstore and Promote The Application Purposiveness @ShimitaDouglas!.");
+                    share_intent.putExtra(Intent.EXTRA_TEXT, "Hey Download DevOPS Society (Developers Society) App From Play store and Promote The Application Purposiveness @ShimitaDouglas!.");
                     startActivity(share_intent);
                     return true;
                 case R.id.account_aboutdeveloper:

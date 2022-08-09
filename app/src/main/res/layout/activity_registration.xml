@@ -12,8 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -50,13 +51,13 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/animation_gradient_list"
                 android:hint="@string/password"
-                app:hintAnimationEnabled="true"
                 android:textColorHint="#DDA8B315"
                 app:endIconMode="password_toggle"
                 app:errorEnabled="true"
                 app:helperText="enter password"
                 app:helperTextEnabled="true"
-                app:helperTextTextColor="@color/white">
+                app:helperTextTextColor="@color/white"
+                app:hintAnimationEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/material_editText_input_password1_registration"
@@ -74,9 +75,9 @@
                 android:layout_marginTop="30dp"
                 android:background="@drawable/animation_gradient_list"
                 android:hint="@string/password_confirmation"
+                android:textColorHint="#DDA8B315"
                 app:endIconMode="password_toggle"
                 app:errorEnabled="true"
-                android:textColorHint="#DDA8B315"
                 app:helperText="confirm password"
                 app:helperTextEnabled="true"
                 app:helperTextTextColor="@color/white">
@@ -97,8 +98,8 @@
                 android:layout_marginTop="30dp"
                 android:background="@drawable/animation_gradient_list"
                 android:hint="@string/enter_your_email_address"
-                app:errorEnabled="true"
                 android:textColorHint="#DDA8B315"
+                app:errorEnabled="true"
                 app:helperText="enter Email"
                 app:helperTextEnabled="true"
                 app:helperTextTextColor="@color/white">
@@ -142,10 +143,10 @@
                 android:layout_marginTop="30dp"
                 android:background="@drawable/animation_gradient_list"
                 android:hint="enter phone number"
+                android:textColorHint="#DDA8B315"
                 app:errorEnabled="true"
                 app:helperText="+254..."
                 app:helperTextEnabled="true"
-                android:textColorHint="#DDA8B315"
 
                 app:helperTextTextColor="@color/white">
 
@@ -282,6 +283,41 @@
                 android:spinnerMode="dialog" />
 
 
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#BBCDA7"
+                android:text="University Selection"
+                android:textSize="20sp"
+                android:textStyle="italic|bold" />
+            <Spinner
+                android:id="@+id/spinner_registration_universityName"
+                style="@style/Widget.AppCompat.Spinner.Underlined"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:background="#614898"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:focusedByDefault="true"
+                android:saveEnabled="true"
+                android:scrollbarFadeDuration="@integer/material_motion_duration_long_2"
+                android:scrollbarSize="@dimen/cardview_default_elevation"
+                android:spinnerMode="dialog" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#BBCDA7"
+                android:text="Select Current Date Of Joining Developers Society"
+                android:textSize="20sp"
+                android:textStyle="italic|bold" />
+
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/floatingActionButonRegistration"
                 android:layout_width="100dp"
@@ -290,7 +326,8 @@
                 android:onClick="functionFloatingButtonSubmitClicked"
                 android:src="@drawable/ic_round_send_24"
                 app:backgroundTint="#F57F17"
-                app:rippleColor="#7E6C04D3" />
+                app:rippleColor="#7E6C04D3"
+                android:contentDescription="TODO" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
