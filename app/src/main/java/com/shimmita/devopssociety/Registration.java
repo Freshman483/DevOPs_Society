@@ -203,35 +203,7 @@ public class Registration extends AppCompatActivity {
             "Bomet University",
             "Co-operative University Of Kenya",
             "Marist International University",
-            "Management University of Africa",
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            "Management University of Africa"
     };
 
 
