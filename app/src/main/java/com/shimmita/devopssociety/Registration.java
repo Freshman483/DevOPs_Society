@@ -55,7 +55,7 @@ public class Registration extends AppCompatActivity {
 
 
     private static final String TAG = "RegistrationLog";
-    static String string1, string2, string3, string4, string5,string6;
+    static String string1, string2, string3, string4, string5, string6;
     Database db;
     TextInputEditText password_registration,
             confirm_password_registration,
@@ -267,10 +267,9 @@ public class Registration extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
 
 
-
         auth = FirebaseAuth.getInstance();
-        firebaseFirestore=FirebaseFirestore.getInstance();
-        documentReference=firebaseFirestore.collection("DevOps Users");
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        documentReference = firebaseFirestore.collection("DevOps Users");
 
 
         // db = new Database(Registration.this);
@@ -425,19 +424,19 @@ public class Registration extends AppCompatActivity {
             }
         });
 
-       spinnerUniversityRegistrationName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-           @Override
-           public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-               string6=adapterView.getSelectedItem().toString();
-               Toast.makeText(Registration.this, "Selected: "+string6, Toast.LENGTH_LONG).show();
-           }
+        spinnerUniversityRegistrationName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                string6 = adapterView.getSelectedItem().toString();
+                Toast.makeText(Registration.this, "Selected: " + string6, Toast.LENGTH_LONG).show();
+            }
 
-           @Override
-           public void onNothingSelected(AdapterView<?> adapterView) {
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
-               spinnerUniversityRegistrationName.requestFocus();
-           }
-       });
+                spinnerUniversityRegistrationName.requestFocus();
+            }
+        });
 
         //
 
@@ -589,14 +588,12 @@ public class Registration extends AppCompatActivity {
                     phoneNumber_registration.requestFocus();
                     new MakeVibrator(Registration.this);
 
-                }
-                else if (string2.contains("Mobile"))
-                {
+                } else if (string2.contains("Mobile")) {
                     new androidx.appcompat.app.AlertDialog.Builder(this)
                             .setTitle("Mobile Development")
                             .setCancelable(false)
-                            .setMessage("Dear "+usernameReg.toUpperCase(Locale.ROOT)+"\n" +
-                                    "\n It's Assumed That You Have Learnt The Basics and Internals Of Software Development Which Has Been Provided" +
+                            .setMessage("Dear " + usernameReg.toUpperCase(Locale.ROOT) + "\n" +
+                                    "\nIt's Assumed That You Have Learnt The Basics and Internals Of Software Development Which Has Been Provided" +
                                     "Under Software Engineering Or You Have Learned Anywhere Else. This Section Deals Into Mobile Development" +
                                     "Theoretically And Practically In Advanced Mode. If this Is Not The Case Please Select Software Engineering Provided" +
                                     "in the DropDown Menu To Learn The Basics First.\n\n")
@@ -614,19 +611,17 @@ public class Registration extends AppCompatActivity {
                                     new VibratorLowly(Registration.this);
                                     dialogInterface.dismiss();
                                     Toast.makeText(Registration.this, "Please Select Software Engineering Deep", Toast.LENGTH_LONG).show();
-                                    string2="";
+                                    string2 = "";
                                 }
                             }).create().show();
 
-                }
-                else if (string2.contains("Desktop"))
-                {
+                } else if (string2.contains("Desktop")) {
 
                     new androidx.appcompat.app.AlertDialog.Builder(this)
                             .setTitle("Desktop Development")
                             .setCancelable(false)
-                            .setMessage("Dear "+usernameReg.toUpperCase(Locale.ROOT)+"\n" +
-                                    "\n It's Assumed That You Have Learnt The Basics and Internals Of Software Development Which Has Been Provided" +
+                            .setMessage("Dear " + usernameReg.toUpperCase(Locale.ROOT) + "\n" +
+                                    "\nIt's Assumed That You Have Learnt The Basics and Internals Of Software Development Which Has Been Provided" +
                                     "Under Software Engineering Or You Have Learned Anywhere Else. This Section Deals Into Desktop Development" +
                                     "Theoretically And Practically In Advanced Mode. If this Is Not The Case Please Select Software Engineering Provided" +
                                     "in the DropDown Menu To Learn The Basics First.\n\n")
@@ -644,12 +639,10 @@ public class Registration extends AppCompatActivity {
                                     new VibratorLowly(Registration.this);
                                     dialogInterface.dismiss();
                                     Toast.makeText(Registration.this, "Please Select Software Engineering Deep", Toast.LENGTH_LONG).show();
-                                    string2="";
+                                    string2 = "";
                                 }
                             }).create().show();
-                }
-                else if (string2.equals(""))
-                {
+                } else if (string2.equals("")) {
                     new androidx.appcompat.app.AlertDialog.Builder(this)
                             .setTitle("Passion Cannot Be Null !")
                             .setCancelable(false)
@@ -658,9 +651,7 @@ public class Registration extends AppCompatActivity {
                             .setPositiveButton("Ok", (dialogInterface, i) -> dialogInterface.dismiss()).create().show();
                     spinner_passion.requestFocus();
                     new VibratorLowly(Registration.this);
-                }
-
-                else //Everything @finest
+                } else //Everything @finest
                 {
                     Log.d(TAG, "\n\nregistrationCredentialCheck: FloatingButtonBEGIN\n");
                     Log.d(TAG, "\nregistrationCredentialCheck: county-> " + string1);
@@ -700,78 +691,78 @@ public class Registration extends AppCompatActivity {
 
         auth.createUserWithEmailAndPassword(emailReg, passwordReg).addOnCompleteListener(Registration.this, task -> {
             if (task.isSuccessful()) {
-              pg.dismiss();
-              //HashMap For Storing the User Data On to The Database At FireBase
-                Map<String,Object> map=new HashMap<>();
-                map.put("Username",usernameReg);
-                map.put("Email",emailReg);
-                map.put("Password",passwordReg);
-                map.put("County",string1);
-                map.put("Passion",string2);
-                map.put("Knowledge",string3);
-                map.put("Gender",string4);
-                map.put("Occupation",string5);
-                map.put("University",string6);
+                pg.dismiss();
+                //HashMap For Storing the User Data On to The Database At FireBase
+                Map<String, Object> map = new HashMap<>();
+                map.put("Username", usernameReg);
+                map.put("Email", emailReg);
+                map.put("Password", passwordReg);
+                map.put("County", string1);
+                map.put("Passion", string2);
+                map.put("Knowledge", string3);
+                map.put("Gender", string4);
+                map.put("Occupation", string5);
+                map.put("University", string6);
                 //
                 //adding map values to firebase
-              firebaseUser= auth.getCurrentUser();
-              String userID=firebaseUser.getUid();
+                firebaseUser = auth.getCurrentUser();
+                String userID = firebaseUser.getUid();
 
-              documentReference.document(userID).set(map).addOnCompleteListener(Registration.this, new OnCompleteListener<Void>() {
-                  @Override
-                  public void onComplete(@NonNull Task<Void> task) {
+                documentReference.document(userID).set(map).addOnCompleteListener(Registration.this, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
 
-                      if (task.isSuccessful())
-                      {
+                        if (task.isSuccessful()) {
 
-                          new MaterialAlertDialogBuilder(Registration.this)
-                                  .setTitle("REGISTRATION SUCCESSFUL\n\n")
-                                  .setMessage("\t(Account Holder: "+usernameReg.toUpperCase(Locale.ROOT)+")\n" +
-                                          "\nWelcome To Developers  Society Family, Your Credentials Are Now Saved Successfully" +
-                                          "Please Don't Forget Your Username,Email and Password!." +
-                                          "These Are the Unique Identifiers of Your DevOps Society Account.\n" +
-                                          "\nUSERNAME:" + usernameReg + "\n\n EMAIL:" + emailReg + "\n\nPASSWORD:" + passwordReg + "\n" +
-                                          "\nYour Other Selected Details Are:\n" + "" +
-                                          "\nCOUNTY: " + string1 + "\n" +
-                                          "\nPASSION: " + string2 + "\n" +
-                                          "\nKNOWLEDGE: " + string3 + "\n" +
-                                          "\nGENDER:  " + string4 + "\n" +
-                                          "\nOCCUPATION: " + string5 +"\n"+
-                                          "\nUniversity Attended: "+string6+"\n\n")
-                                  .setIcon(R.drawable.ic_baseline_check_24)
-                                  .setCancelable(false)
-                                  .setPositiveButton("Ok,Login", (dialog, which) -> {
-                                      dialog.cancel();
-                                      pg.dismiss();
-                                  })
-                                  .create()
-                                  .show();
+                            new MaterialAlertDialogBuilder(Registration.this)
+                                    .setTitle("REGISTRATION SUCCESSFUL\n\n")
+                                    .setMessage("\t(Account Holder: " + usernameReg.toUpperCase(Locale.ROOT) + ")\n" +
+                                            "\nWelcome To Developers  Society Family, Your Credentials Are Now Saved Successfully" +
+                                            "Please Don't Forget Your Username,Email and Password!." +
+                                            "These Are the Unique Identifiers of Your DevOps Society Account.\n" +
+                                            "\nUSERNAME: " + usernameReg + "\n\nEMAIL: " + emailReg + "\n\nPASSWORD: " + passwordReg + "\n" +
+                                            "\n\nYour Other Selected Details Are:\n" + "" +
+                                            "\nCOUNTY: " + string1 + "\n" +
+                                            "\nPASSION: " + string2 + "\n" +
+                                            "\nKNOWLEDGE: " + string3 + "\n" +
+                                            "\nGENDER:  " + string4 + "\n" +
+                                            "\nOCCUPATION: " + string5 + "\n" +
+                                            "\nUNIVERSITY ATTENDED: " + string6 + "\n\n")
+                                    .setIcon(R.drawable.ic_baseline_check_24)
+                                    .setCancelable(false)
+                                    .setPositiveButton("Ok,Login", (dialog, which) -> {
+                                        dialog.cancel();
+                                        pg.dismiss();
+                                        startActivity(new Intent(Registration.this, Login.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                                    })
+                                    .setNegativeButton("Login Later", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            pg.dismiss();
+                                            dialogInterface.dismiss();
+                                            startActivity(new Intent(Registration.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                                            finish();
+                                        }
+                                    })
+                                    .create()
+                                    .show();
 
-                      }
-                      else
-                      {
-                          new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
-                                  .setTitle("Error From The Database!")
-                                  .setCancelable(false)
-                                  .setMessage("\n\n"+"Dear User "+usernameReg.toUpperCase(Locale.ROOT)+"" +
-                                          "Your Data Was Not Stored Into The Database Records Due To:\n"+task.getException().getMessage()+"" +
-                                          "Please Try Again Registration Process")
-                                  .setPositiveButton("Ok Let Me try Again", (dialogInterface, i) -> dialogInterface.dismiss())
-                                  .setNegativeButton("No,Quit!", (dialogInterface, i) -> {
-                                      dialogInterface.dismiss();
-                                      startActivity(new Intent(Registration.this,MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
-                                      finish();
-                                  }).create().show();
-                      }
-                  }
-              });
-
-              //dialog success registration doubt is value added in the database!
-
-
-                //
-
-
+                        } else {
+                            new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
+                                    .setTitle("Error From The Database!")
+                                    .setCancelable(false)
+                                    .setMessage("\n\n" + "Dear User " + usernameReg.toUpperCase(Locale.ROOT) + "" +
+                                            "Your Data Was Not Stored Into The Database Records Due To:\n" + task.getException().getMessage() + "" +
+                                            "Please Try Again Registration Process")
+                                    .setPositiveButton("Ok Let Me try Again", (dialogInterface, i) -> dialogInterface.dismiss())
+                                    .setNegativeButton("No,Quit!", (dialogInterface, i) -> {
+                                        dialogInterface.dismiss();
+                                        startActivity(new Intent(Registration.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                                        finish();
+                                    }).create().show();
+                        }
+                    }
+                });
 
             } else {
                 pg.dismiss();
@@ -781,7 +772,7 @@ public class Registration extends AppCompatActivity {
                         .setTitle("REGISTRATION FAILED!")
                         .setMessage("Dear (" + usernameReg.toUpperCase(Locale.ROOT) + ") " +
                                 "Your Registration Was Unsuccessful This Might Be Due To:\n" +
-                                "\nMajor Reason:\n"+task.getException().getMessage().toUpperCase(Locale.ROOT)+"\n\nOther Reasons Include:\n"+
+                                "\nMajor Reason:\n" + task.getException().getMessage().toUpperCase(Locale.ROOT) + "\n\nOther Reasons Include:\n" +
                                 "\n1.Internet Connectivity Issues,If So Please Turn On The Internet And Retry The Registration Process Again." +
                                 "\n " +
                                 "\n2.Internal Server Errors; i.e Server Was Down During Your registration Process; Try Again.\n" +
