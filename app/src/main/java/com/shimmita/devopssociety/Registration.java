@@ -23,19 +23,25 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.LinearLayoutCompat;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
 
 public class Registration extends AppCompatActivity {
@@ -43,7 +49,10 @@ public class Registration extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseUser firebaseUser;
     FirebaseFirestore firebaseFirestore;
-    DocumentReference documentReference;
+    CollectionReference documentReference;
+
+    ProgressDialog progressDialogDatabase;
+
 
     private static final String TAG = "RegistrationLog";
     static String string1, string2, string3, string4, string5,string6;
@@ -115,13 +124,27 @@ public class Registration extends AppCompatActivity {
             "Vihiga County"
     };
     String[] passion = {
-            "Software Development",
-            "Web Development",
-            "Network Engineering",
-            "Database Wizard",
-            "Machine Learning And  A.I",
-            "Cyber Security And Penetration Testing",
-            "Computer Forensics And Tactics"
+            "Software Engineering Deep",
+            "Web Development Techniques Deep",
+            "Networks Engineering Deep",
+            "Database Management Deep",
+            "Machine Learning Technology",
+            "Artificial Intelligence Technology",
+            "Penetration Testing (test security flaws)",
+            "Reverse Engineering (modify apps or System) ",
+            "Data Science (Python)",
+            "Cloud Computing Technology",
+            "Containerisation with (Docker)",
+            "Systems Administration Deep",
+            "Linux Operating System Deep",
+            "Windows Operating System Deep",
+            "Dark Web (how to get into)",
+            "Ethical Hacking with Linux (white hat)",
+            "Mobile Application Development(software)",
+            "Desktop Application Development(software)",
+            "Computer Virus And Counteracting ",
+            "Cyber Security (Cyber War)->Linux",
+            "Computer Forensics (trace a cause)"
     };
     String[] string_level_of_knowledge = {
             "Intermediate level",
@@ -243,7 +266,13 @@ public class Registration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
+
+
         auth = FirebaseAuth.getInstance();
+        firebaseFirestore=FirebaseFirestore.getInstance();
+        documentReference=firebaseFirestore.collection("DevOps Users");
+
+
         // db = new Database(Registration.this);
 
         checkInternet();
@@ -437,6 +466,7 @@ public class Registration extends AppCompatActivity {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void functionFloatingButtonSubmitClicked(View view) {
         animation = AnimationUtils.loadAnimation(Registration.this, R.anim.abc_slide_in_top);
         view.startAnimation(animation);
@@ -474,6 +504,7 @@ public class Registration extends AppCompatActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void registrationCredentialCheck() {
 
         passwordReg = Objects.requireNonNull(password_registration.getText()).toString();
@@ -547,7 +578,6 @@ public class Registration extends AppCompatActivity {
                     phoneNumber_registration.setError("detected invalid number type!\nDoes not contain 13 characters long.\nAlso missing is(+254). begin with (+254...)");
                     phoneNumber_registration.requestFocus();
                     new MakeVibrator(Registration.this);
-
                 } else if (!(phoneNumberReg.contains("+254"))) {
                     phoneNumber_registration.setError("detected invalid number type!\nbegin with (+254...)");
                     phoneNumber_registration.requestFocus();
@@ -559,7 +589,78 @@ public class Registration extends AppCompatActivity {
                     phoneNumber_registration.requestFocus();
                     new MakeVibrator(Registration.this);
 
-                } else //Everything @finest
+                }
+                else if (string2.contains("Mobile"))
+                {
+                    new androidx.appcompat.app.AlertDialog.Builder(this)
+                            .setTitle("Mobile Development")
+                            .setCancelable(false)
+                            .setMessage("Dear "+usernameReg.toUpperCase(Locale.ROOT)+"\n" +
+                                    "\n It's Assumed That You Have Learnt The Basics and Internals Of Software Development Which Has Been Provided" +
+                                    "Under Software Engineering Or You Have Learned Anywhere Else. This Section Deals Into Mobile Development" +
+                                    "Theoretically And Practically In Advanced Mode. If this Is Not The Case Please Select Software Engineering Provided" +
+                                    "in the DropDown Menu To Learn The Basics First.\n\n")
+                            .setPositiveButton("Already Have Basics, Lets Proceed", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.dismiss();
+                                    Toast.makeText(Registration.this, "Confirmed Mobile Development", Toast.LENGTH_LONG).show();
+                                }
+                            }).setNegativeButton("Back to Software,For Basics", new DialogInterface.OnClickListener() {
+                                @RequiresApi(api = Build.VERSION_CODES.O)
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    spinner_occupation.requestFocus();
+                                    new VibratorLowly(Registration.this);
+                                    dialogInterface.dismiss();
+                                    Toast.makeText(Registration.this, "Please Select Software Engineering Deep", Toast.LENGTH_LONG).show();
+                                    string2="";
+                                }
+                            }).create().show();
+
+                }
+                else if (string2.contains("Desktop"))
+                {
+
+                    new androidx.appcompat.app.AlertDialog.Builder(this)
+                            .setTitle("Desktop Development")
+                            .setCancelable(false)
+                            .setMessage("Dear "+usernameReg.toUpperCase(Locale.ROOT)+"\n" +
+                                    "\n It's Assumed That You Have Learnt The Basics and Internals Of Software Development Which Has Been Provided" +
+                                    "Under Software Engineering Or You Have Learned Anywhere Else. This Section Deals Into Desktop Development" +
+                                    "Theoretically And Practically In Advanced Mode. If this Is Not The Case Please Select Software Engineering Provided" +
+                                    "in the DropDown Menu To Learn The Basics First.\n\n")
+                            .setPositiveButton("Already Have Basics, Lets Proceed", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.dismiss();
+                                    Toast.makeText(Registration.this, "Confirmed Desktop Development", Toast.LENGTH_LONG).show();
+                                }
+                            }).setNegativeButton("Back to Software,For Basics", new DialogInterface.OnClickListener() {
+                                @RequiresApi(api = Build.VERSION_CODES.O)
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    spinner_occupation.requestFocus();
+                                    new VibratorLowly(Registration.this);
+                                    dialogInterface.dismiss();
+                                    Toast.makeText(Registration.this, "Please Select Software Engineering Deep", Toast.LENGTH_LONG).show();
+                                    string2="";
+                                }
+                            }).create().show();
+                }
+                else if (string2.equals(""))
+                {
+                    new androidx.appcompat.app.AlertDialog.Builder(this)
+                            .setTitle("Passion Cannot Be Null !")
+                            .setCancelable(false)
+                            .setMessage("Cannot Register Member With No Place Of Passion Or Interest for This Field Is Mandatory For" +
+                                    "Your Registration Process To Proceed,Please Select One Of your Passion In The DropDown List!")
+                            .setPositiveButton("Ok", (dialogInterface, i) -> dialogInterface.dismiss()).create().show();
+                    spinner_passion.requestFocus();
+                    new VibratorLowly(Registration.this);
+                }
+
+                else //Everything @finest
                 {
                     Log.d(TAG, "\n\nregistrationCredentialCheck: FloatingButtonBEGIN\n");
                     Log.d(TAG, "\nregistrationCredentialCheck: county-> " + string1);
@@ -593,36 +694,82 @@ public class Registration extends AppCompatActivity {
     private void registerUser(String emailReg, String passwordReg) {
         ProgressDialog pg = new ProgressDialog(Registration.this);
         pg.setTitle(usernameReg.toUpperCase(Locale.ROOT));
-        pg.setMessage("registering ");
+        pg.setMessage("Registering");
         pg.create();
         pg.show();
 
         auth.createUserWithEmailAndPassword(emailReg, passwordReg).addOnCompleteListener(Registration.this, task -> {
             if (task.isSuccessful()) {
               pg.dismiss();
+              //HashMap For Storing the User Data On to The Database At FireBase
+                Map<String,Object> map=new HashMap<>();
+                map.put("Username",usernameReg);
+                map.put("Email",emailReg);
+                map.put("Password",passwordReg);
+                map.put("County",string1);
+                map.put("Passion",string2);
+                map.put("Knowledge",string3);
+                map.put("Gender",string4);
+                map.put("Occupation",string5);
+                map.put("University",string6);
+                //
+                //adding map values to firebase
+              firebaseUser= auth.getCurrentUser();
+              String userID=firebaseUser.getUid();
 
-                new MaterialAlertDialogBuilder(Registration.this)
-                        .setTitle("REGISTRATION SUCCESSFUL\n\n")
-                        .setMessage("\t(Account Holder: "+usernameReg.toUpperCase(Locale.ROOT)+")\n" +
-                                "\nWelcome To Developers  Society Family, Your Credentials Are Now Saved Successfully" +
-                                "Please Don't Forget Your Username,Email and Password!." +
-                                "These Are the Unique Identifiers of Your DevOps Society Account.\n" +
-                                "\nUSERNAME:" + usernameReg + "\n\n EMAIL:" + emailReg + "\n\nPASSWORD:" + passwordReg + "\n" +
-                                "\nYour Other Selected Details Are:\n" + "" +
-                                "\nCOUNTY: " + string1 + "\n" +
-                                "\nPASSION: " + string2 + "\n" +
-                                "\nKNOWLEDGE: " + string3 + "\n" +
-                                "\nGENDER:  " + string4 + "\n" +
-                                "\nOCCUPATION: " + string5 +"\n"+
-                                "\nUniversity Attended: "+string6+"\n\n")
-                        .setIcon(R.drawable.ic_baseline_check_24)
-                        .setCancelable(false)
-                        .setPositiveButton("Ok,Login", (dialog, which) -> {
-                            dialog.cancel();
-                            pg.dismiss();
-                        })
-                        .create()
-                        .show();
+              documentReference.document(userID).set(map).addOnCompleteListener(Registration.this, new OnCompleteListener<Void>() {
+                  @Override
+                  public void onComplete(@NonNull Task<Void> task) {
+
+                      if (task.isSuccessful())
+                      {
+
+                          new MaterialAlertDialogBuilder(Registration.this)
+                                  .setTitle("REGISTRATION SUCCESSFUL\n\n")
+                                  .setMessage("\t(Account Holder: "+usernameReg.toUpperCase(Locale.ROOT)+")\n" +
+                                          "\nWelcome To Developers  Society Family, Your Credentials Are Now Saved Successfully" +
+                                          "Please Don't Forget Your Username,Email and Password!." +
+                                          "These Are the Unique Identifiers of Your DevOps Society Account.\n" +
+                                          "\nUSERNAME:" + usernameReg + "\n\n EMAIL:" + emailReg + "\n\nPASSWORD:" + passwordReg + "\n" +
+                                          "\nYour Other Selected Details Are:\n" + "" +
+                                          "\nCOUNTY: " + string1 + "\n" +
+                                          "\nPASSION: " + string2 + "\n" +
+                                          "\nKNOWLEDGE: " + string3 + "\n" +
+                                          "\nGENDER:  " + string4 + "\n" +
+                                          "\nOCCUPATION: " + string5 +"\n"+
+                                          "\nUniversity Attended: "+string6+"\n\n")
+                                  .setIcon(R.drawable.ic_baseline_check_24)
+                                  .setCancelable(false)
+                                  .setPositiveButton("Ok,Login", (dialog, which) -> {
+                                      dialog.cancel();
+                                      pg.dismiss();
+                                  })
+                                  .create()
+                                  .show();
+
+                      }
+                      else
+                      {
+                          new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
+                                  .setTitle("Error From The Database!")
+                                  .setCancelable(false)
+                                  .setMessage("\n\n"+"Dear User "+usernameReg.toUpperCase(Locale.ROOT)+"" +
+                                          "Your Data Was Not Stored Into The Database Records Due To:\n"+task.getException().getMessage()+"" +
+                                          "Please Try Again Registration Process")
+                                  .setPositiveButton("Ok Let Me try Again", (dialogInterface, i) -> dialogInterface.dismiss())
+                                  .setNegativeButton("No,Quit!", (dialogInterface, i) -> {
+                                      dialogInterface.dismiss();
+                                      startActivity(new Intent(Registration.this,MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                                      finish();
+                                  }).create().show();
+                      }
+                  }
+              });
+
+              //dialog success registration doubt is value added in the database!
+
+
+                //
 
 
 
