@@ -378,9 +378,13 @@ public class MainActivity extends AppCompatActivity {
         popupMenu.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
                 case R.id.account_login:
-                    Toasty.custom(getApplicationContext(), "Login Account", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
+                  /*  Toasty.custom(getApplicationContext(), "Login Account", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
                     startActivity(new Intent(MainActivity.this, Login.class));
-                    CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");
+                    CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");*/
+
+                    startActivity(new Intent(MainActivity.this,LoginIndexMainPage.class));
+
+
                     return true;
 
                 case R.id.account_creation:

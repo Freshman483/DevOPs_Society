@@ -108,7 +108,7 @@
     <string name="enter_login_password">enter login password</string>
     <string name="floating_button_login">floating Button Login</string>
     <string name="forgot_password_toast">Server Is Down, Try Again Later!</string>
-    <string name="home_profile_Text"><u>Home Profile</u></string>
+    <string name="account_profile_Text"><u>Account Profile</u></string>
     <string name="activity_profile"><u>Activity Profile</u></string>
     <string name="activity_jobs"><u>Available Jobs</u></string>
     <string name="post_a_job">Post A Job</string>
@@ -118,4 +118,5 @@
     <string name="contact_administrator"><u>Contact Administrator</u></string>
     <string name="support_developer"><u>Support Developer</u></string>
     <string name="shimitadouaglas_masenouni"><u><i>ShimitaDouaglas@MasenoUni</i></u></string>
+    <string name="get_a_job">Get A Job</string>
 </resources>
