@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <animation-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@drawable/dev_ops_main"
-        android:duration="3500"/>
+
     <item android:drawable="@drawable/forum"
         android:duration="3500"/>
     <item android:drawable="@drawable/coding_zone"

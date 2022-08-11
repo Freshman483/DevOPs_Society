@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
+        android:background="#E6E4E4"
         android:padding="1dp">
 
 
@@ -38,7 +39,7 @@
                     android:gravity="center_horizontal"
                     android:text="@string/account_profile_Text"
                     android:textColor="#D57457"
-                    android:textSize="32sp"
+                    android:textSize="35sp"
                     android:textStyle="bold|italic"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -71,11 +72,11 @@
                     android:id="@+id/onlineStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="5dp"
                     android:layout_marginBottom="100dp"
                     android:text="online"
                     android:textColor="@color/teal_200"
-                    android:textSize="13sp"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
 
@@ -119,7 +120,7 @@
                     android:id="@+id/isAdminiStrator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="72dp"
+                    android:layout_marginEnd="116dp"
                     android:text="normal_user"
                     android:textColor="@android:color/holo_orange_dark"
                     android:textSize="14sp"
@@ -140,15 +141,16 @@
                     app:layout_constraintStart_toEndOf="@+id/profilePicture"
                     app:layout_constraintTop_toBottomOf="@+id/countyTextDisplay" />
 
-                <ImageView
-                    android:id="@+id/moreInformation"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="24dp"
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="56dp"
+                    android:text="open"
+                    android:textColor="@color/teal_700"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    tools:srcCompat="@drawable/ic_baseline_menu_24" />
+                    app:layout_constraintEnd_toEndOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
@@ -230,10 +232,19 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
 
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="56dp"
+                    android:text="open"
+                    android:textColor="@color/teal_700"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
-
-
 
 
         <androidx.cardview.widget.CardView
@@ -310,20 +321,20 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
 
-                <ImageView
-                    android:id="@+id/lockOrOpenGettingJob"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="4dp"
-                    android:layout_marginBottom="84dp"
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/lockOrOpenGettingJobs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="56dp"
+                    android:src="@drawable/ic_baseline_lock_24"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    tools:srcCompat="@drawable/ic_baseline_lock_24" />
+                    app:layout_constraintEnd_toEndOf="parent" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
-
-
 
 
         <androidx.cardview.widget.CardView
@@ -404,24 +415,19 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
 
-                <ImageView
-                    android:id="@+id/lockOrOpen"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="4dp"
-                    android:layout_marginBottom="84dp"
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="56dp"
+                    android:text="open"
+                    android:textColor="@color/teal_700"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    tools:srcCompat="@drawable/ic_baseline_lock_open_24" />
+                    app:layout_constraintEnd_toEndOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
-
-
-
-
-
-
 
 
         <androidx.cardview.widget.CardView
@@ -497,16 +503,6 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
 
-                <ImageView
-                    android:id="@+id/lockOrOpen_devops_members"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="4dp"
-                    android:layout_marginBottom="84dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    tools:srcCompat="@drawable/ic_baseline_lock_open_24" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -527,6 +523,17 @@
                     android:text="5"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@+id/stringMembersOnlineCounter"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="56dp"
+                    android:text="open"
+                    android:textColor="@color/teal_700"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -583,16 +590,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/activityTitleForum" />
 
 
-                <ImageView
-                    android:id="@+id/lockOrOpen_devops_Forum"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="4dp"
-                    android:layout_marginBottom="84dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    tools:srcCompat="@drawable/ic_baseline_lock_open_24" />
-
                 <TextView
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
@@ -604,6 +601,17 @@
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/circleImageViewForum" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="56dp"
+                    android:text="open"
+                    android:textColor="@color/teal_700"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -660,15 +668,16 @@
                     app:layout_constraintStart_toEndOf="@+id/circleImageViewTrendingInIT"
                     app:layout_constraintTop_toBottomOf="@+id/activityTitleTrendingInITField" />
 
-                <ImageView
-                    android:id="@+id/lockOrOpen_devops_TrendingInIT"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="4dp"
-                    android:layout_marginBottom="84dp"
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="56dp"
+                    android:text="open"
+                    android:textColor="@color/teal_700"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    tools:srcCompat="@drawable/ic_baseline_lock_open_24" />
+                    app:layout_constraintEnd_toEndOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
@@ -724,26 +733,16 @@
                     app:layout_constraintStart_toEndOf="@+id/circleImageViewContactAdmin"
                     app:layout_constraintTop_toBottomOf="@+id/activityTitleContactAdmin" />
 
-                <ImageView
-                    android:id="@+id/lockOrOpen_devops_ContactAdmin"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="4dp"
-                    android:layout_marginBottom="84dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    tools:srcCompat="@drawable/ic_baseline_lock_open_24" />
-
                 <TextView
                     android:id="@+id/textView5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
+                    android:layout_marginEnd="5dp"
                     android:layout_marginBottom="56dp"
-                    android:shadowColor="@color/teal_700"
-                    android:text="click "
+                    android:shadowColor="@color/black"
+                    android:text="open"
                     android:textColor="@color/teal_700"
-                    android:textSize="15sp"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
 
@@ -753,7 +752,7 @@
 
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardViewSeparatorActivityContactAdministrator"
+            android:id="@+id/cardViewSupportDeveloper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
@@ -806,9 +805,10 @@
                     android:id="@+id/devops_SupportDeveloper"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="116dp"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:visibility="visible"
+                    app:layout_constraintStart_toEndOf="@+id/circleImageViewSupportDeveloper"
                     app:layout_constraintTop_toBottomOf="@+id/activityTitleDescriptionSupportDeveloper"
                     tools:srcCompat="@drawable/ic_baseline_emoji_smile" />
 
@@ -845,16 +845,43 @@
                     android:id="@+id/textView8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="52dp"
-                    android:layout_marginEnd="1dp"
-                    android:text="click"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="56dp"
+                    android:text="open"
                     android:textColor="@color/teal_700"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/activityTitleSupportDeveloper" />
-
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:backgroundTint="@color/black"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_baseline_email_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardViewSupportDeveloper"
+            app:rippleColor="@color/white"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/stringMessageIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="55dp"
+            android:textStyle="bold"
+            android:layout_marginEnd="8dp"
+            android:text="1"
+            android:textColor="#FD0303"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/floatingActionButton"
+            app:layout_constraintTop_toBottomOf="@+id/cardViewSupportDeveloper" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
