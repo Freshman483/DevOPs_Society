@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.*;
 import android.widget.Toast;
 
+import es.dmoral.toasty.Toasty;
+
 public class MakeVibrator {
     Context context;
 
@@ -17,12 +19,13 @@ public class MakeVibrator {
 
         if (vibrator.hasVibrator())
         {
-            Toast.makeText(context, "Device Vibration Is Ready for Notifications", Toast.LENGTH_LONG).show();
+            Toasty.custom(context, "Device Vibration Is For Notification(s)", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
+
             if (Build.VERSION.SDK_INT>Build.VERSION_CODES.O)
             {
-                vibrator.vibrate(VibrationEffect.createOneShot(200,VibrationEffect.DEFAULT_AMPLITUDE));
+                vibrator.vibrate(VibrationEffect.createOneShot(100,VibrationEffect.DEFAULT_AMPLITUDE));
             }
-            vibrator.vibrate(200);
+            vibrator.vibrate(100);
         }
         else
         {

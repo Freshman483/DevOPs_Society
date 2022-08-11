@@ -167,41 +167,18 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:background="#BBCDA7"
-                    android:text="Select County:"
-                    android:textSize="20sp"
-                    android:textStyle="italic|bold" />
-
-                <Spinner
-                    android:id="@+id/spinner_registration_county"
-                    style="@style/Widget.AppCompat.Spinner.Underlined"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:background="#614898"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:focusedByDefault="true"
-                    android:saveEnabled="true"
-                    android:scrollbarFadeDuration="@integer/material_motion_duration_long_2"
-                    android:scrollbarSize="@dimen/cardview_default_elevation"
-                    android:spinnerMode="dialog" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:background="#BBCDA7"
-                    android:text="Your Passion Majorly:"
+                    android:text="Please Select Gender:"
                     android:textSize="20sp"
                     android:textStyle="italic|bold" />
 
                 <Spinner
-                    android:id="@+id/spinner_registration_passion"
+                    android:id="@+id/spinner_registration_gender"
                     style="@style/Widget.AppCompat.Spinner.Underlined"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -214,6 +191,8 @@
                     android:scrollbarFadeDuration="@integer/material_motion_duration_long_2"
                     android:scrollbarSize="@dimen/cardview_default_elevation"
                     android:spinnerMode="dialog" />
+
+
 
 
                 <TextView
@@ -240,18 +219,17 @@
                     android:scrollbarSize="@dimen/cardview_default_elevation"
                     android:spinnerMode="dialog" />
 
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="30dp"
                     android:background="#BBCDA7"
-                    android:text="Please Select Gender:"
+                    android:text="Select County:"
                     android:textSize="20sp"
                     android:textStyle="italic|bold" />
 
                 <Spinner
-                    android:id="@+id/spinner_registration_gender"
+                    android:id="@+id/spinner_registration_county"
                     style="@style/Widget.AppCompat.Spinner.Underlined"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -264,6 +242,7 @@
                     android:scrollbarFadeDuration="@integer/material_motion_duration_long_2"
                     android:scrollbarSize="@dimen/cardview_default_elevation"
                     android:spinnerMode="dialog" />
+
 
 
                 <TextView
@@ -291,6 +270,7 @@
                     android:spinnerMode="dialog" />
 
 
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -302,6 +282,32 @@
 
                 <Spinner
                     android:id="@+id/spinner_registration_universityName"
+                    style="@style/Widget.AppCompat.Spinner.Underlined"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:background="#614898"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:focusedByDefault="true"
+                    android:saveEnabled="true"
+                    android:scrollbarFadeDuration="@integer/material_motion_duration_long_2"
+                    android:scrollbarSize="@dimen/cardview_default_elevation"
+                    android:spinnerMode="dialog" />
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="#BBCDA7"
+                    android:text="Your Passion Majorly:"
+                    android:textSize="20sp"
+                    android:textStyle="italic|bold" />
+
+                <Spinner
+                    android:id="@+id/spinner_registration_passion"
                     style="@style/Widget.AppCompat.Spinner.Underlined"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

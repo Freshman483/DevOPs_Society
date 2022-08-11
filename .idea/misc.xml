@@ -27,12 +27,15 @@
         <entry key="app/src/main/res/layout/activity_gridview_for_display_programming.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_gridview_of_overview.xml" value="0.15081521739130435" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_login_index_main_page.xml" value="0.1796875" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_overview.xml" value="0.5" />
         <entry key="app/src/main/res/layout/activity_overview_main.xml" value="0.19166666666666668" />
         <entry key="app/src/main/res/layout/activity_registration.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_successful_registration.xml" value="0.1838768115942029" />
         <entry key="app/src/main/res/layout/display_programming_on_recycler_overview1.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/row3_data_main_login.xml" value="0.1921875" />
+        <entry key="app/src/main/res/layout/row3_login_main_home.xml" value="0.33" />
         <entry key="app/src/main/res/layout/row_data.xml" value="0.22" />
         <entry key="app/src/main/res/layout/rowdata2_main_overview.xml" value="0.33" />
         <entry key="app/src/main/res/menu/developer_options.xml" value="0.19166666666666668" />

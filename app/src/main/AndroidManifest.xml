@@ -15,12 +15,15 @@
         android:appCategory="productivity"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/ic_baseline_whatshot_24"
+        android:icon="@mipmap/dev_ops_main"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/ic_baseline_whatshot_24"
+        android:roundIcon="@mipmap/dev_ops_main"
         android:supportsRtl="true"
         android:theme="@style/Theme.DevOPsSociety"
         tools:targetApi="31">
+        <activity
+            android:name=".LoginIndexMainPage"
+            android:exported="false" />
         <activity
             android:name=".OverviewMainActivity"
             android:exported="false" />

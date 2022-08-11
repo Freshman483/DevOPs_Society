@@ -9,6 +9,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.text.TextUtils;
@@ -17,9 +18,9 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -30,6 +31,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+
+import es.dmoral.toasty.Toasty;
 
 public class Login extends AppCompatActivity {
 
@@ -42,7 +45,7 @@ public class Login extends AppCompatActivity {
     androidx.appcompat.widget.PopupMenu popupMenu_login_submission;
 
     String emailValue, passwordValue;
-    ProgressDialog pg;
+
 
     AnimationDrawable animationDrawable;
 
@@ -60,7 +63,7 @@ public class Login extends AppCompatActivity {
         parentLayout = findViewById(R.id.parentConstraintLayout_login);
         animation = AnimationUtils.loadAnimation(this, R.anim.rotation);
 
-        animationDrawable=(AnimationDrawable)parentLayout.getBackground();
+        animationDrawable = (AnimationDrawable) parentLayout.getBackground();
         animationDrawable.setEnterFadeDuration(3000);
         animationDrawable.setExitFadeDuration(3000);
         animationDrawable.start();
@@ -101,6 +104,7 @@ public class Login extends AppCompatActivity {
                     credentialCheckLogin();
                     return true;
                 case R.id.forgottenCredential:
+                    Toasty.custom(Login.this, R.string.forgot_password_toast, R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
 
                     return true;
                 default:
@@ -147,21 +151,32 @@ public class Login extends AppCompatActivity {
         } else {//eveting finesse
             //Toast.makeText(this, "Very ready", Toast.LENGTH_SHORT).show();
 
+            ProgressDialog progressDialog = new ProgressDialog(Login.this);
+            progressDialog.setTitle("Login In");
+            progressDialog.setMessage("Please Wait...");
+            progressDialog.create();
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+
             auth.signInWithEmailAndPassword(emailValue, passwordValue).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
+                @RequiresApi(api = Build.VERSION_CODES.O)
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful())
-                    {
-                        pg.show();
-                        Toast.makeText(Login.this, "Login Was Successful", Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                    {
+                    if (task.isSuccessful()) {
+                        progressDialog.dismiss();
+                        Toasty.custom(Login.this, "Login Successful", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
+
+                    } else {
+
+                        progressDialog.dismiss();
+                        new VibratorLowly(Login.this);
                         new AlertDialog.Builder(Login.this)
                                 .setTitle("LOGIN FAILED!")
-                                .setMessage("\nLogin  Result:\n"  + "\n" +
+
+                                .setMessage("\nLogin  Result:\n" + "\n" +
                                         "\nDear (Unknown Member ) Your Login Was Unsuccessful This Might Be Due To:\n" +
-                                        "\n1.Invalid Login Credentials Being Used ! Or User Doesn't Exist In The System \n"+"\n"+
+                                        "\nMain Reason:\n"+task.getException().getMessage()+"\n\n\nOther Minor Reasons:\n"+
+                                        "\n1.Invalid Login Credentials Being Used ! Or User Doesn't Exist In The System \n" + "\n" +
                                         "\n2.Internet Connectivity Issues,If So Please Turn On The Internet And Retry The Registration Process Again." +
                                         "\n " +
                                         "\n3.Internal Server Errors; i.e Server Was Down During Your registration Process; Try Again.\n" +

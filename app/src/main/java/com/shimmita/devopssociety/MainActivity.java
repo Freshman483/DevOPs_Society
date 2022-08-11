@@ -4,9 +4,7 @@ import static androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRON
 import static androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -31,19 +29,18 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.concurrent.Executor;
 
+import es.dmoral.toasty.Toasty;
 import maes.tech.intentanim.CustomIntent;
 
 public class MainActivity extends AppCompatActivity {
 
-    SpeechClass speechClass;
     private static final int CODE = 1033;
-    private static final String TAG = "MainActivity";
     public static int count = 0;
     public static int maximum = 4;
+    static int COUNTER_ACTIVITY_STATE_MONITOR = 0;
     BiometricManager biometricManager_checking_fingerprint_support;
     Executor executor;
     BiometricPrompt biometricPrompt_functionality_implementation;
@@ -55,11 +52,9 @@ public class MainActivity extends AppCompatActivity {
     AppCompatButton appCompatButton_start;
     Animation animation;
     PopupMenu popupMenu;
-    AlertWarning alertWarningClass;
-    ProgressDialog progressDialog;
-    Database db;
-    Snackbar mysnack;
 
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,15 +68,6 @@ public class MainActivity extends AppCompatActivity {
         imageView.setBackgroundResource(R.drawable.animation);
         animationDrawable = (AnimationDrawable) imageView.getBackground();
 
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading...");
-
-        //snackbar position to be decided
-      /*  mysnack = Snackbar.make(constraintLayout_parent, "  The Game Of Technology\n  (@DEVOPS SOCIETY!)", Snackbar.LENGTH_SHORT)
-                .setTextColor(Color.YELLOW).setBackgroundTint(Color.DKGRAY);
-
-        mysnack.setBackgroundTint(Color.BLACK);
-        mysnack.show();*/
 
         fingerprintAuthentication();
         imageViewOnclickListener();
@@ -163,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
                             .setTitle("Help Message")
                             .setCancelable(false)
                             .setMessage(helpMessage)
-                            .setPositiveButton("thats, great", (dialogInterface1, i1) -> {
+                            .setPositiveButton("That's, Great", (dialogInterface1, i1) -> {
                                 dialogInterface1.dismiss();
                                 new SpeechClass(MainActivity.this, "").textToSpeech.shutdown();
                             })
@@ -172,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
                     //inner Dialog
 
                 })
-                .setNegativeButton("Oh,no I Will ", (dialogInterface, i) -> {
+                .setNegativeButton("Oh,No I Will ", (dialogInterface, i) -> {
                     dialogInterface.dismiss();
 
                     //inner Dialog
@@ -194,11 +180,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void imageViewOnclickListener() {
         imageView.setOnClickListener(view -> {
-            new SpeechClass(this, "DevOps,Society");
+            new VibratorLowly(MainActivity.this);
             appCompatButton_start.startAnimation(animation);
-            Toast.makeText(MainActivity.this, "DevOps Society,The KE Software Lions!", Toast.LENGTH_LONG).show();
+            Toasty.custom(getApplicationContext(), "The Most Energetic and Enigmatic Upcoming Society in Kenya!", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
+
         });
     }
 
@@ -208,28 +196,33 @@ public class MainActivity extends AppCompatActivity {
         biometricManager_checking_fingerprint_support = BiometricManager.from(this);
         switch (biometricManager_checking_fingerprint_support.canAuthenticate(BIOMETRIC_STRONG | DEVICE_CREDENTIAL)) {
             case BiometricManager.BIOMETRIC_SUCCESS:
-                Toast.makeText(this, "Device Supports Fingerprint Requirements", Toast.LENGTH_LONG).show();
+                Toasty.custom(getApplicationContext(), "Device Supports DevOps Society Authentication Requirements", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
 
                 break;
             case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
-                Toast.makeText(this, "Fingerprint Support Service Currently Unreachable!", Toast.LENGTH_LONG).show();
+                Toasty.custom(getApplicationContext(), "Authentication Service currently Unavailable !", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
 
                 break;
             case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
-                Toast.makeText(this, "Error, Device Does Not Support Fingerprint", Toast.LENGTH_LONG).show();
+
+                Toasty.custom(getApplicationContext(), "Device does Not Meet DevOps Society Requirements", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
+
                 break;
             case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
-                Toast.makeText(this, "You're Being Directed To Fingerprint Enrolment Settings ...", Toast.LENGTH_SHORT).show();
+
+                Toasty.custom(getApplicationContext(), "Device Currently Not Enrolled Security Requirements", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
 
                 Intent fingerprintEnrolment = new Intent(Settings.ACTION_BIOMETRIC_ENROLL);
                 fingerprintEnrolment.putExtra(Settings.EXTRA_BIOMETRIC_AUTHENTICATORS_ALLOWED, BIOMETRIC_STRONG | DEVICE_CREDENTIAL);
                 startActivityForResult(fingerprintEnrolment, CODE);
                 break;
             case BiometricManager.BIOMETRIC_ERROR_SECURITY_UPDATE_REQUIRED:
-                Toast.makeText(this, "Error... BIOMETRIC_ERROR_SECURITY_UPDATE_REQUIRED!", Toast.LENGTH_LONG).show();
+                Toasty.custom(getApplicationContext(), "Security Update Required!", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
                 break;
             case BiometricManager.BIOMETRIC_STATUS_UNKNOWN:
-                Toast.makeText(this, "Device Fingerprint Status Unknown!", Toast.LENGTH_LONG).show();
+
+                Toasty.custom(getApplicationContext(), "Device Security Status Unknown!", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
+
                 break;
 
         }
@@ -251,7 +244,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                 super.onAuthenticationSucceeded(result);
-                Toast.makeText(MainActivity.this, "FingerPrint Authentication  Successful Welcome", Toast.LENGTH_LONG).show();
+
+                Toasty.custom(getApplicationContext(), "Authentication Successful, Welcome", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
 
                 //alert Deveops Start Dialog proceed
                 alertDialog();
@@ -262,7 +256,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAuthenticationFailed() {
                 super.onAuthenticationFailed();
-                Toast.makeText(MainActivity.this, "FingerPrint Authentication Failure!", Toast.LENGTH_LONG).show();
+
+                Toasty.custom(getApplicationContext(), "Authentication Failed !", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
 
             }
         });
@@ -281,20 +276,38 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void alertBypassFingerprint() {
-        new SpeechClass(MainActivity.this, "Access,Denied");
+        Toasty.custom(getApplicationContext(), "Authentication Error,Please Try Again !", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
+
         new AlertDialog.Builder(this)
                 .setTitle("Security Guard")
                 .setCancelable(false)
                 .setIcon(R.drawable.ic_baseline_lock_24)
-                .setMessage("DevOPS Society Has Detected Fingerprint Bypass.You Cannot Proceed Without Biometric Authentication !")
+                .setMessage("DevOPS Society Detected Fingerprint Bypass.You Cannot Proceed Without Biometric Authentication !")
                 .setPositiveButton("Lets Biometric Authenticate", (dialogInterface, i) -> {
                     dialogInterface.dismiss();
                     //Replace mysnackbar With Alert Dialog That is not cancellable to Void Bug error,System Crash
+                  /*
                     mysnack = Snackbar.make(constraintLayout_parent, "Resolve Fingerprint Bypass ", Snackbar.LENGTH_INDEFINITE).setTextColor(Color.YELLOW).setBackgroundTint(Color.DKGRAY);
                     mysnack.setAction("Fingerprint", view -> fingerprintAuthentication());
                     mysnack.setActionTextColor(Color.parseColor("#FF6F00"));
                     mysnack.setBackgroundTint(Color.BLACK);
-                    mysnack.show();
+                    mysnack.show();*/
+
+                    new MaterialAlertDialogBuilder(MainActivity.this)
+                            .setTitle("Authentication")
+                            .setMessage("You Need To Allow Biometric Authentication On This Device In order to Proceed Using This Application.")
+                            .setIcon(R.mipmap.dev_ops_main)
+                            .setCancelable(false)
+                            .setPositiveButton("Ok,Lets Do", (dialogInterface12, i12) -> {
+                                dialogInterface12.dismiss();
+                                fingerprintAuthentication();
+                            }).setNegativeButton("No,Exit Me", (dialogInterface1, i1) -> {
+                                dialogInterface1.dismiss();
+                                finish();
+                                new SpeechClass(getApplicationContext(), "exited,Successfully");
+                                Runtime.getRuntime().exit(0);
+
+                            }).create().show();
 
 
                     ///
@@ -306,9 +319,33 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void alertDialog() {
-        //speech class initialisation
-        new SpeechClass(this, "Welcome To Developers Society Kenya,@DevOPS");
+        //checking Value Of The COUNTER From the App Class If Is greater than Zero in
+        //order to call appropriate function when the app starts
+        if (COUNTER_ACTIVITY_STATE_MONITOR == 0) {
+            alertingUserAfterExitOnStartOrOnFirstLaunch();
+        } else if (COUNTER_ACTIVITY_STATE_MONITOR == 1) {
+            continueUsingMainActivityForUserNotExited();
+        }
 
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        COUNTER_ACTIVITY_STATE_MONITOR = 1;
+    }
+
+    public void continueUsingMainActivityForUserNotExited() {
+        Toasty.custom(getApplicationContext(), "Welcome Back User", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
+        animationDrawable.start();
+        appCompatButton_start.setVisibility(View.VISIBLE);
+        animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.abc_slide_in_top);
+        appCompatButton_start.startAnimation(animation);
+    }
+
+    public void alertingUserAfterExitOnStartOrOnFirstLaunch() {
+        //speech class initialisation
+        new SpeechClass(getApplicationContext(), "Welcome to Developers Society Kenya");
         materialAlertDialogBuilder = new MaterialAlertDialogBuilder(this);
         materialAlertDialogBuilder.setTitle(R.string.titleDevOps);
         materialAlertDialogBuilder.setMessage(R.string.description_DevOPs_Alert);
@@ -341,30 +378,23 @@ public class MainActivity extends AppCompatActivity {
         popupMenu.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
                 case R.id.account_login:
-                   /* progressDialog.setTitle("Service Login");
-                    progressDialog.show();*/
-                    //progressDialog.dismiss();
-                    //finish();
-                    Toast.makeText(MainActivity.this, "Account Login", Toast.LENGTH_LONG).show();
+                    Toasty.custom(getApplicationContext(), "Login Account", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
                     startActivity(new Intent(MainActivity.this, Login.class));
                     CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");
                     return true;
 
                 case R.id.account_creation:
-//                    progressDialog.setTitle("Service Registration");
-//                    progressDialog.show();
-
-                    Toast.makeText(MainActivity.this, "Account Creation", Toast.LENGTH_LONG).show();
+                    Toasty.custom(getApplicationContext(), "Account Creation", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
                     startActivity(new Intent(MainActivity.this, Registration.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
-                    CustomIntent.customType(MainActivity.this,"fadein-to-fadeout");
-
+                    CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");
                     return true;
+
                 case R.id.account_overview:
-                    Toast.makeText(MainActivity.this, "Account Overview", Toast.LENGTH_LONG).show();
+                    Toasty.custom(getApplicationContext(), "DevOps Overview Page", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
                     startActivity(new Intent(MainActivity.this, OverviewMainActivity.class));
                     return true;
                 case R.id.account_share:
-                    Toast.makeText(MainActivity.this, "Account Share", Toast.LENGTH_LONG).show();
+                    Toasty.custom(getApplicationContext(), "Share And Promote DevOps Society", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
                     Intent share_intent = new Intent(Intent.ACTION_SEND);
                     share_intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     share_intent.setType("text/plain");
@@ -376,25 +406,29 @@ public class MainActivity extends AppCompatActivity {
                     progressDialog.setMessage("Fetching...");
                     progressDialog.show();*/
 
-                    Toast.makeText(MainActivity.this, "Account About Developer", Toast.LENGTH_LONG).show();
+                    Toasty.custom(getApplicationContext(), "Developer Of DevOps Society Information", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
                     startActivity(new Intent(MainActivity.this, Developer.class));
-                    CustomIntent.customType(MainActivity.this,"fadein-to-fadeout");
+                    CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");
                     return true;
 
                 case R.id.forum:
-                    Toast.makeText(this, "Lets Converse In the Forum ", Toast.LENGTH_LONG).show();
+                    Toasty.custom(getApplicationContext(), "Converse And Exchange Ideas", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
+
                     return true;
 
                 case R.id.trending:
-                    Toast.makeText(this, "Get Updated In; With Technological Trends", Toast.LENGTH_LONG).show();
+                    Toasty.custom(getApplicationContext(), "Trending In Technology", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
+
                     return true;
 
                 case R.id.jobSection:
-                    Toast.makeText(this, "Our Members Will Have It Done Instantly", Toast.LENGTH_LONG).show();
+                    Toasty.custom(getApplicationContext(), "Post A Job And We Will Work On It", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
+
                     return true;
 
                 case R.id.jobSectionDo:
-                    Toast.makeText(this, "Work For A Client As Soon As Possible And Get Paid", Toast.LENGTH_LONG).show();
+                    Toasty.custom(getApplicationContext(), "Complete Client's Task And Get Paid ", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
+
                     return true;
 
                 case R.id.account_exit:
@@ -403,8 +437,15 @@ public class MainActivity extends AppCompatActivity {
                             .setCancelable(false)
                             .setMessage("Do You Want To Exit From The App?")
                             .setIcon(R.drawable.ic_baseline_info_24)
-                            .setPositiveButton("Yes, I Do ", (dialogInterface, i) -> Runtime.getRuntime().exit(0))
-                            .setNegativeButton("No, Lets Be Back", (dialogInterface, i) -> dialogInterface.dismiss())
+                            .setPositiveButton("Yes, I Do ", (dialogInterface, i) -> {
+                                Toasty.custom(getApplicationContext(), "DevOps App Shutting Down", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
+                                Runtime.getRuntime().exit(0);
+                            })
+                            .setNegativeButton("No, Lets Be Back", (dialogInterface, i) -> {
+                                dialogInterface.dismiss();
+                                Toasty.custom(getApplicationContext(), "Lets Continue ", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
+
+                            })
                             .create()
                             .show();
                     return true;
@@ -448,7 +489,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void otherProductsFunction() {
-        Toast.makeText(this, "More Apps From Developers Society Team", Toast.LENGTH_SHORT).show();
+        Toasty.custom(getApplicationContext(), "A Must Know Hot Products From DevOPS !", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
+
         PopupMenu popupMenu_otherProducts = new PopupMenu(MainActivity.this, appCompatButton_start);
         popupMenu_otherProducts.setForceShowIcon(true);
         popupMenu_otherProducts.inflate(R.menu.other_devops_products);
@@ -456,30 +498,32 @@ public class MainActivity extends AppCompatActivity {
         popupMenu_otherProducts.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
                 case R.id.navigation:
+                    Toasty.custom(getApplicationContext(), "DevOPS_Navigator Apk", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
 
-                    Toast.makeText(MainActivity.this, "DevOPS Navigator App @DevOPS Navi", Toast.LENGTH_LONG).show();
                     return true;
 
                 case R.id.professionals:
-                    Toast.makeText(MainActivity.this, "DevOPS Army Generals App  @DevOPS Geni", Toast.LENGTH_LONG).show();
+                    Toasty.custom(getApplicationContext(), "DevOPS_Invincible(s) Apk", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
+
                     return true;
 
                 case R.id.trackingDevice:
-                    Toast.makeText(MainActivity.this, "DevOps Tracker App @DevOPS Tracker", Toast.LENGTH_LONG).show();
+                    Toasty.custom(getApplicationContext(), "DevOPS_Tracker Apk", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
 
                     return true;
 
                 case R.id.comrades:
-                    Toast.makeText(MainActivity.this, "Meet Legit Working Comrades App @DevOPSCom Power", Toast.LENGTH_LONG).show();
+                    Toasty.custom(getApplicationContext(), "Comrades_Power Apk", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
+
                     return true;
 
                 case R.id.masenoMarketing:
-                    Toast.makeText(MainActivity.this, "Lets Market Easily With App @Devops Market ", Toast.LENGTH_LONG).show();
+                    Toasty.custom(getApplicationContext(), "Devops_Market Apk", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
+
                     return true;
 
                 case R.id.reverseEngineer:
-
-                    Toast.makeText(MainActivity.this, "Bypass android App for free Use @DevOPS Reverser", Toast.LENGTH_LONG).show();
+                    Toasty.custom(getApplicationContext(), "DevOPS_Reverser Apk", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
                     return true;
 
                 default:

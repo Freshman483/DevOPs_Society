@@ -23,12 +23,13 @@
         \n5.Become A Developers Society Member Officially And Enjoy Reality of Your Royalties !.\n
         \nAre You Interested In Joining This Society To Elevate
         Your Skills and Have A Possibility Of Securing Job In Kenya?.
+            \n\n\n\npowered by:<u><b>ShimitaDouglas@MasenoUniversity.</b></u>
         </i>
         \n
         \n
     </string>
     <string name="lets_get_started">Lets Get Started</string>
-    <string name="titleDevOps"><b>DevOPS Society Tecnofix</b>\n<i>(Shimmita The Administrator)</i></string>
+    <string name="titleDevOps"><b><u><b><i><u>DEVOPS SOCIETY TECNOFIX (KE)</u></i></b></u></b><i></i></string>
     <string name="positBtn">Accept</string>
     <string name="negBtn">Decline</string>
     <string name="quit_app"><b>Quit Application</b></string>
@@ -43,7 +44,7 @@
     <string name="enter_a_name_to_be_used_as_your_profile_name">enter full name @(least two)</string>
     <string name="promp_head_spinner">select your county of residence</string>
     <string name="login_now">Login Now</string>
-    <string name="forgotten_login_credentials">Forgotten Login Credentials ?</string>
+    <string name="forgotten_login_credentials">Forgot Login Credentials ?</string>
     <string name="spinner_dialog_knowlege_title">Be open for better categorisation.</string>
     <string name="passion_spinner_prompt_tittle">Select Your Place Of Interest</string>
     <string name="registration_activity_title">DevOPS Society Registration</string>
@@ -102,4 +103,19 @@
         \n\nLastly,There is A DevOps Forum Which Is Available from the Main Menu Which Ensures That Members In Need Of Clarifications In Software,Networking,Database,Web Development,Hacking Techniques And Many More In The World Of Computing Gets Clarified.\n\n
     </string>
     <string name="fingerprint_title_alert"><b><i>DevOPS Alert, Biometrics Detection !</i></b></string>
+    <string name="enter_email">enter email</string>
+    <string name="devops_logo">devOPS Logo</string>
+    <string name="enter_login_password">enter login password</string>
+    <string name="floating_button_login">floating Button Login</string>
+    <string name="forgot_password_toast">Server Is Down, Try Again Later!</string>
+    <string name="home_profile_Text"><u>Home Profile</u></string>
+    <string name="activity_profile"><u>Activity Profile</u></string>
+    <string name="activity_jobs"><u>Available Jobs</u></string>
+    <string name="post_a_job">Post A Job</string>
+    <string name="devops_members"><u>DevOPS Members</u></string>
+    <string name="devops_forum"><u>DevOPS Forum</u></string>
+    <string name="what_s_trending_in_i_t"><u>What\'s New In I.T</u></string>
+    <string name="contact_administrator"><u>Contact Administrator</u></string>
+    <string name="support_developer"><u>Support Developer</u></string>
+    <string name="shimitadouaglas_masenouni"><u><i>ShimitaDouaglas@MasenoUni</i></u></string>
 </resources>

@@ -15,7 +15,7 @@
     <androidx.cardview.widget.CardView
         style="@style/Widget.Material3.CardView.Elevated"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:cardCornerRadius="50dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,12 +31,16 @@
 
 
             <ImageView
+                android:contentDescription="@string/devops_logo"
                 android:id="@+id/image_person_login"
-                android:layout_width="match_parent"
+                android:layout_width="399dp"
                 android:layout_height="200dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginBottom="4dp"
                 android:src="@mipmap/dev_ops_main"
+                app:layout_constraintBottom_toTopOf="@+id/textInput_email"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:hint="enter email"
+                android:hint="@string/enter_email"
                 app:errorEnabled="true"
                 app:helperText="email"
                 app:helperTextEnabled="true"
@@ -70,10 +74,10 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInput_password_login"
                 style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox.Dense"
-                android:layout_width="384dp"
+                android:layout_width="match_parent"
                 android:layout_height="265dp"
                 android:layout_marginTop="16dp"
-                android:hint="enter login password"
+                android:hint="@string/enter_login_password"
                 app:endIconMode="password_toggle"
 
                 app:errorEnabled="true"
@@ -81,8 +85,10 @@
                 app:helperTextEnabled="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInput_email">
+                app:layout_constraintTop_toBottomOf="@+id/textInput_email"
+                app:layout_constraintVertical_bias="1.0">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/material_editText_input_login_password"
@@ -96,12 +102,14 @@
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/floating_button_login"
-                    android:layout_width="100dp"
+                    android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:baselineAlignBottom="true"
+                    android:contentDescription="@string/floating_button_login"
                     android:onClick="functionFloatingButtonLoginClicked"
                     android:src="@drawable/ic_round_send_24"
-                    app:rippleColor="#BA0E0E" />
+                    app:rippleColor="#BA0E0E"
+                    tools:ignore="SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
 

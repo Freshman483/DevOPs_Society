@@ -593,7 +593,7 @@ public class Registration extends AppCompatActivity {
                             .setTitle("Mobile Development")
                             .setCancelable(false)
                             .setMessage("Dear " + usernameReg.toUpperCase(Locale.ROOT) + "\n" +
-                                    "\nIt's Assumed That You Have Learnt The Basics and Internals Of Software Development Which Has Been Provided" +
+                                    "\nIt's Assumed That You Have Learnt The Basics and Internals Of Software Development Which Have Been Provided" +
                                     "Under Software Engineering Or You Have Learned Anywhere Else. This Section Deals Into Mobile Development" +
                                     "Theoretically And Practically In Advanced Mode. If this Is Not The Case Please Select Software Engineering Provided" +
                                     "in the DropDown Menu To Learn The Basics First.\n\n")
@@ -601,13 +601,14 @@ public class Registration extends AppCompatActivity {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.dismiss();
-                                    Toast.makeText(Registration.this, "Confirmed Mobile Development", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(Registration.this, "Welcome To Mobile App Development", Toast.LENGTH_LONG).show();
                                 }
                             }).setNegativeButton("Back to Software,For Basics", new DialogInterface.OnClickListener() {
                                 @RequiresApi(api = Build.VERSION_CODES.O)
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                    spinner_occupation.requestFocus();
+                                    spinner_passion.requestFocus();
+                                    spinner_passion.setBackgroundColor(Color.MAGENTA);
                                     new VibratorLowly(Registration.this);
                                     dialogInterface.dismiss();
                                     Toast.makeText(Registration.this, "Please Select Software Engineering Deep", Toast.LENGTH_LONG).show();
@@ -621,7 +622,7 @@ public class Registration extends AppCompatActivity {
                             .setTitle("Desktop Development")
                             .setCancelable(false)
                             .setMessage("Dear " + usernameReg.toUpperCase(Locale.ROOT) + "\n" +
-                                    "\nIt's Assumed That You Have Learnt The Basics and Internals Of Software Development Which Has Been Provided" +
+                                    "\nIt's Assumed That You Have Learnt The Basics and Internals Of Software Development Which Have Been Provided" +
                                     "Under Software Engineering Or You Have Learned Anywhere Else. This Section Deals Into Desktop Development" +
                                     "Theoretically And Practically In Advanced Mode. If this Is Not The Case Please Select Software Engineering Provided" +
                                     "in the DropDown Menu To Learn The Basics First.\n\n")
@@ -629,13 +630,14 @@ public class Registration extends AppCompatActivity {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.dismiss();
-                                    Toast.makeText(Registration.this, "Confirmed Desktop Development", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(Registration.this, "Welcome To Desktop App Development", Toast.LENGTH_LONG).show();
                                 }
                             }).setNegativeButton("Back to Software,For Basics", new DialogInterface.OnClickListener() {
                                 @RequiresApi(api = Build.VERSION_CODES.O)
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                    spinner_occupation.requestFocus();
+                                    spinner_passion.requestFocus();
+                                    spinner_passion.setBackgroundColor(Color.MAGENTA);
                                     new VibratorLowly(Registration.this);
                                     dialogInterface.dismiss();
                                     Toast.makeText(Registration.this, "Please Select Software Engineering Deep", Toast.LENGTH_LONG).show();
