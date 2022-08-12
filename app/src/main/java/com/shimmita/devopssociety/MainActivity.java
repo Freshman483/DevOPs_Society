@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -72,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         fingerprintAuthentication();
         imageViewOnclickListener();
 
+        this.setTitle("DevOPS Society Home");
     }
 
     @Override
@@ -88,7 +88,8 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.aboutMainMenu:
 
-                Toast.makeText(this, "About Menu", Toast.LENGTH_SHORT).show();
+                Toasty.custom(getApplicationContext(), "About Menu", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
+
                 item.setChecked(!item.isChecked());
                 new VibratorLowly(MainActivity.this);
 
@@ -97,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.refresh:
 
                 new SpeechClass(this, "Refresh Successful");
-                Toast.makeText(this, "Refresh", Toast.LENGTH_SHORT).show();
+                Toasty.custom(getApplicationContext(), "Refreshing...", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_SHORT, true, true).show();
 
                 item.setChecked(!item.isChecked());
 
@@ -107,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.rating:
 
-                Toast.makeText(this, "Rate Us", Toast.LENGTH_SHORT).show();
+                Toasty.custom(getApplicationContext(), "Rate Us On PlayStore", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
                 item.setChecked(!item.isChecked());
                 new VibratorLowly(MainActivity.this);
 
@@ -115,8 +116,8 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.helpMember:
                 dialogAlertForHelpingMember();
+                Toasty.custom(getApplicationContext(), "Help Message", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
 
-                Toast.makeText(this, "Help", Toast.LENGTH_SHORT).show();
                 item.setChecked(!item.isChecked());
 
                 new VibratorLowly(MainActivity.this);
@@ -168,7 +169,8 @@ public class MainActivity extends AppCompatActivity {
                             .setCancelable(false)
                             .setMessage(helpMessage)
                             .setPositiveButton("OK,Awesome One", (dialogInterface12, i12) -> {
-                                Toast.makeText(MainActivity.this, "Congratulations!,Now You Can Use DevOPs Easily", Toast.LENGTH_LONG).show();
+                                Toasty.custom(getApplicationContext(), "Congratulations! Now You Can Use DevOPs Easily", R.drawable.ic_baseline_whatshot_24, R.color.purple_700, Toasty.LENGTH_LONG, true, true).show();
+
                                 dialogInterface12.dismiss();
                             })
                             .create()
@@ -382,7 +384,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(MainActivity.this, Login.class));
                     CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");*/
 
-                    startActivity(new Intent(MainActivity.this,LoginIndexMainPage.class));
+                    startActivity(new Intent(MainActivity.this, LoginIndexMainPage.class));
 
 
                     return true;

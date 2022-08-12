@@ -21,6 +21,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
+            android:id="@+id/cardViewParentRegistration"
             app:cardBackgroundColor="@color/purple_500"
             android:layout_height="match_parent"
             android:background="@drawable/animation_gradient_list"
@@ -276,7 +277,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:background="#BBCDA7"
-                    android:text="University Selection"
+                    android:text="University Selection:"
                     android:textSize="20sp"
                     android:textStyle="italic|bold" />
 
@@ -320,6 +321,34 @@
                     android:scrollbarFadeDuration="@integer/material_motion_duration_long_2"
                     android:scrollbarSize="@dimen/cardview_default_elevation"
                     android:spinnerMode="dialog" />
+
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="#BBCDA7"
+                    android:text="Register Account As:"
+                    android:textSize="20sp"
+                    android:textStyle="italic|bold" />
+
+                <Spinner
+                    android:id="@+id/spinner_registration_role"
+                    style="@style/Widget.AppCompat.Spinner.Underlined"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:background="#614898"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:focusedByDefault="true"
+                    android:saveEnabled="true"
+                    android:scrollbarFadeDuration="@integer/material_motion_duration_long_2"
+                    android:scrollbarSize="@dimen/cardview_default_elevation"
+                    android:spinnerMode="dialog" />
+
 
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton

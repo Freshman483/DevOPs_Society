@@ -16,7 +16,7 @@
         style="@style/Widget.Material3.CardView.Elevated"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="50dp">
+        app:cardCornerRadius="30dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/parentConstraintLayout_login"
