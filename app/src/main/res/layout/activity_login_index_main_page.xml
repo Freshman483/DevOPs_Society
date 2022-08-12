@@ -184,8 +184,8 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/circleImageViewActivityProfile"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:layout_marginTop="4dp"
                     android:src="@color/purple_200"
                     app:civ_border_color="@color/black"
@@ -281,8 +281,8 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/circleImageViewGetJobs"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:layout_marginTop="4dp"
                     android:src="@color/purple_200"
                     app:civ_border_color="@color/black"
@@ -378,8 +378,8 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/circleImageViewPostJob"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="35dp"
                     android:src="@color/purple_200"
@@ -476,8 +476,8 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/circleImageViewMembers"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:layout_marginTop="8dp"
                     android:src="@color/purple_200"
                     app:civ_border_color="@color/black"
@@ -594,8 +594,8 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/circleImageViewForum"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="57dp"
                     android:src="@color/purple_200"
@@ -679,8 +679,8 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/circleImageViewTrendingInIT"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:layout_marginTop="8dp"
                     android:src="@color/purple_200"
                     app:civ_border_color="@color/black"
@@ -746,8 +746,8 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/circleImageViewContactAdmin"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:layout_marginTop="8dp"
                     android:src="@color/purple_200"
                     app:civ_border_color="@color/black"
@@ -818,8 +818,8 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/circleImageViewSupportDeveloper"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:layout_marginTop="8dp"
                     app:civ_border_color="@color/black"
                     app:civ_border_width="5dp"
