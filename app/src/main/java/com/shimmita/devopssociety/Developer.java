@@ -32,7 +32,6 @@ public class Developer extends AppCompatActivity {
         textView = findViewById(R.id.textviewDeveloper);
         builder = new MaterialAlertDialogBuilder(this);
         popupMenu = new androidx.appcompat.widget.PopupMenu(Developer.this, findViewById(R.id.cardviewParent));
-
         functionBuilderCall();
     }
 

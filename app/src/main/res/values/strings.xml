@@ -22,21 +22,22 @@
         End Up Wasting Time In Search Of Jobs, Here DevOPS Will Deal With The Issue With No Remorse To Its Maximum Capability So That Such Students Gets Their Place(s) Of Interest Majestically By Marketing Skills They Having In Works.\n
         \n5.Become A Developers Society Member Officially And Enjoy Reality of Your Royalties !.\n
         \nAre You Interested In Joining This Society To Elevate
-        Your Skills and Have A Possibility Of Securing Job In Kenya?.\n\n\npowered by:\n<u><b>ShimitaDouglas@MasenoUniversit</b></u>
+        Your Skills and Have A Possibility Of Securing Job In Kenya?.
+            \n\n\n\npowered by:<u><b>ShimitaDouglas@MasenoUniversity.</b></u>
         </i>
         \n
         \n
     </string>
     <string name="lets_get_started">Lets Get Started</string>
-    <string name="titleDevOps"><b><u><b><i><u>DEVOPS  SOCIETY TECNOFIX  (KE)</u></i></b></u></b><i></i></string>
+    <string name="titleDevOps"><b><u><b><i><u>DEVOPS SOCIETY TECNOFIX (KE)</u></i></b></u></b><i></i></string>
     <string name="positBtn">Accept</string>
     <string name="negBtn">Decline</string>
     <string name="quit_app"><b>Quit Application</b></string>
-    <string name="overview"><i>Developers Society Overview,Quick</i></string>
-    <string name="create_account"><i>Create New Developers Account</i></string>
-    <string name="login_account"><i>Login Into Developer Account</i></string>
+    <string name="overview"><i>Developers Society Overview,A Quick View</i></string>
+    <string name="create_account"><i>Create New Developers Society Account</i></string>
+    <string name="login_account"><i>Login Into Developers Society Account</i></string>
     <string name="share"><i>Share Application</i></string>
-    <string name="developer"><i>Shimmita The Admin @DevOPS</i></string>
+    <string name="developer"><i>Shimmita The Administrator @DevOPS</i></string>
     <string name="password">enter password</string>
     <string name="password_confirmation">password confirmation</string>
     <string name="enter_your_email_address">enter your email address</string>
@@ -80,14 +81,15 @@
     <string name="help"><b>Help</b></string>
     <string name="message_me"><b>Message Me</b></string>
     <string name="call_me"><b>Call Me</b></string>
-    <string name="other_devops_applications_and_products"><i>Other Applications And Products</i></string>
-    <string name="computer_mercenery_get_a_job_for_you"><i>Computer Mercenary JOB For You</i></string>
-    <string name="post_a_job_for_a_computer_mercenery"><i>Post JOB For Computer Mercenary</i></string>
-    <string name="whats_trending_in_it_field"><i>What\'s Trending in IT Field Of Today</i></string>
-    <string name="enroll_into_the_society_s_forum"><i>Enroll Into DevOPs Society Forum</i></string>
+    <string name="other_devops_applications_and_products"><i>Other DevOPS Applications And Products</i></string>
+    <string name="computer_mercenery_get_a_job_for_you"><i>Computer Mercenary Get A JOB For You</i></string>
+    <string name="post_a_job_for_a_computer_mercenery"><i>Post A JOB For A Computer Mercenary</i></string>
+    <string name="whats_trending_in_it_field"><i>Whats Trending in IT Field Of Today ?</i></string>
+    <string name="enroll_into_the_society_s_forum"><i>Enroll Into DevOPs Society Forum For More</i></string>
     <string name="title_here">Title Here</string>
     <string name="description_here">Description here</string>
-    <string name="helpTextInquiry">\nDevOps Society,Is An Application and Platform Which Has Been Developed By An Information Technology Student (I.T),From Maseno University With The Sole Purpose Of Enabling All Students Who Have Valid Dreams In Any Field Of Computing To Achieve Them.
+    <string name="helpTextInquiry">\n
+        DevOps Society,Is An Application and Platform Which Has Been Developed By An Information Technology Student (I.T),From Maseno University With The Sole Purpose Of Enabling All Students Who Have Valid Dreams In Any Field Of Computing To Achieve Them.
         \n\nThere Are Two Sections Of Using This Application.
         \n1,The Offline Mode Which,Is Only Available When One Selects The Quick View Or The OverView Menu.With This Mode Some Functionalities Are limited.
         \n\n2,The Online Mode Which,Requires One To Be Connected To The Internet For Registration Of Account With The DevOPs Society If He or She Doesn\'t Have The Account.
@@ -115,6 +117,6 @@
     <string name="what_s_trending_in_i_t"><u>What\'s New In I.T</u></string>
     <string name="contact_administrator"><u>Contact Administrator</u></string>
     <string name="support_developer"><u>Support Developer</u></string>
-    <string name="shimitadouaglas_masenouni"><u><i>ShimitaDouglas@MasenoUni</i></u></string>
+    <string name="shimitadouaglas_masenouni"><u><i>ShimitaDouaglas@MasenoUni</i></u></string>
     <string name="get_a_job">Get A Job</string>
 </resources>
