@@ -55,27 +55,27 @@ public class DisplayProgrammingOnRecyclerOverview1 extends AppCompatActivity {
         };
         descriptionConstructor = new String[]
                 {
-                        "ultimate python doctor of programming languages",
-                        "ultimate Java Programming for android app",
-                        "reactive java library for concurrency",
-                        "javascript language for All",
-                        "learn Kotlin Language for Android",
-                        "lets Learn google Go language",
+                        "python doctor of programming",
+                        "java programming for android",
+                        "java library for concurrency",
+                        "javascript language for all",
+                        "kotlin language for android",
+                        "lets learn google GO language",
                         "cross-platform applications ",
-                        "dart framework with extended cross-platform",
-                        "javascript library for Building UI",
-                        "build cross-platform mobile apps",
-                        "full-stack web application framework",
-                        "a server side scripting language",
+                        "an extended dart framework",
+                        "javascript library for building UI",
+                        "build cross-platform mobile aps",
+                        "full-stack web dev framework",
+                        "server side scripting language",
                         "general purpose language",
-                        "Write OS and Microcontrollers",
-                        "C superset for System Apps",
-                        "System Oriented Language",
-                        "microsoft Based Language",
-                        "Develop GUI Windows OS Apps",
-                        "Build Iphone IOS Applications ",
-                        "a superset of Javascript Language",
-                        "generate and format user Interface"
+                        "write OS and microcontrollers",
+                        "c superset for system apps",
+                        "system oriented language",
+                        "microsoft based language",
+                        "develop GUI windows os apps",
+                        "build iphone ios applications ",
+                        "superset of javascript language",
+                        "generate and format user interface"
 
                 };
         imageDisplayConstructor = new int[]

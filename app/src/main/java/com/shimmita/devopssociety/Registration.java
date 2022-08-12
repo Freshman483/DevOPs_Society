@@ -44,6 +44,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
+import es.dmoral.toasty.Toasty;
+
 public class Registration extends AppCompatActivity {
 
     FirebaseAuth auth;
@@ -55,7 +57,7 @@ public class Registration extends AppCompatActivity {
 
 
     private static final String TAG = "RegistrationLog";
-    static String string1, string2, string3, string4, string5, string6;
+    static String string1, string2, string3, string4, string5, string6, string7_role_status_check;
     Database db;
     TextInputEditText password_registration,
             confirm_password_registration,
@@ -238,19 +240,28 @@ public class Registration extends AppCompatActivity {
     };
 
 
+    String[] registerAccountAs = {
+            "Normal User (Less Privileges)",
+            "Super User (More Privileges)"
+    };
+
+
     ArrayAdapter<String> arrayAdapter_counties;
     ArrayAdapter<String> arrayAdapter_passion;
     ArrayAdapter<String> arrayAdapter_level_of_knowledge;
     ArrayAdapter<String> arrayAdapter_gender;
     ArrayAdapter<String> arrayAdapter_occupation;
     ArrayAdapter<String> arrayAdapter_universityName;
+    ArrayAdapter<String> arrayAdapter_registerAccount_As;
+
 
     Spinner spinner_county,
             spinner_passion,
             spinner_level_of_knowledge,
             spinner_gender,
             spinner_occupation,
-            spinnerUniversityRegistrationName;
+            spinnerUniversityRegistrationName,
+            spinner_register_account_as;
 
     //String selected_county, selected_level_of_knowledge, selected_passion, selected_gender, selected_ocupation_level_of_study;
 
@@ -300,6 +311,7 @@ public class Registration extends AppCompatActivity {
         spinner_gender = findViewById(R.id.spinner_registration_gender);
         spinner_occupation = findViewById(R.id.spinner_registration_occupation);
         spinnerUniversityRegistrationName = findViewById(R.id.spinner_registration_universityName);
+        spinner_register_account_as = (Spinner) findViewById(R.id.spinner_registration_role);
 
 
         spinner_county.setPrompt(getString(R.string.promp_head_spinner));
@@ -353,6 +365,17 @@ public class Registration extends AppCompatActivity {
         }
         spinnerUniversityRegistrationName.setAdapter(arrayAdapter_universityName);
         spinnerUniversityRegistrationName.requestFocus();
+
+
+        spinner_register_account_as.setPrompt("Normal Or Admin User ?");
+        arrayAdapter_registerAccount_As = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, registerAccountAs);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            arrayAdapter_registerAccount_As.sort(Comparator.naturalOrder());
+        }
+        spinner_register_account_as.setAdapter(arrayAdapter_registerAccount_As);
+
+        spinner_register_account_as.requestFocus();
+
 
         //
         spinner_county.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -438,6 +461,27 @@ public class Registration extends AppCompatActivity {
             }
         });
 
+
+        spinner_register_account_as.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                string7_role_status_check = adapterView.getSelectedItem().toString();
+                Toast.makeText(Registration.this, "Selected: " + string7_role_status_check, Toast.LENGTH_LONG).show();
+
+                if (string7_role_status_check.contains("Super")) {
+                    alertUserOfVerificationForPayment();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                spinner_register_account_as.requestFocus();
+            }
+        });
+
+
         //
 
 /*
@@ -463,6 +507,76 @@ public class Registration extends AppCompatActivity {
         Log.d(TAG, "\nonCreate: END");
 
     }
+
+
+    //function alert User Of Verification Of Payment To Be approved as Admin
+
+    private void alertUserOfVerificationForPayment() {
+        new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
+                .setIcon(R.drawable.ic_baseline_payment_24)
+                .setCancelable(false)
+                .setTitle("Payment of Ksh. 100")
+                .setMessage("\nYou will get registered as a user with  privileged roles on payment of non refundable fee of ksh.100 only.\n" +
+                        "\n Benefits :\n1.you will be able to work on jobs posted by clients on this platform,by selecting the one which is appropriate for you.\n" +
+                        "\n2.you will unlock very golden study materials of software(programming),networking,hacking,virus_tricks,the power of linux OS and many more.\n" +
+                        "\n3.marketing of your final computing Projects if any to the public, to show your incredible abilities\n" +
+                        "\n4.connecting your account to the most superior developers in the country and around the world who have approved DeVOps Society\n" +
+                        "\n5.Enhancing your job connection to the available clients,institutions or company by forwarding their legitimate links to you !\n")
+                .setPositiveButton("Understood, Make Payment", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+
+                        new MaterialAlertDialogBuilder(Registration.this)
+                                .setTitle("Payment Confirmation")
+                                .setIcon(R.drawable.ic_baseline_payment_24)
+                                .setCancelable(false)
+                                .setMessage("\nDeveloper's number will be forwarded on the dial Screen of your phone use it in making " +
+                                        "M-Pesa Payment, once done, (message your registration name or email to the Number). then your account will be approved to SUPPER USER.")
+                                .setPositiveButton("Ok,forward the number", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                                        startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:+254757450727")));
+                                        Toasty.custom(getApplicationContext(), "Number Forwarded Successfully", R.drawable.ic_baseline_whatshot_24, R.color.purple_700, Toasty.LENGTH_LONG, true, true).show();
+                                        dialogInterface.dismiss();
+                                    }
+                                }).create().show();
+
+                    }
+                }).setNegativeButton("Understood, not Interested", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        findViewById(R.id.parent_reg_linear_in_parent).setVisibility(View.INVISIBLE);
+                        new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
+                                .setTitle("Further Notification")
+                                .setCancelable(false)
+                                .setIcon(R.drawable.ic_baseline_info_24)
+                                .setMessage("you will continue  using your account freely but with limited functionalities. " +
+                                        "Still you can upgrade later when interested on successful login into your account profile after registration as NORMAL USER\n")
+                                .setPositiveButton("wonderful,thanks a million", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        Snackbar.make(findViewById(R.id.parent_registration_constraint), "continue registration as NORMAL USER", Snackbar.LENGTH_INDEFINITE)
+                                                .setAction("OK", view -> {
+                                                    findViewById(R.id.parent_reg_linear_in_parent).setVisibility(View.VISIBLE);
+                                                    spinner_register_account_as.requestFocus();
+                                                    spinner_register_account_as.setBackgroundColor(Color.MAGENTA);
+                                                }).setBackgroundTint(Color.BLACK).setActionTextColor(Color.parseColor("#FF8411")).show();
+
+                                        dialogInterface.dismiss();
+
+                                    }
+                                }).create().show();
+
+
+                    }
+                }).create().show();
+    }
+
+
+    ///
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -588,71 +702,6 @@ public class Registration extends AppCompatActivity {
                     phoneNumber_registration.requestFocus();
                     new MakeVibrator(Registration.this);
 
-                } else if (string2.contains("Mobile")) {
-                    new androidx.appcompat.app.AlertDialog.Builder(this)
-                            .setTitle("Mobile Development")
-                            .setCancelable(false)
-                            .setMessage("Dear " + usernameReg.toUpperCase(Locale.ROOT) + "\n" +
-                                    "\nIt's Assumed That You Have Learnt The Basics and Internals Of Software Development Which Have Been Provided" +
-                                    "Under Software Engineering Or You Have Learned Anywhere Else. This Section Deals Into Mobile Development" +
-                                    "Theoretically And Practically In Advanced Mode. If this Is Not The Case Please Select Software Engineering Provided" +
-                                    "in the DropDown Menu To Learn The Basics First.\n\n")
-                            .setPositiveButton("Already Have Basics, Lets Proceed", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    dialogInterface.dismiss();
-                                    Toast.makeText(Registration.this, "Welcome To Mobile App Development", Toast.LENGTH_LONG).show();
-                                }
-                            }).setNegativeButton("Back to Software,For Basics", new DialogInterface.OnClickListener() {
-                                @RequiresApi(api = Build.VERSION_CODES.O)
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    spinner_passion.requestFocus();
-                                    spinner_passion.setBackgroundColor(Color.MAGENTA);
-                                    new VibratorLowly(Registration.this);
-                                    dialogInterface.dismiss();
-                                    Toast.makeText(Registration.this, "Please Select Software Engineering Deep", Toast.LENGTH_LONG).show();
-                                    string2 = "";
-                                }
-                            }).create().show();
-
-                } else if (string2.contains("Desktop")) {
-
-                    new androidx.appcompat.app.AlertDialog.Builder(this)
-                            .setTitle("Desktop Development")
-                            .setCancelable(false)
-                            .setMessage("Dear " + usernameReg.toUpperCase(Locale.ROOT) + "\n" +
-                                    "\nIt's Assumed That You Have Learnt The Basics and Internals Of Software Development Which Have Been Provided" +
-                                    "Under Software Engineering Or You Have Learned Anywhere Else. This Section Deals Into Desktop Development" +
-                                    "Theoretically And Practically In Advanced Mode. If this Is Not The Case Please Select Software Engineering Provided" +
-                                    "in the DropDown Menu To Learn The Basics First.\n\n")
-                            .setPositiveButton("Already Have Basics, Lets Proceed", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    dialogInterface.dismiss();
-                                    Toast.makeText(Registration.this, "Welcome To Desktop App Development", Toast.LENGTH_LONG).show();
-                                }
-                            }).setNegativeButton("Back to Software,For Basics", new DialogInterface.OnClickListener() {
-                                @RequiresApi(api = Build.VERSION_CODES.O)
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    spinner_passion.requestFocus();
-                                    spinner_passion.setBackgroundColor(Color.MAGENTA);
-                                    new VibratorLowly(Registration.this);
-                                    dialogInterface.dismiss();
-                                    Toast.makeText(Registration.this, "Please Select Software Engineering Deep", Toast.LENGTH_LONG).show();
-                                    string2 = "";
-                                }
-                            }).create().show();
-                } else if (string2.equals("")) {
-                    new androidx.appcompat.app.AlertDialog.Builder(this)
-                            .setTitle("Passion Cannot Be Null !")
-                            .setCancelable(false)
-                            .setMessage("Cannot Register Member With No Place Of Passion Or Interest for This Field Is Mandatory For" +
-                                    "Your Registration Process To Proceed,Please Select One Of your Passion In The DropDown List!")
-                            .setPositiveButton("Ok", (dialogInterface, i) -> dialogInterface.dismiss()).create().show();
-                    spinner_passion.requestFocus();
-                    new VibratorLowly(Registration.this);
                 } else //Everything @finest
                 {
                     Log.d(TAG, "\n\nregistrationCredentialCheck: FloatingButtonBEGIN\n");
