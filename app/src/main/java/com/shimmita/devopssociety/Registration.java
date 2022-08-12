@@ -12,6 +12,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
@@ -397,6 +398,33 @@ public class Registration extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 string2 = parent.getSelectedItem().toString();
                 Toast.makeText(Registration.this, "Selected:" + string2, Toast.LENGTH_LONG).show();
+                //implementation of separate thread since the exec of this part takes longer than the time main function allocated to It
+
+
+                Handler handler = new Handler();
+
+                Thread thread = new Thread(new Runnable() {
+
+                    @Override
+                    public void run() {
+
+                        Log.d(TAG, "run: threadRunning " + Thread.currentThread().getName());
+
+                        handler.post(new Runnable() {
+                            @RequiresApi(api = Build.VERSION_CODES.O)
+                            @Override
+                            public void run() {
+                                checkDetailsOfPassionSelection(string2);
+                            }
+                        });
+                    }
+                });
+
+                thread.setName("threadHandlingPassionSelection");
+                thread.start();
+
+                //
+
             }
 
             @Override
@@ -507,6 +535,115 @@ public class Registration extends AppCompatActivity {
         Log.d(TAG, "\nonCreate: END");
 
     }
+
+
+    //function Checking the passion user selected
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void checkDetailsOfPassionSelection(String string2) {
+
+        if (string2.contains("Reverse")) {
+            new MaterialAlertDialogBuilder(Registration.this)
+                    .setTitle(string2)
+                    .setCancelable(false)
+                    .setIcon(R.drawable.ic_baseline_warning)
+                    .setMessage("\nbe assured that,the skills gained in " + string2 + " is for educational purposes only " +
+                            "if used to violet other developers terms and conditions concerning the use of their applications and products, " +
+                            "you will be responsible for the damage caused\nNOT DEVOPS SOCIETY!")
+                    .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Toasty.custom(getApplicationContext(), "Good Lets Proceed", R.drawable.ic_baseline_whatshot_24, R.color.purple_700, Toasty.LENGTH_LONG, true, true).show();
+                            dialogInterface.dismiss();
+
+                        }
+                    }).create().show();
+        } else if (string2.contains("Hacking")) {
+            new MaterialAlertDialogBuilder(Registration.this)
+                    .setTitle(string2)
+                    .setCancelable(false)
+                    .setIcon(R.drawable.ic_baseline_warning)
+                    .setMessage("\nbe assured that,the skills gained in " + string2 + " is for educational purposes only " +
+                            "if used to violet other developers terms and conditions concerning the use of their applications and products, " +
+                            "you will be responsible for the damage caused\nNOT DEVOPS SOCIETY!")
+                    .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Toasty.custom(getApplicationContext(), "Good Lets Proceed", R.drawable.ic_baseline_whatshot_24, R.color.purple_700, Toasty.LENGTH_LONG, true, true).show();
+                            dialogInterface.dismiss();
+                        }
+                    }).create().show();
+        }
+
+
+        if (string2.contains("Mobile")) {
+            new MaterialAlertDialogBuilder(Registration.this)
+                    .setTitle("Mobile App Development")
+                    .setIcon(R.drawable.ic_baseline_info_24)
+                    .setCancelable(false)
+                    .setMessage("\nIt's Assumed That You Have Learnt The Basics and Internals Of Software Development Which Have Been Provided " +
+                            "Under Software Engineering Or You Have Learned Anywhere Else. This Section Deals Into Mobile Development" +
+                            "Theoretically And Practically In Advanced Mode. If This Is Not The Case Please Select Software Engineering Provided " +
+                            "In The DropDown Menu To Learn The Basics First.\n")
+                    .setPositiveButton("already having basics", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                            Toasty.custom(getApplicationContext(), "Congratulations! Lets Proceed", R.drawable.ic_baseline_whatshot_24, R.color.purple_700, Toasty.LENGTH_LONG, true, true).show();
+                            dialogInterface.dismiss();
+
+                        }
+                    }).setNegativeButton("software basics", new DialogInterface.OnClickListener() {
+                        @RequiresApi(api = Build.VERSION_CODES.O)
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Toasty.custom(getApplicationContext(), "Please Select Software Engineering Deep", R.drawable.ic_baseline_whatshot_24, R.color.purple_700, Toasty.LENGTH_LONG, true, true).show();
+
+                            spinner_passion.requestFocus();
+                            spinner_passion.setBackgroundColor(Color.MAGENTA);
+                            new VibratorLowly(Registration.this);
+                            dialogInterface.dismiss();
+
+                        }
+                    }).create().show();
+
+        } else if (string2.contains("Desktop")) {
+
+            new MaterialAlertDialogBuilder(Registration.this)
+                    .setTitle("Desktop App Development")
+                    .setIcon(R.drawable.ic_baseline_info_24)
+                    .setCancelable(false)
+                    .setMessage("\nIt's Assumed That You Have Learnt The Basics and Internals Of Software Development Which Have Been Provided " +
+                            "Under Software Engineering Or You Have Learned Anywhere Else. This Section Deals Into Desktop Development " +
+                            "Theoretically And Practically In Advanced Mode. If This Is Not The Case Please Select Software Engineering Provided" +
+                            "In The DropDown Menu To Learn The Basics First.\n")
+                    .setPositiveButton("already have software basics", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                            Toasty.custom(getApplicationContext(), "Congratulations! Lets Proceed", R.drawable.ic_baseline_whatshot_24, R.color.purple_700, Toasty.LENGTH_LONG, true, true).show();
+                            dialogInterface.dismiss();
+                        }
+                    }).setNegativeButton("software basics", new DialogInterface.OnClickListener() {
+                        @RequiresApi(api = Build.VERSION_CODES.O)
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                            Toasty.custom(getApplicationContext(), "Please Select Software Engineering Deep", R.drawable.ic_baseline_whatshot_24, R.color.purple_700, Toasty.LENGTH_LONG, true, true).show();
+                            spinner_passion.requestFocus();
+                            spinner_passion.setBackgroundColor(Color.MAGENTA);
+                            new VibratorLowly(Registration.this);
+                            dialogInterface.dismiss();
+                        }
+                    }).create().show();
+        }
+
+
+    }
+
+
+    //
 
 
     //function alert User Of Verification Of Payment To Be approved as Admin
