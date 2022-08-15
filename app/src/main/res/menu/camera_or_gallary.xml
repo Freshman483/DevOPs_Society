@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/gallery"
+        android:icon="@drawable/ic_baseline_add_photo_alternate_24"
+        android:title="gallery pick"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/camera"
+        android:icon="@drawable/ic_baseline_photo_camera_24"
+        android:title="camera capture"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/noneOfThem"
+        android:icon="@drawable/ic_baseline_block_24"
+        android:title="none of the above"
+        app:showAsAction="always" />
+</menu>

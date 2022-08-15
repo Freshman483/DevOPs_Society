@@ -16,6 +16,7 @@ import android.os.Handler;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -25,9 +26,11 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.appcompat.widget.PopupMenu;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -44,17 +47,23 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Random;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import es.dmoral.toasty.Toasty;
 
 public class Registration extends AppCompatActivity {
 
+    public static final int GALLERY_REQUEST_CODE = 100;
+    public static final int CAMERA_REQUEST_CODE = 200;
     FirebaseAuth auth;
     FirebaseUser firebaseUser;
     FirebaseFirestore firebaseFirestore;
     CollectionReference documentReference;
 
-    ProgressDialog progressDialogDatabase;
+
+    CircleImageView circleImageView_profile_picture_to_firebase;
+    Uri imageUriPath = null;
 
 
     private static final String TAG = "RegistrationLog";
@@ -314,6 +323,10 @@ public class Registration extends AppCompatActivity {
         spinnerUniversityRegistrationName = findViewById(R.id.spinner_registration_universityName);
         spinner_register_account_as = (Spinner) findViewById(R.id.spinner_registration_role);
 
+        //initialisation of profile pictureCircle
+        circleImageView_profile_picture_to_firebase = (CircleImageView) findViewById(R.id.circularImageProfileHolder);
+        //
+
 
         spinner_county.setPrompt(getString(R.string.promp_head_spinner));
         arrayAdapter_counties = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, arrayCounties);
@@ -510,6 +523,51 @@ public class Registration extends AppCompatActivity {
         });
 
 
+        //circleImageOnclickListener
+        circleImageView_profile_picture_to_firebase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*Toast.makeText(Registration.this, "Yessss", Toast.LENGTH_SHORT).show();*/
+               if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O)
+               {
+                   new VibratorLowly(Registration.this);
+               }
+                PopupMenu popupMenuCameraOrGallary =new PopupMenu(Registration.this,view);
+                popupMenuCameraOrGallary.inflate(R.menu.camera_or_gallary);
+                popupMenuCameraOrGallary.setForceShowIcon(Boolean.parseBoolean("true"));
+                popupMenuCameraOrGallary.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+
+                        switch (item.getItemId()) {
+
+                            case R.id.camera:
+
+                                cameraCallingFunction();
+                                return true;
+                            case R.id.gallery:
+
+                                galleryCallingFunction();
+                                return true;
+                            case R.id.noneOfThem:
+                                alertDialogNoneOfTheSelectedOnCamera();
+                                return true;
+
+
+                            default:
+                                return false;
+                        }
+
+                    }
+                });
+                popupMenuCameraOrGallary.show();
+
+
+            }
+        });
+
+
+
         //
 
 /*
@@ -534,6 +592,84 @@ public class Registration extends AppCompatActivity {
         Log.d(TAG, "\nregistrationCredentialCheck: universityName->" + string6);
         Log.d(TAG, "\nonCreate: END");
 
+    }
+
+    private void cameraCallingFunction() {
+
+        String[] null_camera_References={
+                "camera service is currently unavailable!",
+                "camera service is busy try again!",
+                "unknown error occurred while opening camera!",
+                "try again with gallery option!",
+                "process was forced to shutdown, unknown error!"
+        };
+
+        Random random1=new Random();
+      int random= random1.nextInt(5);
+
+        Toasty.custom(getApplicationContext(),null_camera_References[random], R.drawable.ic_baseline_whatshot_24, R.color.purple_700, Toasty.LENGTH_LONG, true, true).show();
+
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == GALLERY_REQUEST_CODE && data != null && data.getData() != null) {
+            if (resultCode == RESULT_OK) {
+                imageUriPath = data.getData();
+                circleImageView_profile_picture_to_firebase.setImageURI(imageUriPath); //sets the image on the circular
+
+                Toasty.custom(getApplicationContext(), "Congratulations! Lets Proceed", R.drawable.ic_baseline_whatshot_24, R.color.purple_700, Toasty.LENGTH_LONG, true, true).show();
+
+            }
+            else if (resultCode==RESULT_CANCELED)
+            {
+                Toasty.custom(getApplicationContext(), "Cancelled By The User, No Image Was Selected!", R.drawable.ic_baseline_whatshot_24, R.color.purple_700, Toasty.LENGTH_LONG, true, true).show();
+                circleImageView_profile_picture_to_firebase.requestFocus();
+                circleImageView_profile_picture_to_firebase.setBorderColor(Color.MAGENTA);
+            }
+
+        }
+    }
+
+    private void galleryCallingFunction() {
+        Intent intentGallery = new Intent();
+        intentGallery.setType("image/*");
+
+        intentGallery.setAction(Intent.ACTION_GET_CONTENT);  //all Works Well
+       // intentGallery.setAction(Intent.ACTION_PICK);        //
+
+        startActivityForResult(Intent.createChooser(intentGallery, "Pick The Image Of Your Choice"), GALLERY_REQUEST_CODE);
+
+    }
+
+
+    private void alertDialogNoneOfTheSelectedOnCamera() {
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("No Profile Picture")
+                .setIcon(R.drawable.ic_baseline_block_24)
+                .setMessage("Operation Is Currently Not Permitted. Cannot Have no Profile Image!")
+                .setCancelable(false)
+                .setPositiveButton("Ok, Lets Add Image", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toasty.custom(getApplicationContext(), "select either Camera or Gallery !", R.drawable.ic_baseline_whatshot_24, R.color.purple_700, Toasty.LENGTH_LONG, true, true).show();
+                        circleImageView_profile_picture_to_firebase.setBorderColor(Color.MAGENTA);
+                        circleImageView_profile_picture_to_firebase.requestFocus();
+
+
+                    }
+                }).setNegativeButton("Quit Me!", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        startActivity(new Intent(Registration.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                        finish();
+                        Runtime.getRuntime().exit(0);
+
+                    }
+                }).create().show();
     }
 
 

@@ -20,11 +20,11 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
             android:id="@+id/cardViewParentRegistration"
-            app:cardBackgroundColor="@color/purple_500"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/animation_gradient_list"
+            app:cardBackgroundColor="@color/purple_500"
             app:cardCornerRadius="60dp">
 
 
@@ -168,7 +168,6 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
 
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -192,8 +191,6 @@
                     android:scrollbarFadeDuration="@integer/material_motion_duration_long_2"
                     android:scrollbarSize="@dimen/cardview_default_elevation"
                     android:spinnerMode="dialog" />
-
-
 
 
                 <TextView
@@ -245,7 +242,6 @@
                     android:spinnerMode="dialog" />
 
 
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -269,7 +265,6 @@
                     android:scrollbarFadeDuration="@integer/material_motion_duration_long_2"
                     android:scrollbarSize="@dimen/cardview_default_elevation"
                     android:spinnerMode="dialog" />
-
 
 
                 <TextView
@@ -297,7 +292,6 @@
                     android:spinnerMode="dialog" />
 
 
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -323,8 +317,6 @@
                     android:spinnerMode="dialog" />
 
 
-
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -336,7 +328,7 @@
 
                 <Spinner
                     android:id="@+id/spinner_registration_role"
-                  style="@style/Widget.AppCompat.Spinner.Underlined"
+                    style="@style/Widget.AppCompat.Spinner.Underlined"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
@@ -349,6 +341,24 @@
                     android:scrollbarSize="@dimen/cardview_default_elevation"
                     android:spinnerMode="dialog" />
 
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="#BBCDA7"
+                    android:text="Profile Picture"
+                    android:textSize="20sp"
+                    android:textStyle="italic|bold" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/circularImageProfileHolder"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/ic_baseline_account_circle_24"
+                    app:civ_border_color="@color/white"
+                    app:civ_border_width="4dp" />
 
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton

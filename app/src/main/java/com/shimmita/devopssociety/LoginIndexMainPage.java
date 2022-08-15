@@ -3,7 +3,6 @@ package com.shimmita.devopssociety;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +12,7 @@ import androidx.cardview.widget.CardView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import es.dmoral.toasty.Toasty;
 
 public class LoginIndexMainPage extends AppCompatActivity {
 
@@ -86,6 +86,93 @@ public class LoginIndexMainPage extends AppCompatActivity {
         activity_contact_admin_picture = (CircleImageView) findViewById(R.id.circleImageViewContactAdmin);
         activity_support_developer_picture = (CircleImageView) findViewById(R.id.circleImageViewSupportDeveloper);
 
+
+        //adding Listeners to CardViews
+
+        card_view_account_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toasty.custom(getApplicationContext(), "Account Profile", R.drawable.ic_baseline_whatshot_24, R.color.purple_700, Toasty.LENGTH_LONG, true, true).show();
+
+            }
+        });
+
+
+        card_view_activity_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toasty.custom(getApplicationContext(), "Activity Profile", R.drawable.ic_baseline_whatshot_24, R.color.purple_700, Toasty.LENGTH_LONG, true, true).show();
+
+            }
+        });
+
+
+        card_view_available_jobs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toasty.custom(getApplicationContext(), "Displaying Available Jobs", R.drawable.ic_baseline_whatshot_24, R.color.purple_700, Toasty.LENGTH_LONG, true, true).show();
+
+            }
+        });
+
+
+        card_view_post_jobs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Toasty.custom(getApplicationContext(), "Post Job To The Society Lions!", R.drawable.ic_baseline_whatshot_24, R.color.purple_700, Toasty.LENGTH_LONG, true, true).show();
+
+            }
+        });
+
+
+        card_view_devops_members.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toasty.custom(getApplicationContext(), "View Members Of The Society", R.drawable.ic_baseline_whatshot_24, R.color.purple_700, Toasty.LENGTH_LONG, true, true).show();
+
+            }
+        });
+
+
+        card_view_devops_forum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toasty.custom(getApplicationContext(), "Lets You Exchange Ideas And Promote Ideologies", R.drawable.ic_baseline_whatshot_24, R.color.purple_700, Toasty.LENGTH_LONG, true, true).show();
+
+            }
+        });
+
+
+        card_view_whatsNew_Trending.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toasty.custom(getApplicationContext(), "View The Trending Works Of Technology", R.drawable.ic_baseline_whatshot_24, R.color.purple_700, Toasty.LENGTH_LONG, true, true).show();
+
+            }
+        });
+
+
+        card_view_contact_administrator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Toasty.custom(getApplicationContext(), "Contact For Help And Support If Any", R.drawable.ic_baseline_whatshot_24, R.color.purple_700, Toasty.LENGTH_LONG, true, true).show();
+
+            }
+        });
+
+
+        card_vie_support_developer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toasty.custom(getApplicationContext(), "Buy Me A Coffee ",R.drawable.ic_baseline_emoji_smile, R.color.purple_700, Toasty.LENGTH_LONG, true, true).show();
+
+            }
+        });
+
+
+        //floating Action Button onclick listener
         floatingActionButtonLoginMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,21 +185,23 @@ public class LoginIndexMainPage extends AppCompatActivity {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
-                            case R.id.readMessage: {
-                                Toast.makeText(LoginIndexMainPage.this, "Read Message", Toast.LENGTH_SHORT).show();
-                            }
-                            case R.id.deleteMessage: {
-                                Toast.makeText(LoginIndexMainPage.this, "Delete Message", Toast.LENGTH_SHORT).show();
+                            case R.id.readMessage:
 
-                            }
+                                Toasty.custom(getApplicationContext(), "Opening Message...", R.drawable.ic_baseline_whatshot_24, R.color.purple_700, Toasty.LENGTH_SHORT, true, true).show();
 
-                            case R.id.replyMessage: {
-                                Toast.makeText(LoginIndexMainPage.this, "Reply Message", Toast.LENGTH_SHORT).show();
+                                return true;
 
+                            case R.id.replyMessage:
 
-                            }
+                                Toasty.custom(getApplicationContext(), "Reply Message", R.drawable.ic_baseline_whatshot_24, R.color.purple_700, Toasty.LENGTH_LONG, true, true).show();
 
-                            return true;
+                                return true;
+
+                            case R.id.deleteMessage:
+
+                                Toasty.custom(getApplicationContext(), "Delete Received Message(s)", R.drawable.ic_baseline_whatshot_24, R.color.purple_700, Toasty.LENGTH_LONG, true, true).show();
+
+                                return true;
 
                             default:
                                 return false;
@@ -126,6 +215,7 @@ public class LoginIndexMainPage extends AppCompatActivity {
         });
 
 
+        //end of the oncreate method
     }
 
 
