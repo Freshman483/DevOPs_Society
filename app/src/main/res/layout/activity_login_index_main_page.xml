@@ -73,14 +73,15 @@
                     app:layout_constraintTop_toBottomOf="@+id/textHomeProfile" />
 
                 <TextView
-                    android:id="@+id/onlineStatus"
+                    android:id="@+id/onlineStatusPhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
                     android:gravity="end"
-                    android:text="online"
-                    android:textColor="@color/teal_200"
-                    android:textSize="18sp"
+                    android:text="@string/onlineStatusPhone"
+                    android:textColor="@color/teal_700"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -127,15 +128,16 @@
                     android:id="@+id/isAdminiStrator"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center_horizontal"
+                    android:layout_marginStart="15dp"
+                    android:gravity="start|center_horizontal"
                     android:text="normal user"
                     android:textColor="@android:color/holo_orange_dark"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/countyTextDisplay" />
+                    app:layout_constraintTop_toBottomOf="@+id/profilePicture" />
 
                 <TextView
                     android:id="@+id/textView12"
@@ -149,6 +151,19 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/isAdminiStrator" />
+
+                <TextView
+                    android:id="@+id/emailDisplay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_horizontal"
+                    android:text="email_here"
+                    android:textSize="15sp"
+                    android:textStyle="bold|italic"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/countyTextDisplay" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
@@ -821,9 +836,9 @@
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_marginTop="8dp"
+                    android:src="@color/purple_200"
                     app:civ_border_color="@color/black"
                     app:civ_border_width="5dp"
-                    android:src="@color/purple_200"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/activityTitleSupportDeveloper" />
 

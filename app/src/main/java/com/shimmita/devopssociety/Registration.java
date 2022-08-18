@@ -22,6 +22,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.appcompat.widget.PopupMenu;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
@@ -41,6 +43,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.Comparator;
 import java.util.HashMap;
@@ -59,11 +64,12 @@ public class Registration extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseUser firebaseUser;
     FirebaseFirestore firebaseFirestore;
-    CollectionReference documentReference;
+    CollectionReference documentReferenceAccountInformation,collectionReferenceChatInformation;
 
 
     CircleImageView circleImageView_profile_picture_to_firebase;
     Uri imageUriPath = null;
+    CheckBox checkBoxTermsAndConditionsAccept;
 
 
     private static final String TAG = "RegistrationLog";
@@ -281,7 +287,6 @@ public class Registration extends AppCompatActivity {
             usernameReg,
             phoneNumberReg;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -290,7 +295,9 @@ public class Registration extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
-        documentReference = firebaseFirestore.collection("DevOps Users");
+        documentReferenceAccountInformation = firebaseFirestore.collection("DevOps Users");
+        collectionReferenceChatInformation=firebaseFirestore.collection("DevOpsChat");
+
 
 
         // db = new Database(Registration.this);
@@ -325,6 +332,11 @@ public class Registration extends AppCompatActivity {
 
         //initialisation of profile pictureCircle
         circleImageView_profile_picture_to_firebase = (CircleImageView) findViewById(R.id.circularImageProfileHolder);
+        //
+
+        //checkBoxInit
+
+        checkBoxTermsAndConditionsAccept = (CheckBox) findViewById(R.id.checkBoxTermsAndConditions);
         //
 
 
@@ -528,11 +540,10 @@ public class Registration extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 /*Toast.makeText(Registration.this, "Yessss", Toast.LENGTH_SHORT).show();*/
-               if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O)
-               {
-                   new VibratorLowly(Registration.this);
-               }
-                PopupMenu popupMenuCameraOrGallary =new PopupMenu(Registration.this,view);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    new VibratorLowly(Registration.this);
+                }
+                PopupMenu popupMenuCameraOrGallary = new PopupMenu(Registration.this, view);
                 popupMenuCameraOrGallary.inflate(R.menu.camera_or_gallary);
                 popupMenuCameraOrGallary.setForceShowIcon(Boolean.parseBoolean("true"));
                 popupMenuCameraOrGallary.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -567,6 +578,22 @@ public class Registration extends AppCompatActivity {
         });
 
 
+        //checkbox
+
+        checkBoxTermsAndConditionsAccept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                checkBoxTermsAndConditionsAccept.setChecked(true);
+                //enabling submit floatingActionButton of Registration and giving it a new background Color
+                findViewById(R.id.floatingActionButtonRegistration).setVisibility(View.VISIBLE);
+                //Instantiation Of BottomSheet class With Terms And Conditions
+                BottomSheetWithTerms bottomSheetWithTerms = new BottomSheetWithTerms();
+                bottomSheetWithTerms.show(getSupportFragmentManager(), "Terms And Conditions");
+
+            }
+        });
+
 
         //
 
@@ -596,7 +623,7 @@ public class Registration extends AppCompatActivity {
 
     private void cameraCallingFunction() {
 
-        String[] null_camera_References={
+        String[] null_camera_References = {
                 "camera service is currently unavailable!",
                 "camera service is busy try again!",
                 "unknown error occurred while opening camera!",
@@ -604,10 +631,10 @@ public class Registration extends AppCompatActivity {
                 "process was forced to shutdown, unknown error!"
         };
 
-        Random random1=new Random();
-      int random= random1.nextInt(5);
+        Random random1 = new Random();
+        int random = random1.nextInt(5);
 
-        Toasty.custom(getApplicationContext(),null_camera_References[random], R.drawable.ic_baseline_whatshot_24, R.color.purple_700, Toasty.LENGTH_LONG, true, true).show();
+        Toasty.custom(getApplicationContext(), null_camera_References[random], R.drawable.ic_baseline_whatshot_24, R.color.purple_700, Toasty.LENGTH_LONG, true, true).show();
 
 
     }
@@ -617,14 +644,22 @@ public class Registration extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == GALLERY_REQUEST_CODE && data != null && data.getData() != null) {
             if (resultCode == RESULT_OK) {
+
+
                 imageUriPath = data.getData();
-                circleImageView_profile_picture_to_firebase.setImageURI(imageUriPath); //sets the image on the circular
+
+                //
+                circleImageView_profile_picture_to_firebase.setImageURI(imageUriPath);
+                //sets the image on the circular
+
+                //activating The Visibility of Terms And Conditions for CheckboksTerms..
+                checkBoxTermsAndConditionsAccept.setVisibility(View.VISIBLE);
+                //
 
                 Toasty.custom(getApplicationContext(), "Congratulations! Lets Proceed", R.drawable.ic_baseline_whatshot_24, R.color.purple_700, Toasty.LENGTH_LONG, true, true).show();
+                //
 
-            }
-            else if (resultCode==RESULT_CANCELED)
-            {
+            } else if (resultCode == RESULT_CANCELED) {
                 Toasty.custom(getApplicationContext(), "Cancelled By The User, No Image Was Selected!", R.drawable.ic_baseline_whatshot_24, R.color.purple_700, Toasty.LENGTH_LONG, true, true).show();
                 circleImageView_profile_picture_to_firebase.requestFocus();
                 circleImageView_profile_picture_to_firebase.setBorderColor(Color.MAGENTA);
@@ -638,7 +673,7 @@ public class Registration extends AppCompatActivity {
         intentGallery.setType("image/*");
 
         intentGallery.setAction(Intent.ACTION_GET_CONTENT);  //all Works Well
-       // intentGallery.setAction(Intent.ACTION_PICK);        //
+        // intentGallery.setAction(Intent.ACTION_PICK);        //
 
         startActivityForResult(Intent.createChooser(intentGallery, "Pick The Image Of Your Choice"), GALLERY_REQUEST_CODE);
 
@@ -784,7 +819,7 @@ public class Registration extends AppCompatActivity {
 
     //function alert User Of Verification Of Payment To Be approved as Admin
 
-    private void alertUserOfVerificationForPayment() {
+    public void alertUserOfVerificationForPayment() {
         new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
                 .setIcon(R.drawable.ic_baseline_payment_24)
                 .setCancelable(false)
@@ -1013,30 +1048,82 @@ public class Registration extends AppCompatActivity {
         pg.create();
         pg.show();
 
+
+        //defining Online Token Ring
+        String online = "";
+        //adminStatus default
+        String admin = "false";
+        final String[] imageDownloadLink = {""};
+        String imageLink="";
+        //chatAdmin
+        String sendToAdmin="";
+        String receiveFromAdmin="";
+        //chatMembersFellows
+        String sendMember="";
+        String receiveFromMember="";
+        //
+
         auth.createUserWithEmailAndPassword(emailReg, passwordReg).addOnCompleteListener(Registration.this, task -> {
             if (task.isSuccessful()) {
                 pg.dismiss();
                 //HashMap For Storing the User Data On to The Database At FireBase
-                Map<String, Object> map = new HashMap<>();
-                map.put("Username", usernameReg);
-                map.put("Email", emailReg);
-                map.put("Password", passwordReg);
-                map.put("County", string1);
-                map.put("Passion", string2);
-                map.put("Knowledge", string3);
-                map.put("Gender", string4);
-                map.put("Occupation", string5);
-                map.put("University", string6);
+                Map<String, Object> mapAccountDetails = new HashMap<>();
+                mapAccountDetails.put("Username", usernameReg);
+                mapAccountDetails.put("Email", emailReg);
+                mapAccountDetails.put("Password", passwordReg);
+                mapAccountDetails.put("County", string1);
+                mapAccountDetails.put("Passion", string2);
+                mapAccountDetails.put("Knowledge", string3);
+                mapAccountDetails.put("Gender", string4);
+                mapAccountDetails.put("Occupation", string5);
+                mapAccountDetails.put("University", string6);
+                mapAccountDetails.put("admin", admin);
+                mapAccountDetails.put("online", online);
+                mapAccountDetails.put("image",imageLink);
                 //
-                //adding map values to firebase
+                //adding mapAccountDetails values to firebase
                 firebaseUser = auth.getCurrentUser();
                 String userID = firebaseUser.getUid();
 
-                documentReference.document(userID).set(map).addOnCompleteListener(Registration.this, new OnCompleteListener<Void>() {
+                documentReferenceAccountInformation.document(userID).set(mapAccountDetails).addOnCompleteListener(Registration.this, new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
 
                         if (task.isSuccessful()) {
+
+                            //creating New Collections for Holding document Chats And USerID and Username;
+
+                          //chat with admin
+                            Map chatAdmin=new HashMap();
+                            chatAdmin.put("sendAdmin",sendToAdmin);
+                            chatAdmin.put("receiveFromAdmin",receiveFromAdmin);
+
+                            //chat with members
+                            Map chatMembers=new HashMap();
+                            chatMembers.put("sendMember",sendMember);
+                            chatMembers.put("receiveMember",receiveFromMember);
+
+                            //adding them to firebase fires_tore before confirmation Dialog popUps
+                            collectionReferenceChatInformation.document(userID).collection(usernameReg).document("adminMessages").set(chatAdmin);
+                            collectionReferenceChatInformation.document(userID).collection(usernameReg).document("membersMessages").set(chatMembers);
+                        //adding image to firebaseStorage
+                            StorageReference storageReference=FirebaseStorage.getInstance().getReference(userID).child("ProfileImage");
+
+                            storageReference.child(usernameReg).putFile(imageUriPath).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                                    storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                        @Override
+                                        public void onSuccess(Uri uri) {
+                                            Toast.makeText(Registration.this, "Link fetched", Toast.LENGTH_SHORT).show();
+                                            Log.d(TAG, uri.toString());
+                                        }
+                                    });
+                                }
+                            });
+
+
+                            //
 
                             new MaterialAlertDialogBuilder(Registration.this)
                                     .setTitle("REGISTRATION SUCCESSFUL\n\n")
@@ -1193,5 +1280,6 @@ public class Registration extends AppCompatActivity {
 
 
     }
+
 
 }

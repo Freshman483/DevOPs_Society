@@ -117,4 +117,14 @@
     <string name="support_developer"><u>Support Developer</u></string>
     <string name="shimitadouaglas_masenouni"><u><i>ShimitaDouglas@MasenoUni</i></u></string>
     <string name="get_a_job">Get A Job</string>
+    <string name="displayTerms">
+        <u><b>\nAdhere To The Guidelines Below Which Have Been Well Stipulated In Cut And Dry:\n\n</b></u>
+        1.Use Of DevOps Products Such As  Its Softwares Is For Educational Purposes Only.A User With Malicious Reasons Will Their Accounts Be Disabled Or If Possible Deleted Permanently.\n\n
+        2.On Payment Of Non-Refundable Fee OF Ksh.100 For Account Upgrade,The User Should Be Aware That The Amount Is Non-Refundable.\n\n
+        3.If It Happens That The User Attempted Stratagems(M-Pesa Reversal) During The Payment Of The Fee For Account Upgrade To A Super User. If Found, The victims Account Will Be Permanently Deleted.\n\n
+        4.DevOps Society Cares For Your Security And Advices That You Are ALso Responsible For Your Account Security When It Comes To Credentials Like The Passwords.\n\n
+        5.Only Members With Super User Account Will Be Able To Access Most Of The Functionalities and The Bests Of Best Provided By The DevOps Society Kenya.
+
+    </string>
+    <string name="onlineStatusPhone"><u>online</u></string>
 </resources>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/parent_registration_constraint"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/animation_gradient_list"
     tools:context=".Registration">
 
@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/animation_gradient_list"
-            app:cardBackgroundColor="@color/purple_500"
+            app:cardBackgroundColor="#907B50"
             app:cardCornerRadius="60dp">
 
 
@@ -362,15 +362,28 @@
 
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/floatingActionButonRegistration"
+                    android:id="@+id/floatingActionButtonRegistration"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:contentDescription="TODO"
+                    android:visibility="invisible"
                     android:onClick="functionFloatingButtonSubmitClicked"
                     android:src="@drawable/ic_round_send_24"
-                    app:backgroundTint="#F57F17"
+                    android:backgroundTint="#F63D05"
                     app:rippleColor="#7E6C04D3" />
+
+                <CheckBox
+                    android:id="@+id/checkBoxTermsAndConditions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:text="Accept Terms And Conditions"
+                    android:textStyle="bold|italic"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
