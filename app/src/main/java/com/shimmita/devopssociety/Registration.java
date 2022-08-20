@@ -34,13 +34,14 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.appcompat.widget.PopupMenu;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -62,9 +63,15 @@ public class Registration extends AppCompatActivity {
     public static final int GALLERY_REQUEST_CODE = 100;
     public static final int CAMERA_REQUEST_CODE = 200;
     FirebaseAuth auth;
-    FirebaseUser firebaseUser;
+    String firebaseUser;
     FirebaseFirestore firebaseFirestore;
-    CollectionReference documentReferenceAccountInformation,collectionReferenceChatInformation;
+    CollectionReference documentReferenceAccountInformation;
+
+    FirebaseStorage firebaseStorage;      //upload image
+    StorageReference storageReference;
+
+    FirebaseDatabase firebaseDatabase;   //write to realtime
+    DatabaseReference databaseReference;
 
 
     CircleImageView circleImageView_profile_picture_to_firebase;
@@ -294,10 +301,11 @@ public class Registration extends AppCompatActivity {
 
 
         auth = FirebaseAuth.getInstance();
-        firebaseFirestore = FirebaseFirestore.getInstance();
-        documentReferenceAccountInformation = firebaseFirestore.collection("DevOps Users");
-        collectionReferenceChatInformation=firebaseFirestore.collection("DevOpsChat");
+        firebaseUser = auth.getCurrentUser().getUid();
 
+        firebaseFirestore = FirebaseFirestore.getInstance();
+
+        documentReferenceAccountInformation = firebaseFirestore.collection("DevOps Users");
 
 
         // db = new Database(Registration.this);
@@ -1042,6 +1050,7 @@ public class Registration extends AppCompatActivity {
     }
 
     private void registerUser(String emailReg, String passwordReg) {
+        //defining Progress Dialog
         ProgressDialog pg = new ProgressDialog(Registration.this);
         pg.setTitle(usernameReg.toUpperCase(Locale.ROOT));
         pg.setMessage("Registering");
@@ -1049,161 +1058,289 @@ public class Registration extends AppCompatActivity {
         pg.show();
 
 
-        //defining Online Token Ring
-        String online = "";
-        //adminStatus default
-        String admin = "false";
-        final String[] imageDownloadLink = {""};
-        String imageLink="";
-        //chatAdmin
-        String sendToAdmin="";
-        String receiveFromAdmin="";
-        //chatMembersFellows
-        String sendMember="";
-        String receiveFromMember="";
+        auth.createUserWithEmailAndPassword(emailReg, passwordReg).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                if (task.isSuccessful()) {
+                    pg.dismiss();
+                    new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
+                            .setTitle("Registration Step 1/3 Completed")
+                            .setMessage(usernameReg + " You have successfully Completed Step One Of registration Process You're are allowed to make proceed ")
+                            .setIcon(R.drawable.ic_baseline_check)
+                            .setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.dismiss();
+                                    //function entering data into the firebase Firestore
+                                    functionEnteringDataIntoFirestore();
+                                    //
+                                }
+                            }).create().show();
+
+                } else {
+                    functionErrorOfRegistrationProcess(task, pg);
+                }
+
+            }
+        });
+
+
+    }
+
+    private void functionEnteringDataIntoFirestore() {
+
+        String keyUsername = "Username";    //usernameReg;
+        String keyEmail = "Email";        //emailReg;
+        String keyPassword = "Password";    //passwordReg;
+        String keyCounty = "County";        //string1;
+        String keyPassion = "Passion";      //string2;
+        String keyKnowledge = "Knowledge";     //string3;
+        String keyGender = "Gender";           //string4;
+        String keyOccupation = "Occupation";    //string5;
+        String keyUniversityAttended = "University";    //string6;
+        String keyIsAdmin = "Role";                 //string7_role_status_check
+
+        //added string values
+        String keyAdminChatSend = "AdminChatSend";   //sends to admin
+        String valueAdminChatSend = "Send";
+        //
+        String keyAdminChatReceive = "AdminChatReceive";   //receives from admin
+        String valueAdminChatReceive = "Receive";
+        //
+        //chat implementation for members to be completed here after grasp of logic
         //
 
-        auth.createUserWithEmailAndPassword(emailReg, passwordReg).addOnCompleteListener(Registration.this, task -> {
-            if (task.isSuccessful()) {
-                pg.dismiss();
-                //HashMap For Storing the User Data On to The Database At FireBase
-                Map<String, Object> mapAccountDetails = new HashMap<>();
-                mapAccountDetails.put("Username", usernameReg);
-                mapAccountDetails.put("Email", emailReg);
-                mapAccountDetails.put("Password", passwordReg);
-                mapAccountDetails.put("County", string1);
-                mapAccountDetails.put("Passion", string2);
-                mapAccountDetails.put("Knowledge", string3);
-                mapAccountDetails.put("Gender", string4);
-                mapAccountDetails.put("Occupation", string5);
-                mapAccountDetails.put("University", string6);
-                mapAccountDetails.put("admin", admin);
-                mapAccountDetails.put("online", online);
-                mapAccountDetails.put("image",imageLink);
-                //
-                //adding mapAccountDetails values to firebase
-                firebaseUser = auth.getCurrentUser();
-                String userID = firebaseUser.getUid();
+        Map<String, Object> mapAccountDetails = new HashMap<>();
 
-                documentReferenceAccountInformation.document(userID).set(mapAccountDetails).addOnCompleteListener(Registration.this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
+        mapAccountDetails.put(keyUsername, usernameReg);
+        mapAccountDetails.put(keyEmail, emailReg);
+        mapAccountDetails.put(keyPassword, passwordReg);
+        mapAccountDetails.put(keyCounty, string1);
+        mapAccountDetails.put(keyPassion, string2);
+        mapAccountDetails.put(keyKnowledge, string3);
+        mapAccountDetails.put(keyGender, string4);
+        mapAccountDetails.put(keyOccupation, string5);
+        mapAccountDetails.put(keyUniversityAttended, string6);
+        mapAccountDetails.put(keyIsAdmin, string7_role_status_check);
+        mapAccountDetails.put(keyAdminChatSend, valueAdminChatSend);
+        mapAccountDetails.put(keyAdminChatReceive, valueAdminChatReceive);
 
-                        if (task.isSuccessful()) {
-
-                            //creating New Collections for Holding document Chats And USerID and Username;
-
-                          //chat with admin
-                            Map chatAdmin=new HashMap();
-                            chatAdmin.put("sendAdmin",sendToAdmin);
-                            chatAdmin.put("receiveFromAdmin",receiveFromAdmin);
-
-                            //chat with members
-                            Map chatMembers=new HashMap();
-                            chatMembers.put("sendMember",sendMember);
-                            chatMembers.put("receiveMember",receiveFromMember);
-
-                            //adding them to firebase fires_tore before confirmation Dialog popUps
-                            collectionReferenceChatInformation.document(userID).collection(usernameReg).document("adminMessages").set(chatAdmin);
-                            collectionReferenceChatInformation.document(userID).collection(usernameReg).document("membersMessages").set(chatMembers);
-                        //adding image to firebaseStorage
-                            StorageReference storageReference=FirebaseStorage.getInstance().getReference(userID).child("ProfileImage");
-
-                            storageReference.child(usernameReg).putFile(imageUriPath).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+        //adding firestore the data
+        documentReferenceAccountInformation.document(firebaseUser).set(mapAccountDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
+                            .setTitle("Registration Step 2/3 Successful!")
+                            .setCancelable(false)
+                            .setMessage(usernameReg + " You have successfully Completed Step Two Of registration Process You're are allowed to make the last step " +
+                                    "of registration")
+                            .setIcon(R.drawable.ic_baseline_check)
+                            .setPositiveButton("Lets Complete", new DialogInterface.OnClickListener() {
                                 @Override
-                                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                                    storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.dismiss();
+                                    //call function complete registration of uploading image
+                                    functionUploadImageToFirebaseStorage();
+
+                                    //
+                                }
+                            }).create().show();
+
+
+                } else {
+                    new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
+                            .setTitle("Something Went Wrong!")
+                            .setCancelable(false)
+                            .setMessage(usernameReg + " Your Registration  Process Halted Due To:\n" + task.getException().getMessage())
+                            .setPositiveButton("Retry Registration", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                    dialogInterface.dismiss();
+                                }
+                            }).create().show();
+
+                }
+            }
+        });
+
+    }
+
+    private void functionUploadImageToFirebaseStorage() {
+        storageReference = firebaseStorage.getReference().child(firebaseUser).child(usernameReg);
+        storageReference.putFile(imageUriPath).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+
+                if (task.isSuccessful()) {
+                    //alerting User that last step is completed
+                    new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
+                            .setTitle("Registration Step 3/3 Successful!")
+                            .setCancelable(false)
+                            .setMessage(usernameReg + " You have successfully Completed the Last Step Of registration Process, accept to Finish the Process " +
+                                    "of registration")
+                            .setIcon(R.drawable.ic_baseline_check)
+                            .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.dismiss();
+                                    //call get download uri if success then add it to the realtime database
+
+                                    storageReference.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                                         @Override
-                                        public void onSuccess(Uri uri) {
-                                            Toast.makeText(Registration.this, "Link fetched", Toast.LENGTH_SHORT).show();
-                                            Log.d(TAG, uri.toString());
+                                        public void onComplete(@NonNull Task<Uri> task) {
+                                            //caling the function to carry out the operations off writing the image to realtime database
+                                            functionAddImageUriToDatabase(task);
+                                            //
                                         }
                                     });
+
+                                    //
+                                }
+                            }).create().show();
+
+                } else {
+                    new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
+                            .setTitle("Something Went Wrong !")
+                            .setMessage(usernameReg + " your registration halted due to:\n" + task.getException().getMessage())
+                            .setPositiveButton("Lets Try Again Registration", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    //dismiss dialog
+                                    dialogInterface.dismiss();
+                                    //
+                                }
+                            }).create().show();
+                }
+            }
+        });
+
+    }
+
+    private void functionAddImageUriToDatabase(Task<Uri> task) {
+        String imagePathLocally="imagePath";
+
+        String keyImageUriLocally="imagePath";
+        String valueStoredUrl=task.getResult().toString();
+
+        Map<String,Object> mapImageUrlToRealtimeDatabase=new HashMap<>();
+        mapImageUrlToRealtimeDatabase.put(keyImageUriLocally,valueStoredUrl);
+
+        databaseReference=firebaseDatabase.getReference().child(firebaseUser).child(usernameReg).child(imagePathLocally);
+
+        databaseReference.setValue(mapImageUrlToRealtimeDatabase).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful())
+                {
+                    //first success dialog
+                    new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
+                            .setIcon(R.drawable.ic_baseline_check)
+                            .setTitle(usernameReg+" Registered Successfully")
+                            .setMessage("Congratulations!,Your Registration Was Successful And your Information Is Kept Securely\nWelcome To DevOps Society and Explore The Unseen Technology To Be Seen!")
+                            .setPositiveButton("Ok,view Registration Details", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                    //call function registration Details Viewing
+                                    functionRegistrationDetailsViewing();
+                                    //
+
                                 }
                             });
+                    //
+                }
+                else
+                {
+                    //alert User Of Wrong happening
 
+                    new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
+                            .setTitle("Something Went Wrong!")
+                            .setCancelable(false)
+                            .setMessage(usernameReg + " Your Registration  Process Halted Due To:\n" + task.getException().getMessage())
+                            .setPositiveButton("Retry Registration", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.dismiss();
+                                }
+                            }).create().show();
 
-                            //
-
-                            new MaterialAlertDialogBuilder(Registration.this)
-                                    .setTitle("REGISTRATION SUCCESSFUL\n\n")
-                                    .setMessage("\t(Account Holder: " + usernameReg.toUpperCase(Locale.ROOT) + ")\n" +
-                                            "\nWelcome To Developers  Society Family, Your Credentials Are Now Saved Successfully" +
-                                            "Please Don't Forget Your Username,Email and Password!." +
-                                            "These Are the Unique Identifiers of Your DevOps Society Account.\n" +
-                                            "\nUSERNAME: " + usernameReg + "\n\nEMAIL: " + emailReg + "\n\nPASSWORD: " + passwordReg + "\n" +
-                                            "\n\nYour Other Selected Details Are:\n" + "" +
-                                            "\nCOUNTY: " + string1 + "\n" +
-                                            "\nPASSION: " + string2 + "\n" +
-                                            "\nKNOWLEDGE: " + string3 + "\n" +
-                                            "\nGENDER:  " + string4 + "\n" +
-                                            "\nOCCUPATION: " + string5 + "\n" +
-                                            "\nUNIVERSITY ATTENDED: " + string6 + "\n\n")
-                                    .setIcon(R.drawable.ic_baseline_check_24)
-                                    .setCancelable(false)
-                                    .setPositiveButton("Ok,Login", (dialog, which) -> {
-                                        dialog.cancel();
-                                        pg.dismiss();
-                                        startActivity(new Intent(Registration.this, Login.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
-                                    })
-                                    .setNegativeButton("Login Later", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            pg.dismiss();
-                                            dialogInterface.dismiss();
-                                            startActivity(new Intent(Registration.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
-                                            finish();
-                                        }
-                                    })
-                                    .create()
-                                    .show();
-
-                        } else {
-                            new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
-                                    .setTitle("Error From The Database!")
-                                    .setCancelable(false)
-                                    .setMessage("\n\n" + "Dear User " + usernameReg.toUpperCase(Locale.ROOT) + "" +
-                                            "Your Data Was Not Stored Into The Database Records Due To:\n" + task.getException().getMessage() + "" +
-                                            "Please Try Again Registration Process")
-                                    .setPositiveButton("Ok Let Me try Again", (dialogInterface, i) -> dialogInterface.dismiss())
-                                    .setNegativeButton("No,Quit!", (dialogInterface, i) -> {
-                                        dialogInterface.dismiss();
-                                        startActivity(new Intent(Registration.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
-                                        finish();
-                                    }).create().show();
-                        }
-                    }
-                });
-
-            } else {
-                pg.dismiss();
-
-                new MakeVibrator(Registration.this);
-                new AlertDialog.Builder(this)
-                        .setTitle("REGISTRATION FAILED!")
-                        .setMessage("Dear (" + usernameReg.toUpperCase(Locale.ROOT) + ") " +
-                                "Your Registration Was Unsuccessful This Might Be Due To:\n" +
-                                "\nMajor Reason:\n" + task.getException().getMessage().toUpperCase(Locale.ROOT) + "\n\nOther Reasons Include:\n" +
-                                "\n1.Internet Connectivity Issues,If So Please Turn On The Internet And Retry The Registration Process Again." +
-                                "\n " +
-                                "\n2.Internal Server Errors; i.e Server Was Down During Your registration Process; Try Again.\n" +
-                                "\n3.Your Internet Browsing Data Bundles Completely Depleted ; Wifi Or Purchase Data As Solution And Try Again")
-                        .setIcon(R.drawable.ic_baseline_clear_24)
-                        .setCancelable(false)
-                        .setPositiveButton("Ok,check internet", (dialogInterface, i) -> {
-                            startActivity(new Intent(Settings.ACTION_DATA_ROAMING_SETTINGS));
-                        })
-                        .setNegativeButton("Buy Data Bundles", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:*544#")));
-                            }
-                        })
-                        .create()
-                        .show();
+                    //
+                }
             }
         });
     }
+
+    private void functionRegistrationDetailsViewing() {
+
+        //contains alert dialog of Success registration
+
+        new MaterialAlertDialogBuilder(Registration.this)
+                .setTitle("REGISTRATION SUCCESSFUL\n\n")
+                .setMessage("\t(Account Holder: " + usernameReg.toUpperCase(Locale.ROOT) + ")\n" +
+                        "\nWelcome To Developers  Society Family, Your Credentials Are Now Saved Successfully" +
+                        "Please Don't Forget Your Username,Email and Password!." +
+                        "These Are the Unique Identifiers of Your DevOps Society Account.\n" +
+                        "\nUSERNAME: " + usernameReg + "\n\nEMAIL: " + emailReg + "\n\nPASSWORD: " + passwordReg + "\n" +
+                        "\n\nYour Other Selected Details Are:\n" + "" +
+                        "\nCOUNTY: " + string1 + "\n" +
+                        "\nPASSION: " + string2 + "\n" +
+                        "\nKNOWLEDGE: " + string3 + "\n" +
+                        "\nGENDER:  " + string4 + "\n" +
+                        "\nOCCUPATION: " + string5 + "\n" +
+                        "\nUNIVERSITY ATTENDED: " + string6 + "\n" +
+                        "\nACCOUNT TYPE: "+string7_role_status_check+"\n\n")
+                .setIcon(R.drawable.ic_baseline_check_24)
+                .setCancelable(false)
+                .setPositiveButton("Ok,Login", (dialog, which) -> {
+                    dialog.cancel();
+                    startActivity(new Intent(Registration.this, Login.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                })
+                .setNegativeButton("Login Later", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        startActivity(new Intent(Registration.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                        finish();
+                    }
+                })
+                .create()
+                .show();
+        //
+    }
+
+
+    private void functionErrorOfRegistrationProcess(Task<AuthResult> task, ProgressDialog pg) {
+
+        pg.dismiss();
+
+        new MakeVibrator(Registration.this);
+        new AlertDialog.Builder(this)
+                .setTitle("REGISTRATION FAILED!")
+                .setMessage("Dear (" + usernameReg.toUpperCase(Locale.ROOT) + ") " +
+                        "Your Registration Was Unsuccessful This Might Be Due To:\n" +
+                        "\nMajor Reason:\n" + task.getException().getMessage().toUpperCase(Locale.ROOT) + "\n\nOther Reasons Include:\n" +
+                        "\n1.Internet Connectivity Issues,If So Please Turn On The Internet And Retry The Registration Process Again." +
+                        "\n " +
+                        "\n2.Internal Server Errors; i.e Server Was Down During Your registration Process; Try Again.\n" +
+                        "\n3.Your Internet Browsing Data Bundles Completely Depleted ; Wifi Or Purchase Data As Solution And Try Again")
+                .setIcon(R.drawable.ic_baseline_clear_24)
+                .setCancelable(false)
+                .setPositiveButton("Ok,check internet", (dialogInterface, i) -> {
+                    startActivity(new Intent(Settings.ACTION_DATA_ROAMING_SETTINGS));
+                })
+                .setNegativeButton("Buy Data Bundles", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:*544#")));
+                    }
+                })
+                .create()
+                .show();
+    }
+
 
     public void dialogWeakPassword() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

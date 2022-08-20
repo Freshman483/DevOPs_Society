@@ -353,14 +353,11 @@ public class LoginIndexMainPage extends AppCompatActivity {
                 }
             });
 
-            button_superUser.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+            button_superUser.setOnClickListener(view12 -> {
 
-                    startActivity(new Intent(getActivity(), MakePayments.class));
-                    CustomIntent.customType(getActivity(), "fadein-to-fadeout");
-                    dismiss();
-                }
+                startActivity(new Intent(getActivity(), MakePayments.class));
+                CustomIntent.customType(getActivity(), "fadein-to-fadeout");
+                dismiss();
             });
 
             return view;

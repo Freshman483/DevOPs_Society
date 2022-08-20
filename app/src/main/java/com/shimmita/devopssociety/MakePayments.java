@@ -8,6 +8,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import es.dmoral.toasty.Toasty;
+import maes.tech.intentanim.CustomIntent;
 
 public class MakePayments extends AppCompatActivity {
 
@@ -45,6 +46,10 @@ public class MakePayments extends AppCompatActivity {
                                 startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:+254757450727")));
                                 Toasty.custom(MakePayments.this, "Number Forwarded Successfully", R.drawable.ic_baseline_whatshot_24, R.color.purple_700, Toasty.LENGTH_LONG, true, true).show();
                                 dialogInterface1.dismiss();
+
+                                //more Functionality to Be Implemented Here
+
+                                //
                             }).create().show();
 
                 }).setNegativeButton("Understood, not Interested", (dialogInterface, i) -> {
@@ -55,7 +60,13 @@ public class MakePayments extends AppCompatActivity {
                             .setIcon(R.drawable.ic_baseline_info_24)
                             .setMessage("you will continue  using your account freely but with limited functionalities. " +
                                     "Still you can upgrade later when interested on successful login into your account profile after registration as NORMAL USER\n")
-                            .setPositiveButton("Ok", null).create().show();
+                            .setPositiveButton("Ok", (dialogInterface12, i12) -> {
+
+                                startActivity(new Intent(MakePayments.this, LoginIndexMainPage.class));
+                                CustomIntent.customType(MakePayments.this, "fadein-to-fadeout");
+                                dialogInterface12.dismiss();
+                            }).create().show();
+
                 }).create().show();
 
     }
