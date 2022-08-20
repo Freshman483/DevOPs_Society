@@ -1172,7 +1172,10 @@ public class Registration extends AppCompatActivity {
     }
 
     private void functionUploadImageToFirebaseStorage() {
-        storageReference = firebaseStorage.getReference().child(firebaseUser).child(usernameReg);
+
+        String profileImagesLocally = "ProfileImages";
+
+        storageReference = firebaseStorage.getReference().child(profileImagesLocally).child(firebaseUser).child(usernameReg);
         storageReference.putFile(imageUriPath).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
@@ -1224,9 +1227,9 @@ public class Registration extends AppCompatActivity {
     }
 
     private void functionAddImageUriToDatabase(Task<Uri> task) {
-        String imagePathLocally = "imagePath";
+        String imagePathLocally = "ProfileImagePaths";
 
-        String keyImageUriLocally = "imagePaths";
+        String keyImageUriLocally = "imagePath";
         String valueStoredUrl = task.getResult().toString();
 
         Map<String, Object> mapImageUrlToRealtimeDatabase = new HashMap<>();
@@ -1267,8 +1270,8 @@ public class Registration extends AppCompatActivity {
         new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
                 .setIcon(R.drawable.ic_baseline_check)
                 .setCancelable(false)
-                .setTitle(usernameReg + " Registered Successfully")
-                .setMessage("Congratulations!,Your Registration Was Successful And your Information Is Kept Securely\nWelcome To DevOps Society and Explore The Unseen Technology To Be Seen!")
+                .setTitle(usernameReg + "\nRegistered Successfully")
+                .setMessage("\nCongratulations!,Your Registration Was Successful And your Information Is Kept Securely\nWelcome To DevOps Society and Explore The Unseen Technology To Be Seen!")
                 .setPositiveButton("Ok,view Registration Details", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
