@@ -304,6 +304,8 @@ public class Registration extends AppCompatActivity {
         firebaseUser = auth.getCurrentUser().getUid();
 
         firebaseFirestore = FirebaseFirestore.getInstance();
+        firebaseStorage = FirebaseStorage.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
 
         documentReferenceAccountInformation = firebaseFirestore.collection("DevOps Users");
 
@@ -1066,6 +1068,7 @@ public class Registration extends AppCompatActivity {
                     pg.dismiss();
                     new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
                             .setTitle("Registration Step 1/3 Completed")
+                            .setCancelable(false)
                             .setMessage(usernameReg + " You have successfully Completed Step One Of registration Process You're are allowed to make proceed ")
                             .setIcon(R.drawable.ic_baseline_check)
                             .setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
@@ -1191,7 +1194,7 @@ public class Registration extends AppCompatActivity {
                                     storageReference.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Uri> task) {
-                                            //caling the function to carry out the operations off writing the image to realtime database
+                                            //calling the function to carry out the operations off writing the image to realtime database
                                             functionAddImageUriToDatabase(task);
                                             //
                                         }
@@ -1204,6 +1207,7 @@ public class Registration extends AppCompatActivity {
                 } else {
                     new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
                             .setTitle("Something Went Wrong !")
+                            .setCancelable(false)
                             .setMessage(usernameReg + " your registration halted due to:\n" + task.getException().getMessage())
                             .setPositiveButton("Lets Try Again Registration", new DialogInterface.OnClickListener() {
                                 @Override
@@ -1220,40 +1224,24 @@ public class Registration extends AppCompatActivity {
     }
 
     private void functionAddImageUriToDatabase(Task<Uri> task) {
-        String imagePathLocally="imagePath";
+        String imagePathLocally = "imagePath";
 
-        String keyImageUriLocally="imagePath";
-        String valueStoredUrl=task.getResult().toString();
+        String keyImageUriLocally = "imagePaths";
+        String valueStoredUrl = task.getResult().toString();
 
-        Map<String,Object> mapImageUrlToRealtimeDatabase=new HashMap<>();
-        mapImageUrlToRealtimeDatabase.put(keyImageUriLocally,valueStoredUrl);
+        Map<String, Object> mapImageUrlToRealtimeDatabase = new HashMap<>();
+        mapImageUrlToRealtimeDatabase.put(keyImageUriLocally, valueStoredUrl);
 
-        databaseReference=firebaseDatabase.getReference().child(firebaseUser).child(usernameReg).child(imagePathLocally);
+        databaseReference = firebaseDatabase.getReference().child(imagePathLocally).child(firebaseUser).child(usernameReg); //imagePaths-userID-name-map
 
         databaseReference.setValue(mapImageUrlToRealtimeDatabase).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful())
-                {
+                if (task.isSuccessful()) {
                     //first success dialog
-                    new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
-                            .setIcon(R.drawable.ic_baseline_check)
-                            .setTitle(usernameReg+" Registered Successfully")
-                            .setMessage("Congratulations!,Your Registration Was Successful And your Information Is Kept Securely\nWelcome To DevOps Society and Explore The Unseen Technology To Be Seen!")
-                            .setPositiveButton("Ok,view Registration Details", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-
-                                    //call function registration Details Viewing
-                                    functionRegistrationDetailsViewing();
-                                    //
-
-                                }
-                            });
+                    functionFinalRegistrationShowDetailedAll();
                     //
-                }
-                else
-                {
+                } else {
                     //alert User Of Wrong happening
 
                     new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
@@ -1271,6 +1259,26 @@ public class Registration extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void functionFinalRegistrationShowDetailedAll() {
+
+
+        new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
+                .setIcon(R.drawable.ic_baseline_check)
+                .setCancelable(false)
+                .setTitle(usernameReg + " Registered Successfully")
+                .setMessage("Congratulations!,Your Registration Was Successful And your Information Is Kept Securely\nWelcome To DevOps Society and Explore The Unseen Technology To Be Seen!")
+                .setPositiveButton("Ok,view Registration Details", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        //call function registration Details Viewing
+                        functionRegistrationDetailsViewing();
+                        //
+
+                    }
+                }).create().show();
     }
 
     private void functionRegistrationDetailsViewing() {
@@ -1291,7 +1299,7 @@ public class Registration extends AppCompatActivity {
                         "\nGENDER:  " + string4 + "\n" +
                         "\nOCCUPATION: " + string5 + "\n" +
                         "\nUNIVERSITY ATTENDED: " + string6 + "\n" +
-                        "\nACCOUNT TYPE: "+string7_role_status_check+"\n\n")
+                        "\nACCOUNT TYPE: " + string7_role_status_check + "\n\n")
                 .setIcon(R.drawable.ic_baseline_check_24)
                 .setCancelable(false)
                 .setPositiveButton("Ok,Login", (dialog, which) -> {
