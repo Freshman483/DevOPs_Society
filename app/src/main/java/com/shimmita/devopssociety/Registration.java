@@ -1092,6 +1092,18 @@ public class Registration extends AppCompatActivity {
     }
 
     private void functionEnteringDataIntoFirestore() {
+        //progressDialogSaving Account details FireStore
+        ProgressDialog progressDialogLocally = new ProgressDialog(Registration.this);
+        progressDialogLocally.setCancelable(false);
+        progressDialogLocally.setTitle(usernameReg);
+        progressDialogLocally.setMessage("saving account details...");
+        progressDialogLocally.create();
+
+
+        //showing the progress
+        progressDialogLocally.show();
+
+        //
 
         String keyUsername = "Username";    //usernameReg;
         String keyEmail = "Email";        //emailReg;
@@ -1134,6 +1146,10 @@ public class Registration extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
+                    //dismiss the progress
+                    progressDialogLocally.dismiss();
+                    //
+
                     new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
                             .setTitle("Registration Step 2/3 Successful!")
                             .setCancelable(false)
@@ -1153,6 +1169,10 @@ public class Registration extends AppCompatActivity {
 
 
                 } else {
+                    //dismiss progress
+                    progressDialogLocally.dismiss();
+                    //
+
                     new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
                             .setTitle("Something Went Wrong!")
                             .setCancelable(false)
@@ -1173,6 +1193,20 @@ public class Registration extends AppCompatActivity {
 
     private void functionUploadImageToFirebaseStorage() {
 
+        //progress for setting Profile Picture
+        ProgressDialog progressDialogLocallyImage = new ProgressDialog(Registration.this);
+        progressDialogLocallyImage.setCancelable(false);
+        progressDialogLocallyImage.setTitle(usernameReg);
+        progressDialogLocallyImage.setMessage("Updating Profile...");
+        progressDialogLocallyImage.create();
+
+
+        //showing the progress
+        progressDialogLocallyImage.show();
+
+        //
+        //
+
         String profileImagesLocally = "ProfileImages";
 
         storageReference = firebaseStorage.getReference().child(profileImagesLocally).child(firebaseUser).child(usernameReg);
@@ -1181,6 +1215,10 @@ public class Registration extends AppCompatActivity {
             public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
 
                 if (task.isSuccessful()) {
+                    //
+                    progressDialogLocallyImage.dismiss();
+                    //
+
                     //alerting User that last step is completed
                     new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
                             .setTitle("Registration Step 3/3 Successful!")
@@ -1188,26 +1226,25 @@ public class Registration extends AppCompatActivity {
                             .setMessage(usernameReg + " You have successfully Completed the Last Step Of registration Process, accept to Finish the Process " +
                                     "of registration")
                             .setIcon(R.drawable.ic_baseline_check)
-                            .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    dialogInterface.dismiss();
-                                    //call get download uri if success then add it to the realtime database
+                            .setPositiveButton("Accept", (dialogInterface, i) -> {
+                                dialogInterface.dismiss();
 
-                                    storageReference.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Uri> task) {
-                                            //calling the function to carry out the operations off writing the image to realtime database
-                                            functionAddImageUriToDatabase(task);
-                                            //
-                                        }
-                                    });
+                                //call get download uri if success then add it to the realtime database
+                                storageReference.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Uri> task1) {
+                                        //calling the function to carry out the operations off writing the image to realtime database
+                                        functionAddImageUriToDatabase(task1);
+                                        //
 
-                                    //
-                                }
+                                    }
+                                });
+
+                                //
                             }).create().show();
 
                 } else {
+                    progressDialogLocallyImage.dismiss();
                     new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
                             .setTitle("Something Went Wrong !")
                             .setCancelable(false)
@@ -1227,6 +1264,22 @@ public class Registration extends AppCompatActivity {
     }
 
     private void functionAddImageUriToDatabase(Task<Uri> task) {
+        //
+
+        ProgressDialog progressDialogImageUrlToRealTimeDatabase =new ProgressDialog(Registration.this);
+        progressDialogImageUrlToRealTimeDatabase.setCancelable(false);
+        progressDialogImageUrlToRealTimeDatabase.setTitle(usernameReg);
+        progressDialogImageUrlToRealTimeDatabase.setMessage("saving account details...");
+        progressDialogImageUrlToRealTimeDatabase.create();
+
+
+        //showing the progress
+        progressDialogImageUrlToRealTimeDatabase.show();
+
+        //
+        //
+
+
         String imagePathLocally = "ProfileImagePaths";
 
         String keyImageUriLocally = "imagePath";
@@ -1241,12 +1294,19 @@ public class Registration extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
+                    //progress dismiss
+                    progressDialogImageUrlToRealTimeDatabase.dismiss();
+                    //
+
                     //first success dialog
                     functionFinalRegistrationShowDetailedAll();
                     //
                 } else {
-                    //alert User Of Wrong happening
+                    //dismiss
+                    progressDialogImageUrlToRealTimeDatabase.dismiss();
 
+                    //
+                    //alert User Of Wrong happening
                     new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
                             .setTitle("Something Went Wrong!")
                             .setCancelable(false)
