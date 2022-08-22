@@ -127,4 +127,9 @@
 
     </string>
     <string name="onlineStatusPhone"><u>online</u></string>
+    <string name="powered_by_devops_society_of_kenya"><u>DevOps Society Of Kenya</u></string>
+
+    <string name="Open">Open</string>
+    <string name="Close">Close</string>
+
 </resources>

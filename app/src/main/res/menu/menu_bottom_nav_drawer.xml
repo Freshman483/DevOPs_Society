@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/home_drawer_bottom_nav"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/browser_drawer_bottom_nav"
+        android:icon="@drawable/ic_baseline_public_24"
+        android:title="Browser" />
+
+    <item
+        android:id="@+id/devops_army_drawer_bottom_nav"
+        android:icon="@drawable/ic_baseline_support_agent_24"
+        android:title="DevOps Army" />
+
+    <item
+        android:id="@+id/technoTrends_drawer_bottom_nav"
+        android:icon="@drawable/ic_baseline_title_tecno_24"
+        android:title="Tech Trends" />
+
+    <item
+        android:id="@+id/other_drawer_bottom_nav"
+        android:icon="@drawable/ic_baseline_whatshot_24"
+        android:title="Other Apps" />
+
+</menu>

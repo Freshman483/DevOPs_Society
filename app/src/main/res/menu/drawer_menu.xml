@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:checkableBehavior="single">
+        <item android:title="Main Profile">
+            <menu>
+
+                <group android:checkableBehavior="single">
+
+
+                    <item
+                        android:id="@+id/help_drawer"
+                        android:checkable="true"
+                        android:icon="@drawable/ic_baseline_help_center_24"
+                        android:title="Help"
+                        app:showAsAction="always" />
+
+                    <item
+                        android:id="@+id/developer_drawer"
+                        android:checkable="true"
+                        android:icon="@drawable/ic_baseline_emoji_emotions_24"
+                        android:title="Developer"
+                        app:showAsAction="always" />
+
+                    <item
+                        android:id="@+id/privacy_policy_drawer"
+                        android:checkable="true"
+                        android:icon="@drawable/ic_baseline_privacy_tip_24"
+                        android:title="Privacy and Policy"
+                        app:showAsAction="always" />
+
+
+                </group>
+
+
+            </menu>
+
+
+        </item>
+
+
+        <item android:title="Accounts">
+
+            <menu>
+
+                <group android:checkableBehavior="single">
+
+                    <item
+                        android:id="@+id/login_drawer"
+                        android:checkable="true"
+                        android:icon="@drawable/ic_baseline_account_login"
+                        android:title="Login Acoount"
+                        app:showAsAction="always" />
+
+                    <item
+                        android:id="@+id/create_account_drawer"
+                        android:checkable="true"
+                        android:icon="@drawable/ic_round_person_add"
+                        android:title="Create Account"
+                        app:showAsAction="always" />
+
+                    <item
+                        android:id="@+id/exit_app_drawer"
+                        android:checkable="true"
+                        android:icon="@drawable/ic_baseline_exit"
+                        android:title="Exit App"
+                        app:showAsAction="always" />
+
+                </group>
+
+
+            </menu>
+
+
+        </item>
+
+
+        <item android:title="Communication channel">
+
+            <menu>
+
+                <group android:checkableBehavior="single">
+
+                    <item
+                        android:id="@+id/share_app_drawer"
+                        android:checkable="true"
+                        android:icon="@drawable/ic_baseline_share"
+                        android:title="Share App"
+                        app:showAsAction="always" />
+
+                    <item
+                        android:id="@+id/rate_app_drawer"
+                        android:checkable="true"
+                        android:icon="@drawable/ic_baseline_star_rate_24"
+                        android:title="Rate App"
+                        app:showAsAction="always" />
+
+                    <item
+                        android:id="@+id/chat_developer_drawer"
+                        android:checkable="true"
+                        android:icon="@drawable/ic_baseline_chat_bubble_24"
+                        android:title="Chat With Developer"
+                        app:showAsAction="always" />
+
+                </group>
+
+
+            </menu>
+
+
+        </item>
+
+
+        <item android:title="Preferences">
+
+            <menu>
+
+                <group android:checkableBehavior="single">
+
+                    <item
+                        android:id="@+id/dark_theme_drawer"
+                        android:checkable="true"
+                        android:icon="@drawable/ic_baseline_dark_theme_24"
+                        android:title="Dark Theme" />
+
+                    <item
+                        android:id="@+id/more_settings_drawer"
+                        android:checkable="true"
+                        android:icon="@drawable/ic_baseline_settings_applications_24"
+                        android:title="More Settings" />
+
+                </group>
+
+
+            </menu>
+
+
+        </item>
+
+
+        <item android:title="Support">
+
+            <menu>
+
+                <group android:checkableBehavior="single">
+
+                    <item
+                        android:id="@+id/support_drawer"
+                        android:checkable="true"
+                        android:icon="@drawable/ic_baseline_payment_24"
+                        android:title="Buy Me A Coffee" />
+
+
+                </group>
+
+
+            </menu>
+
+
+        </item>
+
+
+    </group>
+
+
+</menu>

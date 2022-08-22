@@ -353,12 +353,12 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/circularImageProfileHolder"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:layout_marginTop="10dp"
                     android:src="@drawable/ic_baseline_account_circle_24"
                     app:civ_border_color="@color/white"
-                    app:civ_border_width="4dp" />
+                    app:civ_border_width="2dp" />
 
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -366,24 +366,24 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
+                    android:backgroundTint="#F63D05"
                     android:contentDescription="TODO"
-                    android:visibility="invisible"
                     android:onClick="functionFloatingButtonSubmitClicked"
                     android:src="@drawable/ic_round_send_24"
-                    android:backgroundTint="#F63D05"
+                    android:visibility="invisible"
                     app:rippleColor="#7E6C04D3" />
 
                 <CheckBox
                     android:id="@+id/checkBoxTermsAndConditions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
                     android:layout_gravity="center_horizontal"
                     android:gravity="center_horizontal"
                     android:text="Accept Terms And Conditions"
-                    android:textStyle="bold|italic"
                     android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic"
+                    android:visibility="gone" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 

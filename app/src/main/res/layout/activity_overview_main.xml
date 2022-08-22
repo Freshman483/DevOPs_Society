@@ -9,12 +9,12 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewMainOverview"
         android:layout_width="0dp"
-        android:background="@drawable/animationlist_of_gradient_items_of_main_overview"
         android:layout_height="0dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
+        android:background="@drawable/animationlist_of_gradient_items_of_main_overview"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

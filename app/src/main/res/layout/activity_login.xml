@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     android:layout_margin="1dp"
     android:layout_marginBottom="1dp"
-    android:overScrollMode="always"
     android:background="#FFFBFB"
+    android:overScrollMode="always"
     android:scrollbars="vertical"
     tools:context=".Login">
 
@@ -31,12 +31,12 @@
 
 
             <ImageView
-                android:contentDescription="@string/devops_logo"
                 android:id="@+id/image_person_login"
                 android:layout_width="399dp"
                 android:layout_height="200dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="4dp"
+                android:contentDescription="@string/devops_logo"
                 android:src="@mipmap/dev_ops_main"
                 app:layout_constraintBottom_toTopOf="@+id/textInput_email"
                 app:layout_constraintEnd_toEndOf="parent"

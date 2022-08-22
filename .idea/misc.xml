@@ -24,6 +24,8 @@
         <entry key="app/src/main/res/drawable/rounded_conors_shape_for_account_profile.xml" value="0.1155" />
         <entry key="app/src/main/res/drawable/shape.xml" value="0.1845" />
         <entry key="app/src/main/res/layout/activity_developer.xml" value="0.15" />
+        <entry key="app/src/main/res/layout/activity_drawer_main_starter.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_drawer_main_with_bottom_nav_if.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_foreigner_account.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_gridview_for_display_programming.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_gridview_of_overview.xml" value="0.15081521739130435" />
@@ -37,6 +39,25 @@
         <entry key="app/src/main/res/layout/activity_successful_registration.xml" value="0.1838768115942029" />
         <entry key="app/src/main/res/layout/bottom_sheet_containing_terms_and_condition.xml" value="0.25" />
         <entry key="app/src/main/res/layout/display_programming_on_recycler_overview1.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_browser.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_buy_me_coffee.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_chat_with_developer.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_create_account.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_developer_fragment.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_devops_officials.xml" value="0.15" />
+        <entry key="app/src/main/res/layout/fragment_exit_app.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_help.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.12" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_more_settings.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_other_devops_products.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_privacy_policyr.xml" value="0.14828544949026876" />
+        <entry key="app/src/main/res/layout/fragment_rate_app.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_share_app.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_technology_trends.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/header_drawer_layout.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/header_drawer_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/header_layout_drawer.xml" value="0.15818725951261223" />
         <entry key="app/src/main/res/layout/row3_data_main_login.xml" value="0.1921875" />
         <entry key="app/src/main/res/layout/row3_login_main_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/row_data.xml" value="0.22" />
@@ -44,6 +65,8 @@
         <entry key="app/src/main/res/layout/show_account_profile_options.xml" value="0.2" />
         <entry key="app/src/main/res/menu/camera_or_gallary.xml" value="0.15775972637879435" />
         <entry key="app/src/main/res/menu/developer_options.xml" value="0.19166666666666668" />
+        <entry key="app/src/main/res/menu/drawer_menu.xml" value="0.22" />
+        <entry key="app/src/main/res/menu/menu_bottom_nav_drawer.xml" value="0.1561840439003799" />
         <entry key="app/src/main/res/menu/menu_msg_icon_clicked_floating.xml" value="0.22" />
         <entry key="app/src/main/res/menu/options_menu_main_bar.xml" value="0.190625" />
         <entry key="app/src/main/res/menu/other_devops_products.xml" value="0.190625" />

@@ -58,8 +58,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:gravity="center_horizontal"
-                android:textColor="#94360B"
                 android:text="I   Accept"
+                android:textColor="#94360B"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/displayTheTermsAndCondition" />
