@@ -39,7 +39,7 @@
         <entry key="app/src/main/res/layout/activity_successful_registration.xml" value="0.1838768115942029" />
         <entry key="app/src/main/res/layout/bottom_sheet_containing_terms_and_condition.xml" value="0.25" />
         <entry key="app/src/main/res/layout/display_programming_on_recycler_overview1.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/fragment_browser.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_browser.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_buy_me_coffee.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_chat_with_developer.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_create_account.xml" value="0.1" />
@@ -58,6 +58,7 @@
         <entry key="app/src/main/res/layout/header_drawer_layout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/header_drawer_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/header_layout_drawer.xml" value="0.15818725951261223" />
+        <entry key="app/src/main/res/layout/please_connect_internet_bottom_sheet.xml" value="0.25" />
         <entry key="app/src/main/res/layout/row3_data_main_login.xml" value="0.1921875" />
         <entry key="app/src/main/res/layout/row3_login_main_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/row_data.xml" value="0.22" />
