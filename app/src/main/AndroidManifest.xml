@@ -60,12 +60,14 @@
             android:name=".Overview"
             android:exported="false" />
         <activity
+            android:parentActivityName=".DrawerMainStarter"
             android:name=".Registration"
             android:exported="false" />
         <activity
             android:name=".Login"
             android:exported="false" />
         <activity
+            android:parentActivityName=".DrawerMainStarter"
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

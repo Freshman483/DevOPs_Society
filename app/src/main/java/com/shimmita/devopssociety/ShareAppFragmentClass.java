@@ -1,5 +1,6 @@
 package com.shimmita.devopssociety;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +15,13 @@ public class ShareAppFragmentClass extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        //code here using Viewer mode
+        View view= inflater.inflate(R.layout.fragment_share_app,container,false);
 
+        //code here using Viewer mode
+        startActivity(new Intent(Intent.ACTION_SEND).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).putExtra("Details","Share The App And Expand DevOps  Society Kenya")
+                .setType("text/plain"));
         //
 
-       return inflater.inflate(R.layout.fragment_share_app,container,false);
+        return view;
     }
 }

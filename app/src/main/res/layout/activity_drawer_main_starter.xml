@@ -19,14 +19,32 @@
             android:id="@+id/fragmentContainerFrameLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/bottomNavigationView" />
+            android:layout_above="@id/card_container_bottom_nav" />
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigationView"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_container_bottom_nav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            app:menu="@menu/menu_bottom_nav_drawer" />
+            android:layout_marginBottom="5dp"
+            app:cardCornerRadius="50dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:id="@+id/bottomNavigationView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:backgroundTint="#C8C8C8"
+                    app:itemTextColor="#81048E"
+                    app:itemRippleColor="@color/purple_200"
+                    app:menu="@menu/menu_bottom_nav_drawer" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name"><b><i>DevOPs Society</i></b></string>
+    <string name="app_name"><b><i>DevOPs Society Kenya</i></b></string>
     <string name="description_DevOPs_Alert">
         <i>\nDevOPS Society Has Been Designed Solely To Create Job Connections and Enhancement of Skills to
         Those Members With Agile Skills In One Or More Of The Following Sections Of Computing:\n
@@ -15,20 +15,18 @@
 
         \t <b> A Brief Overview;</b>
         \n1.DevOps->Developers\n
-       \n2.Tecnofix->Fix The Real World Problem Using The Modern
-        Technology.\n
-        \n3.Achievement is Going To Be Done By Bringing Up Together The Enthusiastic Upcoming Developers And Already Being Developers From Different Angles Of The Country To Be Working Together In Sharing Ideas And Clarification Of Common Errors Among Developers.\n
-        \n4.Also Most Of The Students With Panasonic Skills In Computing After Graduating From Universities and Colleges
+        \n2.Achievement is Going To Be Done By Bringing Up Together The Enthusiastic Upcoming Developers And Already Being Developers From Different Angles Of The Country To Be Working Together In Sharing Ideas And Clarification Of Common Errors Among Developers.\n
+        \n3.Also Most Of The Students With Panasonic Skills In Computing After Graduating From Universities and Colleges
         End Up Wasting Time In Search Of Jobs, Here DevOPS Will Deal With The Issue With No Remorse To Its Maximum Capability So That Such Students Gets Their Place(s) Of Interest Majestically By Marketing Skills They Having In Works.\n
-        \n5.Become A Developers Society Member Officially And Enjoy Reality of Your Royalties !.\n
+        \n4.Become A Developers Society Member Officially And Enjoy Reality of Your Royalties !.\n
         \nAre You Interested In Joining This Society To Elevate
-        Your Skills and Have A Possibility Of Securing Job In Kenya?.\n\n\npowered by:\n<u><b>ShimitaDouglas@MasenoUniversit</b></u>
+        Your Skills and Have A Possibility Of Securing Job In Kenya?.\n\n\npowered by:\n<u><b>ShimitaDouglas@MasenoUniversity</b></u>
         </i>
         \n
         \n
     </string>
     <string name="lets_get_started">Lets Get Started</string>
-    <string name="titleDevOps"><b><u><b><i><u>DEVOPS  SOCIETY TECNOFIX  (KE)</u></i></b></u></b><i></i></string>
+    <string name="titleDevOps"><b><u><b><i><u>DEVOPS  SOCIETY KENYA</u></i></b></u></b><i></i></string>
     <string name="positBtn">Accept</string>
     <string name="negBtn">Decline</string>
     <string name="quit_app"><b>Quit Application</b></string>
@@ -49,22 +47,17 @@
     <string name="registration_activity_title">DevOPS Society Registration</string>
 
     <string name="details_developer">
-          NAME        :    SHIMITA  DOUGLAS OUNDO.\n \n
-        \nOCCUPATION  :    STUDENT @ MASENO UNIVERSITY.\n \n
-        \nSCHOOL OF   :    COMPUTING AND INFORMATICS\n \n
-        \nDEGREE      :    INFORMATION TECHNOLOGY (IT).\n \n
-        \nFOUNDER     :    DEVELOPERS SOCIETY (DEVOPS).\n \n
-        \nASPIRATIONS :    SOFTWARE AND REVERSE ENGINEERING.\n \n
-        \nHOBBIES     :    MUSIC,FOOTBALL,TECHNOLOGY.\n \n
-        \nNATIONALITY :    KENYAN.\n \n
-        \nRESIDENCE   :    MOMBASA (Mikindani)\n \n
-        \nBORN TOWN   :    BUSIA\n \n
-        \nPLACES LIVED:    BUSIA,KITALE,MOMBASA.\n \n
-        \nCONTACT     :    +254757450727\n \n
-        \nEMAIL       :    shimitadouglas@gmail.com\n \n
-        \nGITHUB      :    FRESHMAN483\n \n
-        \nLANGUAGES   : PYTHON,JAVA,KOTLIN,JAVASCRIPT,C++; \n \n \n \n
-        \nQUOTE->In technology magic never happens, Knowledge makes it happen!\n \n
+          NAME        :    SHIMITA  DOUGLAS OUNDO.\n \n  \n \n
+        \nOCCUPATION  :    STUDENT @ MASENO UNIVERSITY (out:2024)\n \n  \n \n
+        \nFOUNDER     :    DEVELOPERS SOCIETY KENYA (DEVOPSKE).\n \n  \n \n
+        \nASPIRATIONS :    SOFTWARE AND CYBER SECURITY\n \n  \n \n
+        \nLANGUAGES   : PYTHON,JAVA,KOTLIN,JAVASCRIPT,C++; \n \n  \n \n
+        \nHOBBIES     :    TECHNOLOGY,MUSIC,FOOTBALL.\n \n  \n \n
+        \nNATIONALITY :    KENYAN.\n \n  \n \n
+        \nCONTACT     :    +254757450727\n \n  \n \n
+        \nEMAIL       :    shimitadouglas@gmail.com\n \n  \n \n
+        \nGITHUB      :    FRESHMAN483\n \n \n \n
+        \nQUOTE->In technology magic never happens, Knowledge makes it happen!\n \n \n \n
 
 
     </string>
@@ -87,7 +80,7 @@
     <string name="enroll_into_the_society_s_forum"><i>Enroll Into DevOPs Society Forum</i></string>
     <string name="title_here">Title Here</string>
     <string name="description_here">Description here</string>
-    <string name="helpTextInquiry">\nDevOps Society,Is An Application and Platform Which Has Been Developed By An Information Technology Student (I.T),From Maseno University With The Sole Purpose Of Enabling All Students Who Have Valid Dreams In Any Field Of Computing To Achieve Them.
+    <string name="helpTextInquiry">DevOps Society Kenya,Is An Application,Platform and A Foundation  Which Has Been Developed By A Student From Maseno University With The Sole Purpose Of Enabling All Students Who Have Valid Dreams In Any Field Of Computing To Achieve Them.
         \n\nThere Are Two Sections Of Using This Application.
         \n1,The Offline Mode Which,Is Only Available When One Selects The Quick View Or The OverView Menu.With This Mode Some Functionalities Are limited.
         \n\n2,The Online Mode Which,Requires One To Be Connected To The Internet For Registration Of Account With The DevOPs Society If He or She Doesn\'t Have The Account.
@@ -134,5 +127,38 @@
     <string name="connectInternet">Connect To The Internet In Order To Browse Online With Our Most Secured Browser.Data Bundles or Wifi Connection Is Required For Things To Work!
 
     </string>
+    <string name="buyCoffee">Buy Supporting The Developer,
+        He Will Be Greatly Appreciated And Motivated and keep Him Continuously On The Glowing When It comes
+        To The Matters To Do With Software Production In This Modernity World Of Computing.
+        Also You Are Very Welcomed When It Comes To Joining The DevOps Society Team,
+        Where We Share Knowledge And Implement The Little We Are Having And Make It Bulge By Expounding The Ideas To More Reality From the Virtual World Of Simulation.</string>
+
+
+    <string name="yesAcceptSupportDeveloper"><i>Please accept that you want to support the developer via M-PESA Mobile Number by only clicking the accept button.</i> </string>
+    <string name="help_and_about_information"><u>HELP AND ABOUT INFORMATION</u></string>
+    <string name="registration_info_fragment">Dear Member Requiring To Undergo Registration Process Provided On This Platform;\n
+        You Are Required To Provide Genuine Registration Information
+        Which Will Be For Your Own Benefit @DevOps Society Kenya.\n\n
+        Your Information Will Not Be Shared To Any Third Party Applications Or Organisations Since Your Account Details
+        Will Become Compromised When Lands On Unauthorised Personnel.\n\n
+        Once Your registration Is a Success,You will Become One Of The Invincible Guys In I.T Field Since,You will Be
+        Provided With Unbreakable Connection To Very Proficient Guys In Different Fields Of Computing Such As CyberSecurity and Hacking Techniques,Software Engineering World,Computer Networks Engineering,
+        Machine Learning And Artificial Intelligence,Computer Virus and AntiVirus Techniques,Systems Administration,Database Wizards World,Web Design and Development Tricks.\n\n
+        You Are Only Required To Select the Field That Makes You Feel Cozy Whenever You Got a Laptop On Your Laps Or Desktop Computer On A StandBy Anchor.
+        Join The Society And Let Us Think With The Technology and Leave Theories Aside By implementing Them Properly!.
+        Begin Your Registration By Clicking The Button Provided Below.
+
+    </string>
+
+    <string name="registration_instructions"><u>Registration Instructions</u></string>
+
+    <string name="login_information">Dear User In This Section,You Are Only Allowed To Login Into A particular Account;\n
+        A Valid Account If and Only If You Have
+        Valid Account Credentials.If This Is Not The Case,Then You Will Encounter Login Access Denial !.\n
+        If You Do Not Have An Account Connected To Developers Society Kenya,
+        Then Create One From Any Menu That Contains A Label Create Account Provided In This Application\'s Menu.
+    </string>
+    <string name="login_instructions"><u>Login Instructions</u></string>
+
 
 </resources>

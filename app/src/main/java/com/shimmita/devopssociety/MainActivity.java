@@ -1,14 +1,9 @@
 package com.shimmita.devopssociety;
 
-import static androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG;
-import static androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL;
-
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,28 +17,15 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.PopupMenu;
-import androidx.biometric.BiometricManager;
-import androidx.biometric.BiometricPrompt;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-
-import java.util.concurrent.Executor;
 
 import es.dmoral.toasty.Toasty;
 import maes.tech.intentanim.CustomIntent;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int CODE = 1033;
-    public static int count = 0;
-    public static int maximum = 4;
-    static int COUNTER_ACTIVITY_STATE_MONITOR = 0;
-    BiometricManager biometricManager_checking_fingerprint_support;
-    Executor executor;
-    BiometricPrompt biometricPrompt_functionality_implementation;
-    BiometricPrompt.PromptInfo promptInfo_dialog;
     MaterialAlertDialogBuilder materialAlertDialogBuilder;
     ConstraintLayout constraintLayout_parent;
     ImageView imageView;
@@ -63,15 +45,15 @@ public class MainActivity extends AppCompatActivity {
         constraintLayout_parent = findViewById(R.id.parent);
         appCompatButton_start = findViewById(R.id.button_start);
         imageView = findViewById(R.id.imageView);
-
         imageView.setBackgroundResource(R.drawable.animation);
         animationDrawable = (AnimationDrawable) imageView.getBackground();
 
+        this.setTitle("DevOPS Society Home");
 
-        fingerprintAuthentication();
+
+        AlertUserWelcomeHome();
         imageViewOnclickListener();
 
-        this.setTitle("DevOPS Society Home");
     }
 
     @Override
@@ -130,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void dialogAlertForHelpingMember() {
-        String text = "DevOps Society Says I  Should Read The Message For You, Should I?";
+        String text = "DevOps Society Says I Should Read The Message For You,Should I?";
 
         String helpMessage = getString(R.string.helpTextInquiry);
 
@@ -139,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
                 .setTitle("Android Response\n")
                 .setMessage(text)
                 .setCancelable(false)
-                .setIcon(R.drawable.ic_baseline_android_24)
+                .setIcon(R.drawable.android2)
                 .setPositiveButton("Yes,Do Read It", (dialogInterface, i) -> {
                     dialogInterface.dismiss();
 
@@ -192,160 +174,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //fingerprint function
-    public void fingerprintAuthentication() {
 
-        biometricManager_checking_fingerprint_support = BiometricManager.from(this);
-        switch (biometricManager_checking_fingerprint_support.canAuthenticate(BIOMETRIC_STRONG | DEVICE_CREDENTIAL)) {
-            case BiometricManager.BIOMETRIC_SUCCESS:
-                Toasty.custom(getApplicationContext(), "Device Supports DevOps Society Authentication Requirements", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
-
-                break;
-            case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
-                Toasty.custom(getApplicationContext(), "Authentication Service currently Unavailable !", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
-
-                break;
-            case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
-
-                Toasty.custom(getApplicationContext(), "Device does Not Meet DevOps Society Requirements", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
-
-                break;
-            case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
-
-                Toasty.custom(getApplicationContext(), "Device Currently Not Enrolled Security Requirements", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
-
-                Intent fingerprintEnrolment = new Intent(Settings.ACTION_BIOMETRIC_ENROLL);
-                fingerprintEnrolment.putExtra(Settings.EXTRA_BIOMETRIC_AUTHENTICATORS_ALLOWED, BIOMETRIC_STRONG | DEVICE_CREDENTIAL);
-                startActivityForResult(fingerprintEnrolment, CODE);
-                break;
-            case BiometricManager.BIOMETRIC_ERROR_SECURITY_UPDATE_REQUIRED:
-                Toasty.custom(getApplicationContext(), "Security Update Required!", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
-                break;
-            case BiometricManager.BIOMETRIC_STATUS_UNKNOWN:
-
-                Toasty.custom(getApplicationContext(), "Device Security Status Unknown!", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
-
-                break;
-
-        }
-
-        executor = ContextCompat.getMainExecutor(this);
-
-
-        biometricPrompt_functionality_implementation = new BiometricPrompt(MainActivity.this, executor, new BiometricPrompt.AuthenticationCallback() {
-            @Override
-            public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
-                super.onAuthenticationError(errorCode, errString);
-
-                // Toast.makeText(MainActivity.this, "Cannot Proceed!->" + errString, Toast.LENGTH_LONG).show();
-                //snackbar position to be decided
-
-                alertBypassFingerprint();
-            }
-
-            @Override
-            public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
-                super.onAuthenticationSucceeded(result);
-
-                Toasty.custom(getApplicationContext(), "Authentication Successful, Welcome", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
-
-                //alert Deveops Start Dialog proceed
-                alertDialog();
-
-
-            }
-
-            @Override
-            public void onAuthenticationFailed() {
-                super.onAuthenticationFailed();
-
-                Toasty.custom(getApplicationContext(), "Authentication Failed !", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
-
-            }
-        });
-
-        promptInfo_dialog = new BiometricPrompt.PromptInfo.Builder()
-
-                .setTitle(getString(R.string.fingerprint_title_alert))
-                .setSubtitle("Fingerprint Security Encryption Enabled\n")
-                .setDescription(" Developers Society Says Unlock with fingerprint technology to Continue")
-                // .setNegativeButtonText("Cancel") if set device credential should be off
-                .setDeviceCredentialAllowed(true) //alternative method of unlock i.e using password
-                .setConfirmationRequired(true)
-                .build();
-
-        biometricPrompt_functionality_implementation.authenticate(promptInfo_dialog);
-    }
-
-    private void alertBypassFingerprint() {
-        Toasty.custom(getApplicationContext(), "Authentication Error,Please Try Again !", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
-
-        new AlertDialog.Builder(this)
-                .setTitle("Security Guard")
-                .setCancelable(false)
-                .setIcon(R.drawable.ic_baseline_lock_24)
-                .setMessage("DevOPS Society Detected Fingerprint Bypass.You Cannot Proceed Without Biometric Authentication !")
-                .setPositiveButton("Lets Biometric Authenticate", (dialogInterface, i) -> {
-                    dialogInterface.dismiss();
-                    //Replace mysnackbar With Alert Dialog That is not cancellable to Void Bug error,System Crash
-                  /*
-                    mysnack = Snackbar.make(constraintLayout_parent, "Resolve Fingerprint Bypass ", Snackbar.LENGTH_INDEFINITE).setTextColor(Color.YELLOW).setBackgroundTint(Color.DKGRAY);
-                    mysnack.setAction("Fingerprint", view -> fingerprintAuthentication());
-                    mysnack.setActionTextColor(Color.parseColor("#FF6F00"));
-                    mysnack.setBackgroundTint(Color.BLACK);
-                    mysnack.show();*/
-
-                    new MaterialAlertDialogBuilder(MainActivity.this)
-                            .setTitle("Authentication")
-                            .setMessage("You Need To Allow Biometric Authentication On This Device In order to Proceed Using This Application.")
-                            .setIcon(R.mipmap.dev_ops_main)
-                            .setCancelable(false)
-                            .setPositiveButton("Ok,Lets Do", (dialogInterface12, i12) -> {
-                                dialogInterface12.dismiss();
-                                fingerprintAuthentication();
-                            }).setNegativeButton("No,Exit Me", (dialogInterface1, i1) -> {
-                                dialogInterface1.dismiss();
-                                finish();
-                                new SpeechClass(getApplicationContext(), "exited,Successfully");
-                                Runtime.getRuntime().exit(0);
-
-                            }).create().show();
-
-
-                    ///
-                })
-                .create()
-                .show();
-        new MakeVibrator(this);
-    }
-
-
-    private void alertDialog() {
-        //checking Value Of The COUNTER From the App Class If Is greater than Zero in
-        //order to call appropriate function when the app starts
-        if (COUNTER_ACTIVITY_STATE_MONITOR == 0) {
-            alertingUserAfterExitOnStartOrOnFirstLaunch();
-        } else if (COUNTER_ACTIVITY_STATE_MONITOR == 1) {
-            continueUsingMainActivityForUserNotExited();
-        }
-
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        COUNTER_ACTIVITY_STATE_MONITOR = 1;
-    }
-
-    public void continueUsingMainActivityForUserNotExited() {
-        Toasty.custom(getApplicationContext(), "Welcome Back User", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
-        animationDrawable.start();
-        appCompatButton_start.setVisibility(View.VISIBLE);
-        animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.abc_slide_in_top);
-        appCompatButton_start.startAnimation(animation);
-    }
-
-    public void alertingUserAfterExitOnStartOrOnFirstLaunch() {
+    public void AlertUserWelcomeHome() {
         //speech class initialisation
         new SpeechClass(getApplicationContext(), "Welcome to Developers Society Kenya");
         materialAlertDialogBuilder = new MaterialAlertDialogBuilder(this);
@@ -385,13 +215,11 @@ public class MainActivity extends AppCompatActivity {
                     CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");*/
 
                     startActivity(new Intent(MainActivity.this, LoginIndexMainPage.class));
-
-
                     return true;
 
                 case R.id.account_creation:
-                    Toasty.custom(getApplicationContext(), "Account Creation", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
-                    startActivity(new Intent(MainActivity.this, Registration.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                    Toasty.custom(MainActivity.this, "Account Creation", R.drawable.ic_baseline_person_add2, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
+                    startActivity(new Intent(MainActivity.this, DrawerMainStarter.class).putExtra("fragment", "register"));
                     CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");
                     return true;
 
@@ -399,6 +227,8 @@ public class MainActivity extends AppCompatActivity {
                     Toasty.custom(getApplicationContext(), "DevOps Overview Page", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
                     startActivity(new Intent(MainActivity.this, OverviewMainActivity.class));
                     return true;
+
+
                 case R.id.account_share:
                     Toasty.custom(getApplicationContext(), "Share And Promote DevOps Society", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
                     Intent share_intent = new Intent(Intent.ACTION_SEND);
@@ -407,6 +237,8 @@ public class MainActivity extends AppCompatActivity {
                     share_intent.putExtra(Intent.EXTRA_TEXT, "Hey Download DevOPS Society (Developers Society) App From Play store and Promote The Application Purposiveness @ShimitaDouglas!.");
                     startActivity(share_intent);
                     return true;
+
+
                 case R.id.account_aboutdeveloper:
                   /*  progressDialog.setTitle("DEVELOPER");
                     progressDialog.setMessage("Fetching...");
@@ -539,13 +371,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         popupMenu_otherProducts.show();
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        System.gc();
-        Runtime.getRuntime().exit(0);
     }
 
 }

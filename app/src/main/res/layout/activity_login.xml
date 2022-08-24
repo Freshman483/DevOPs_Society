@@ -32,12 +32,13 @@
 
             <ImageView
                 android:id="@+id/image_person_login"
-                android:layout_width="399dp"
+                android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="4dp"
                 android:contentDescription="@string/devops_logo"
-                android:src="@mipmap/dev_ops_main"
+                android:scaleType="centerCrop"
+                android:src="@drawable/hacking10"
                 app:layout_constraintBottom_toTopOf="@+id/textInput_email"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -102,8 +103,9 @@
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/floating_button_login"
-                    android:layout_width="70dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:baselineAlignBottom="true"
                     android:contentDescription="@string/floating_button_login"
                     android:onClick="functionFloatingButtonLoginClicked"

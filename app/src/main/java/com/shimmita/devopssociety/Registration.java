@@ -62,25 +62,19 @@ public class Registration extends AppCompatActivity {
 
     public static final int GALLERY_REQUEST_CODE = 100;
     public static final int CAMERA_REQUEST_CODE = 200;
+    private static final String TAG = "RegistrationLog";
+    static String string1, string2, string3, string4, string5, string6, string7_role_status_check;
     FirebaseAuth auth;
     String firebaseUser;
     FirebaseFirestore firebaseFirestore;
     CollectionReference documentReferenceAccountInformation;
-
     FirebaseStorage firebaseStorage;      //upload image
     StorageReference storageReference;
-
     FirebaseDatabase firebaseDatabase;   //write to realtime
     DatabaseReference databaseReference;
-
-
     CircleImageView circleImageView_profile_picture_to_firebase;
     Uri imageUriPath = null;
     CheckBox checkBoxTermsAndConditionsAccept;
-
-
-    private static final String TAG = "RegistrationLog";
-    static String string1, string2, string3, string4, string5, string6, string7_role_status_check;
     Database db;
     TextInputEditText password_registration,
             confirm_password_registration,
@@ -301,8 +295,6 @@ public class Registration extends AppCompatActivity {
 
 
         auth = FirebaseAuth.getInstance();
-        firebaseUser = auth.getCurrentUser().getUid();
-
         firebaseFirestore = FirebaseFirestore.getInstance();
         firebaseStorage = FirebaseStorage.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -1052,6 +1044,8 @@ public class Registration extends AppCompatActivity {
     }
 
     private void registerUser(String emailReg, String passwordReg) {
+
+
         //defining Progress Dialog
         ProgressDialog pg = new ProgressDialog(Registration.this);
         pg.setTitle(usernameReg.toUpperCase(Locale.ROOT));
@@ -1065,6 +1059,11 @@ public class Registration extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if (task.isSuccessful()) {
+
+                    //current user ID
+                    firebaseUser = Objects.requireNonNull(auth.getCurrentUser()).getUid();
+                    //
+
                     pg.dismiss();
                     new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
                             .setTitle("Registration Step 1/3 Completed")
@@ -1266,7 +1265,7 @@ public class Registration extends AppCompatActivity {
     private void functionAddImageUriToDatabase(Task<Uri> task) {
         //
 
-        ProgressDialog progressDialogImageUrlToRealTimeDatabase =new ProgressDialog(Registration.this);
+        ProgressDialog progressDialogImageUrlToRealTimeDatabase = new ProgressDialog(Registration.this);
         progressDialogImageUrlToRealTimeDatabase.setCancelable(false);
         progressDialogImageUrlToRealTimeDatabase.setTitle(usernameReg);
         progressDialogImageUrlToRealTimeDatabase.setMessage("saving account details...");
