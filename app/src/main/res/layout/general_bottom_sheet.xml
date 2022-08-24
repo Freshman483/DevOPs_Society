@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="3dp"
-    app:cardCornerRadius="60dp"
+    app:cardCornerRadius="50dp"
     app:contentPadding="10dp">
 
     <LinearLayout
@@ -18,10 +18,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
-            android:textColor="#FD223E12"
+            android:textColor="#FD16043A"
             android:lineSpacingExtra="5dp"
             android:text="@string/yesAcceptSupportDeveloper"
             android:textSize="15sp"
+            style="@style/TextAppearance.AppCompat.Small"
             android:textStyle="bold" />
 
         <Button

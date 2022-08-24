@@ -168,7 +168,8 @@ public class DrawerMainStarter extends AppCompatActivity {
                         break;
 
                     case R.id.dark_theme_drawer:
-                        Toasty.custom(DrawerMainStarter.this, "theme changed successfully", R.drawable.ic_baseline_dark_theme_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
+                        fragmentSelected = new MoreSettingsFragmentClass();
+                        Toasty.custom(DrawerMainStarter.this, "theme settings", R.drawable.ic_baseline_dark_theme_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
 
@@ -203,6 +204,7 @@ public class DrawerMainStarter extends AppCompatActivity {
 
         //
     }
+
 
     private void functionCheckIfAnyFragmentIsCalledFromExternalActivities() {
 

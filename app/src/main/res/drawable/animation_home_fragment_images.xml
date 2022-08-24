@@ -3,33 +3,33 @@
 
     <item
         android:drawable="@drawable/hacking6"
-        android:duration="2500" />
+        android:duration="3500" />
     <item
         android:drawable="@drawable/hacking1"
-        android:duration="2500" />
+        android:duration="3500" />
     <item
         android:drawable="@drawable/hacking7"
-        android:duration="2500" />
+        android:duration="3500" />
 
     <item
         android:drawable="@drawable/hacking5"
-        android:duration="2500" />
+        android:duration="3500" />
 
     <item
         android:drawable="@drawable/hacking4"
-        android:duration="2500" />
+        android:duration="3500" />
     <item
         android:drawable="@drawable/hacking8"
-        android:duration="2500" />
+        android:duration="3500" />
     <item
         android:drawable="@drawable/hacking10"
-        android:duration="2500" />
+        android:duration="3500" />
     <item
         android:drawable="@drawable/hacking11"
-        android:duration="2500" />
+        android:duration="3500" />
     <item
         android:drawable="@drawable/hacking2"
-        android:duration="2500" />
+        android:duration="3500" />
 
 
 </animation-list>

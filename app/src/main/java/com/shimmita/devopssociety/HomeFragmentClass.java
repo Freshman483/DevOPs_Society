@@ -52,7 +52,7 @@ public class HomeFragmentClass extends Fragment implements View.OnClickListener 
         //
 
 
-        //colourAnimationOnParentConstraintLayout
+        //colourAnimationOnParRelativeLayoutWithinButtonBounds
         animationDrawableRelativeLayoutColours = (AnimationDrawable) relativeLayout.getBackground();
         animationDrawableRelativeLayoutColours.setEnterFadeDuration(3000);
         animationDrawableRelativeLayoutColours.setExitFadeDuration(3000);
