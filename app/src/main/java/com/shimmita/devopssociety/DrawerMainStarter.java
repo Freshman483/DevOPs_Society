@@ -211,6 +211,9 @@ public class DrawerMainStarter extends AppCompatActivity {
                 case "register":
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerFrameLayout, new CreateAccountFragmentClass()).commit();
                     break;
+                case "login":
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerFrameLayout, new LoginAccountFragmentClass()).commit();
+                    break;
             }
         }
     }

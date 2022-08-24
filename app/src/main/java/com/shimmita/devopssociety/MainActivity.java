@@ -210,11 +210,9 @@ public class MainActivity extends AppCompatActivity {
         popupMenu.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
                 case R.id.account_login:
-                  /*  Toasty.custom(getApplicationContext(), "Login Account", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
-                    startActivity(new Intent(MainActivity.this, Login.class));
-                    CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");*/
-
-                    startActivity(new Intent(MainActivity.this, LoginIndexMainPage.class));
+                    Toasty.custom(getApplicationContext(), "Account Login", R.drawable.ic_baseline_account_login, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
+                    startActivity(new Intent(MainActivity.this, DrawerMainStarter.class).putExtra("fragment", "login"));
+                    CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");
                     return true;
 
                 case R.id.account_creation:
