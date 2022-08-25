@@ -14,7 +14,7 @@
             </b>
 
         \t <b> A Brief Overview;</b>
-        \n1.DevOps->Developers\n
+        \n1.DevOps->Developers Society (Kenya Based)\n
         \n2.Achievement is Going To Be Done By Bringing Up Together The Enthusiastic Upcoming Developers And Already Being Developers From Different Angles Of The Country To Be Working Together In Sharing Ideas And Clarification Of Common Errors Among Developers.\n
         \n3.Also Most Of The Students With Panasonic Skills In Computing After Graduating From Universities and Colleges
         End Up Wasting Time In Search Of Jobs, Here DevOPS Will Deal With The Issue With No Remorse To Its Maximum Capability So That Such Students Gets Their Place(s) Of Interest Majestically By Marketing Skills They Having In Works.\n
@@ -29,7 +29,7 @@
     <string name="titleDevOps"><b><u><b><i><u>DEVOPS  SOCIETY KENYA</u></i></b></u></b><i></i></string>
     <string name="positBtn">Accept</string>
     <string name="negBtn">Decline</string>
-    <string name="quit_app"><b>Quit Application</b></string>
+    <string name="quit_app"><b>Quit This Window</b></string>
     <string name="overview"><i>Developers Society Overview,Quick</i></string>
     <string name="create_account"><i>Create New Developers Account</i></string>
     <string name="login_account"><i>Login Into Developer Account</i></string>
@@ -71,8 +71,6 @@
     <string name="refresh"><b>Refresh</b></string>
     <string name="rate_devops_app"><b>Rate DevOPS App</b></string>
     <string name="help"><b>Help</b></string>
-    <string name="message_me"><b>Message Me</b></string>
-    <string name="call_me"><b>Call Me</b></string>
     <string name="other_devops_applications_and_products"><i>Other Applications And Products</i></string>
     <string name="computer_mercenery_get_a_job_for_you"><i>Computer Mercenary JOB For You</i></string>
     <string name="post_a_job_for_a_computer_mercenery"><i>Post JOB For Computer Mercenary</i></string>
@@ -152,13 +150,63 @@
 
     <string name="registration_instructions"><u>Registration Instructions</u></string>
 
-    <string name="login_information">Dear User In This Section,You Are Only Allowed To Login Into A particular Account;\n
+    <string name="login_information">Dear User In This Section,You Are Only Allowed To Login Into A particular Account;
         A Valid Account If and Only If You Have
-        Valid Account Credentials.If This Is Not The Case,Then You Will Encounter Login Access Denial !.\n
+        Valid Account Credentials.If This Is Not The Case,Then You Will Encounter Login Access Denial !.\n \n
         If You Do Not Have An Account Connected To Developers Society Kenya,
         Then Create One From Any Menu That Contains A Label Create Account Provided In This Application\'s Menu.
     </string>
     <string name="login_instructions"><u>Login Instructions</u></string>
 
+    <string name="privacy_and_policy">Understand The Well Written Privacy and Policy Terms Highlighted Below:\n\n
+        1.DevOps Society Kenya (\"we\",\"us" or \"our\") Operates DevOps Society Mobile Application.\n
+        \n2.By Accepting The Use Of DevOps Services You Agree To The Collection And Use Of Information In AccordanceWith Our Policies.\n
+        \n3.Violation Of Any Policy May Render The Application Useless To The User And If the Violation Is A Heightened,The User\'s Account May Become Terminated From The DevOps Society.
+
+        \n \n \t \t \t \t <b><u>Information Collection And Use</u></b>\n \n
+        .We Collect User\'s Information During The Registration Process In Order To Improve The service(s) Delivered To The User When The Application Begins Its Official Functions.Therefore,A User With Faulty Credentials Will Be His/Her Services Faulty Too,Which Is Not Recommended!.(Garbage In Garbage Out GIGO).\n
+        \n.DevOps Society Has The Mandate To Remove Such Accounts (faulty) If Any Found.
+
+                \n \n \t \t \t \t <b><u>Security Of The Information</u></b>\n
+        \n.The Security Of Your Data Is Important To Us,Since It\'s One Of The Main Objective Of Our Society To Existence.While We Strive To Use Commercially Acceptable Means To Protect Your Personal Data,We Cannot Guarantee Its Absolute Security During Electronic Transmission To And Fro,Therefore It\'sBest Advised That The User Too Adhere To The Guidelines Of Securing Sensitive Data Such As Account PasswordsBy Entering The Minimum Recommended Characters, Than A Weak Password.
+
+                        \n \n \t \t \t \t <b><u>Accounts And Types Offered</u></b>\n
+        \n.DevOps Society Offers Two Types Of Account From Which The User Will Opt The One Suits Him/Her:\n
+        \n.<u>Super Account Also Called Premium Account  And Normal Account</u>.\n
+        \n.With The Premium Account The User Has Absolute Privileges  Provided By the Society i.e;Unlock Of Very Key Concepts Of Programming Languages,Direct Link To Professional Stars In The Society,Direct Link To Clients Requesting Particular Services,Marketing And Advertisement Of The User Projects,Ideas,Apps etc.\n
+        \n.Normal Account Is the standard Account Provided By The Society,It Works fine But With Limited Functionalities in Relation
+         To The super Account.\n
+        \n.One Can Own A Premium Account On Payment Of Non-Refundable Fee Of Ksh.100 To The Developer During The Registration Process When He/She Selects The Super account Option, Or Later By Upgrade After Registering With Normal Account.\n
+        <b>NOTE</b> The Amount Is Currently Offered As A Promotion And May Vary With Time,Its Better To Grab The Offer Currently On Promotion.
+
+                        \n \n \t \t \t \t <b><u>Change To This Privacy Policy</u></b>\n
+        \n.We May Update Our Privacy and Policy From Time To Time,If Changes Occur We Will Notify You Through Notifications So That You Stay Updated.
+
+                        \n \n \t \t \t \t <b><u>Contact Us</u></b>\n \n
+        <b>Telephone</b> :+254757450727\n \n
+
+        <b>Email</b>  :shimitadouglas@gmail.com,\n \n
+        Email2: tranzeer@gmail.com\n \n
+
+        <b>Github</b> : Freshman483\n \n
+
+        <b>LinkedIn</b> :Shimita Douglas\n \n
+
+
+
+
+
+
+    </string>
+    <string name="privacy_and_policy_devops_ke"><u>Privacy And Policy @DevOPs KE</u></string>
+    <string name="main_profile">Main Profile</string>
+    <string name="online_chatting">Online chatting with me within this application click here</string>
+    <string name="email_chatting">Email me for any inquiries I will sort you out click here</string>
+    <string name="normal_sms">Normal phone messaging for any inquiries click here</string>
+    <string name="rate_application">Rate Application is currently Unavailable With The Sole Reason Being That It Is Under Maintenance by the Software
+     Technicians At  Developers Society Kenya. You Will Be Notified When The Service Is Back.\n\nYou May Encounter Some Scenarios Like This One While Using
+        This Application Please, Do Not Become Dismayed All Is Well At DevOps Society, We Working On Such Issues And We Are Going To Sort Out These Issues As Soon
+        As Possible,Thank You For Making Installation Of Our Society Application More Goodies Is On Coming,Stay Connected.
+    </string>
 
 </resources>

@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#97632F"
     android:layout_height="match_parent">
 
     <ScrollView
@@ -31,9 +32,9 @@
                 android:layout_gravity="center_horizontal"
                 android:padding="8dp"
                 android:text="@string/helpTextInquiry"
-                android:textColor="#0C461D"
-                android:textSize="18sp"
-                android:textStyle="italic"
+                android:textColor="#0A0A0B"
+                android:textSize="15sp"
+                android:textStyle="italic|bold"
                 tools:layout_editor_absoluteY="398dp" />
 
             <Button

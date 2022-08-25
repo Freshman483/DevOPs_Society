@@ -9,7 +9,6 @@
 
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView_home_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="2dp"

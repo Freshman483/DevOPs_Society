@@ -8,7 +8,7 @@
 
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+        app:cardBackgroundColor="#D3BDBD"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="30dp"
@@ -20,14 +20,21 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="2dp"
+                android:src="@drawable/googleg_standard_color_18"
+                android:layout_gravity="center_horizontal"/>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/connectInternet"
                 android:textColor="#155403"
-                android:textSize="17sp"
+                android:textSize="16sp"
                 android:textStyle="bold|italic" />
-
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/open_like_boss"

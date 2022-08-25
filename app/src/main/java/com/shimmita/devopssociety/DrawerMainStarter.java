@@ -58,11 +58,12 @@ public class DrawerMainStarter extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //home fragment should be here(default pane)
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerFrameLayout, new HomeFragmentClass()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerFrameLayout, new PrivacyAndPolicyFragmentClass()).commit();
         //
 
 
         //bottomNavigation View With Handlers
+
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -155,7 +156,7 @@ public class DrawerMainStarter extends AppCompatActivity {
 
                     case R.id.rate_app_drawer:
                         fragmentSelected = new RateAppFragmentClass();
-                        Toasty.custom(DrawerMainStarter.this, "opening google playStore....", R.drawable.ic_baseline_public_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
+                        Toasty.custom(DrawerMainStarter.this, "opening google playStore....", R.drawable.ic_baseline_public_24, R.color.purple_200, Toasty.LENGTH_SHORT, true, true).show();
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
 
@@ -214,6 +215,19 @@ public class DrawerMainStarter extends AppCompatActivity {
                 case "login":
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerFrameLayout, new LoginAccountFragmentClass()).commit();
                     break;
+                case "developer":
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerFrameLayout, new DeveloperFragmentClass()).commit();
+                    break;
+                case "help":
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerFrameLayout, new HelpFragmentClass()).commit();
+                    break;
+                case "home":
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerFrameLayout, new HomeFragmentClass()).hashCode();
+                    break;
+                case "exit":
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerFrameLayout, new ExitAppFragmentClass()).commit();
+                    break;
+
             }
         }
     }

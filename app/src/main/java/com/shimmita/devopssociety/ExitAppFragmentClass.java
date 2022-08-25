@@ -14,6 +14,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import es.dmoral.toasty.Toasty;
 
 public class ExitAppFragmentClass extends Fragment {
+    private static final String TAG = "ExitFragmentClass";
+
     public ExitAppFragmentClass() {
     }
 
@@ -51,6 +53,6 @@ public class ExitAppFragmentClass extends Fragment {
 
     private void callFunctionExit() {
         getActivity().finish();
-        System.exit(0);
+        Runtime.getRuntime().exit(0);
     }
 }

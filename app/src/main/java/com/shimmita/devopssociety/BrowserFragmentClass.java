@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -128,13 +129,32 @@ public class BrowserFragmentClass extends Fragment {
         ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         if (networkInfo == null) {
-            alertUserToConnectInternet();
+            webView.setBackgroundColor(Color.BLACK);
+            //before Alerting Showing enable internet before bottom sheet
+
+            new AlertDialog.Builder(getActivity())
+                    .setTitle("Internet Unavailable")
+                    .setCancelable(false)
+                    .setMessage("damn,no internet here ! please enable internet to activate web browser and start browsing online like any other browser.")
+                    .setIcon(R.drawable.ic_baseline_info_24)
+                    .setPositiveButton("Lets Enable Internet", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                            //call bottom sheet to notify internet activation
+                            alertUserToConnectInternet();
+                            //
+                        }
+                    }).create().show();
+            //
         } else {
             userStartWebRequests();
         }
     }
 
     private void userStartWebRequests() {
+        webView.getFavicon();
+        webView.getTitle();
         String url = "http://www.google.com";
         webView.getSettings().setJavaScriptEnabled(true);
         WebViewClient webViewClient = new WebViewClient();
@@ -182,20 +202,6 @@ public class BrowserFragmentClass extends Fragment {
         ShowInternetBottomDialog showInternetBottomDialog = new ShowInternetBottomDialog();
         showInternetBottomDialog.show(getActivity().getSupportFragmentManager(), "no internet modal sheet");
 
-       /* new MaterialAlertDialogBuilder(getActivity())
-                .setTitle("No internet")
-                .setMessage("Detected No Internet Connection Please Turn On The Internet," +
-                        "If This Is Not the Case Then Please Purchase Internet Bundles To Access Awesome Features " +
-                        "From HireWriterTech.")
-                .setCancelable(false)
-                .setPositiveButton("Open Internet Settings", (dialogInterface, i) -> {
-                    startActivity(new Intent(Settings.ACTION_DATA_ROAMING_SETTINGS));
-                    dialogInterface.dismiss();
-                }).setNegativeButton("Buy Data Bundles", (dialogInterface, i) -> {
-                    startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:*544#")));
-                    dialogInterface.dismiss();
-                }).create()
-                .show();*/
     }
 
     public static class ShowInternetBottomDialog extends BottomSheetDialogFragment {
@@ -211,7 +217,14 @@ public class BrowserFragmentClass extends Fragment {
             buttonOpenLikeBoss.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+                    //start intent to open data
                     startActivity(new Intent(Settings.ACTION_DATA_ROAMING_SETTINGS));
+
+
+                    //dismiss bottom sheet on the click of a button
+                    dismiss();
+                    //
                 }
             });
             //

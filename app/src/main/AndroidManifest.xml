@@ -54,9 +54,6 @@
             android:name=".ForeignerAccount"
             android:exported="false" />
         <activity
-            android:name=".Developer"
-            android:exported="false" />
-        <activity
             android:name=".Overview"
             android:exported="false" />
         <activity

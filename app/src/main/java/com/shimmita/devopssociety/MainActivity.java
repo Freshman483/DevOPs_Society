@@ -68,51 +68,33 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.aboutMainMenu:
-
-                Toasty.custom(getApplicationContext(), "About Menu", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
-
-                item.setChecked(!item.isChecked());
-                new VibratorLowly(MainActivity.this);
-
-                return true;
 
             case R.id.refresh:
 
                 new SpeechClass(this, "Refresh Successful");
-                Toasty.custom(getApplicationContext(), "Refreshing...", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_SHORT, true, true).show();
-
-                item.setChecked(!item.isChecked());
-
-                new VibratorLowly(MainActivity.this);
-
-                return true;
-
-            case R.id.rating:
-
-                Toasty.custom(getApplicationContext(), "Rate Us On PlayStore", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
+                Toasty.custom(getApplicationContext(), "Refreshing...", R.drawable.ic_baseline_360_24, android.R.color.holo_green_dark, Toasty.LENGTH_SHORT, true, true).show();
                 item.setChecked(!item.isChecked());
                 new VibratorLowly(MainActivity.this);
 
-                return true;
+                break;
+
 
             case R.id.helpMember:
-                dialogAlertForHelpingMember();
                 Toasty.custom(getApplicationContext(), "Help Message", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
-
                 item.setChecked(!item.isChecked());
-
                 new VibratorLowly(MainActivity.this);
-                return true;
 
-            default:
-                return false;
+                //alert helping member either by reading the help message or self helping
+                dialogAlertForHelpingMember();
+                //
+                break;
         }
+        return true;
 
     }
 
     private void dialogAlertForHelpingMember() {
-        String text = "DevOps Society Says I Should Read The Message For You,Should I?";
+        String text = "DevOps society says i should read the message for you,should i?";
 
         String helpMessage = getString(R.string.helpTextInquiry);
 
@@ -144,19 +126,10 @@ public class MainActivity extends AppCompatActivity {
                 .setNegativeButton("Oh,No I Will ", (dialogInterface, i) -> {
                     dialogInterface.dismiss();
 
-                    //inner Dialog
-                    new androidx.appcompat.app.AlertDialog.Builder(MainActivity.this)
-                            .setIcon(R.drawable.ic_baseline_message_textmessage)
-                            .setTitle("Help Message")
-                            .setCancelable(false)
-                            .setMessage(helpMessage)
-                            .setPositiveButton("OK,Awesome One", (dialogInterface12, i12) -> {
-                                Toasty.custom(getApplicationContext(), "Congratulations! Now You Can Use DevOPs Easily", R.drawable.ic_baseline_whatshot_24, R.color.purple_700, Toasty.LENGTH_LONG, true, true).show();
-
-                                dialogInterface12.dismiss();
-                            })
-                            .create()
-                            .show();
+                    //start help fragment in the drawer Activity main
+                    startActivity(new Intent(MainActivity.this, DrawerMainStarter.class).putExtra("fragment", "help")
+                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                    CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");
                     //
                 })
                 .create()
@@ -191,7 +164,14 @@ public class MainActivity extends AppCompatActivity {
             appCompatButton_start.startAnimation(animation);
 
         });
-        materialAlertDialogBuilder.setNegativeButton(R.string.negBtn, (dialog, which) -> finish());
+        materialAlertDialogBuilder.setNegativeButton(R.string.negBtn, (dialog, which) -> {
+            //back the user to the drawer main activity since its the parent activity in the apoplication
+            startActivity(new Intent(MainActivity.this, DrawerMainStarter.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    .putExtra("fragment", "home"));
+            CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");
+            //
+
+        });
         materialAlertDialogBuilder.create();
         materialAlertDialogBuilder.show();
 
@@ -211,13 +191,14 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.account_login:
                     Toasty.custom(getApplicationContext(), "Account Login", R.drawable.ic_baseline_account_login, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
-                    startActivity(new Intent(MainActivity.this, DrawerMainStarter.class).putExtra("fragment", "login"));
+                    startActivity(new Intent(MainActivity.this, DrawerMainStarter.class).putExtra("fragment", "login").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                     CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");
                     return true;
 
                 case R.id.account_creation:
                     Toasty.custom(MainActivity.this, "Account Creation", R.drawable.ic_baseline_person_add2, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
-                    startActivity(new Intent(MainActivity.this, DrawerMainStarter.class).putExtra("fragment", "register"));
+                    startActivity(new Intent(MainActivity.this, DrawerMainStarter.class).putExtra("fragment", "register").
+                            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
                     CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");
                     return true;
 
@@ -238,12 +219,12 @@ public class MainActivity extends AppCompatActivity {
 
 
                 case R.id.account_aboutdeveloper:
-                  /*  progressDialog.setTitle("DEVELOPER");
-                    progressDialog.setMessage("Fetching...");
-                    progressDialog.show();*/
 
                     Toasty.custom(getApplicationContext(), "Developer Of DevOps Society Information", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
-                    startActivity(new Intent(MainActivity.this, Developer.class));
+                    startActivity(new Intent(MainActivity.this, DrawerMainStarter.class).putExtra("fragment", "developer").
+                            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).
+                            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).
+                            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                     CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");
                     return true;
 
@@ -269,13 +250,18 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.account_exit:
                     new MaterialAlertDialogBuilder(MainActivity.this)
-                            .setTitle("EXIT")
+                            .setTitle("Navigate To Home")
                             .setCancelable(false)
-                            .setMessage("Do You Want To Exit From The App?")
-                            .setIcon(R.drawable.ic_baseline_info_24)
-                            .setPositiveButton("Yes, I Do ", (dialogInterface, i) -> {
-                                Toasty.custom(getApplicationContext(), "DevOps App Shutting Down", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
-                                Runtime.getRuntime().exit(0);
+                            .setMessage("you will be directed back to home menu where you will be given chance to either continue or indeed exit completely")
+                            .setIcon(R.drawable.android2)
+                            .setPositiveButton("Yes,Do ", (dialogInterface, i) -> {
+                                Toasty.custom(MainActivity.this, "click on your choice ", R.drawable.ic_baseline_info_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
+                                //startActivity to back into Drawer Parent
+
+                                startActivity(new Intent(MainActivity.this,DrawerMainStarter.class).
+                                        setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).putExtra("fragment","exit").addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                                CustomIntent.customType(MainActivity.this,"fadein-to-fadeout");
+                                //
                             })
                             .setNegativeButton("No, Lets Be Back", (dialogInterface, i) -> {
                                 dialogInterface.dismiss();
@@ -296,30 +282,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-        //
-
-        //dismisss Listener
-//        popupMenu.setOnDismissListener(new PopupMenu.OnDismissListener() {
-//            @Override
-//            public void onDismiss(PopupMenu menu) {
-//                // Toast.makeText(MainActivity.this, "Nothing Selected !", Toast.LENGTH_LONG).show();
-//                count++;
-//                int results_of_deference = maximum - count;
-//                if (results_of_deference < 1) {
-//                    System.exit(0);
-//                } else if (results_of_deference == 1) {
-//                    MainActivity.this.setTitle("DevOPS Last Chance Operation Zone ");
-//                }
-//                alertWarningClass = new AlertWarning(MainActivity.this, results_of_deference);
-//
-//
-//
-//            }
-//        });
-        //
 
         popupMenu.show();
-
 
         //
     }

@@ -43,7 +43,7 @@
         <entry key="app/src/main/res/layout/display_programming_on_recycler_overview1.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_browser.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_buy_me_coffee.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/fragment_chat_with_developer.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_chat_with_developer.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_create_account.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_developer_fragment.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_devops_officials.xml" value="0.15" />
@@ -53,8 +53,9 @@
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_more_settings.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_other_devops_products.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_privacy_policy.xml" value="0.2042833607907743" />
         <entry key="app/src/main/res/layout/fragment_privacy_policyr.xml" value="0.14828544949026876" />
-        <entry key="app/src/main/res/layout/fragment_rate_app.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_rate_app.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_share_app.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_technology_trends.xml" value="0.1" />
         <entry key="app/src/main/res/layout/general_bottom_sheet.xml" value="0.25" />
