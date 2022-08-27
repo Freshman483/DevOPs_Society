@@ -9,7 +9,7 @@
     android:background="#FFFBFB"
     android:overScrollMode="always"
     android:scrollbars="vertical"
-    tools:context=".Login">
+    tools:context=".mains.Login">
 
 
     <androidx.cardview.widget.CardView

@@ -24,12 +24,14 @@
         <entry key="app/src/main/res/drawable/ic_round_send_24.xml" value="0.1805" />
         <entry key="app/src/main/res/drawable/rounded_conors_shape_for_account_profile.xml" value="0.1155" />
         <entry key="app/src/main/res/drawable/shape.xml" value="0.1845" />
+        <entry key="app/src/main/res/layout/active_members_loggedin_fragment.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/activity_developer.xml" value="0.15" />
         <entry key="app/src/main/res/layout/activity_drawer_main_starter.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_drawer_main_with_bottom_nav_if.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_foreigner_account.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_gridview_for_display_programming.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_gridview_of_overview.xml" value="0.15081521739130435" />
+        <entry key="app/src/main/res/layout/activity_logged_in.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_login_index_main_page.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
@@ -40,6 +42,7 @@
         <entry key="app/src/main/res/layout/activity_successful_registration.xml" value="0.1838768115942029" />
         <entry key="app/src/main/res/layout/blank_exit_layout.xml" value="0.15818725951261223" />
         <entry key="app/src/main/res/layout/bottom_sheet_containing_terms_and_condition.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/developers_forum_loggedin_fragment.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/display_programming_on_recycler_overview1.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_browser.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_buy_me_coffee.xml" value="0.22" />
@@ -52,7 +55,7 @@
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_more_settings.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/fragment_other_devops_products.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_other_devops_products.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_privacy_policy.xml" value="0.2042833607907743" />
         <entry key="app/src/main/res/layout/fragment_privacy_policyr.xml" value="0.14828544949026876" />
         <entry key="app/src/main/res/layout/fragment_rate_app.xml" value="0.18" />
@@ -62,17 +65,27 @@
         <entry key="app/src/main/res/layout/header_drawer_layout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/header_drawer_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/header_layout_drawer.xml" value="0.15818725951261223" />
+        <entry key="app/src/main/res/layout/header_minor_details_user_logged_in_nav_view.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/jobs_loggedin_fragment.xml" value="0.19375" />
+        <entry key="app/src/main/res/layout/learning_loggedin_fragment.xml" value="0.19375" />
+        <entry key="app/src/main/res/layout/logout_loggedin_fragment.xml" value="0.19375" />
+        <entry key="app/src/main/res/layout/members_ranking_list_loggedin_fragment.xml" value="0.19375" />
+        <entry key="app/src/main/res/layout/messaging_loggedin_fragment.xml" value="0.19375" />
+        <entry key="app/src/main/res/layout/minor_details_user.xml" value="0.19270833333333334" />
         <entry key="app/src/main/res/layout/please_connect_internet_bottom_sheet.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/profile_loggedin_fragment.xml" value="0.33" />
         <entry key="app/src/main/res/layout/row3_data_main_login.xml" value="0.1921875" />
         <entry key="app/src/main/res/layout/row3_login_main_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/row_data.xml" value="0.22" />
         <entry key="app/src/main/res/layout/rowdata2_main_overview.xml" value="0.33" />
         <entry key="app/src/main/res/layout/show_account_profile_options.xml" value="0.2" />
+        <entry key="app/src/main/res/menu/bottom_nav_logged_in.xml" value="0.19270833333333334" />
         <entry key="app/src/main/res/menu/camera_or_gallary.xml" value="0.15775972637879435" />
         <entry key="app/src/main/res/menu/developer_options.xml" value="0.19166666666666668" />
         <entry key="app/src/main/res/menu/drawer_menu.xml" value="0.22" />
         <entry key="app/src/main/res/menu/menu_bottom_nav_drawer.xml" value="0.1561840439003799" />
         <entry key="app/src/main/res/menu/menu_msg_icon_clicked_floating.xml" value="0.22" />
+        <entry key="app/src/main/res/menu/nav_view_logged_in.xml" value="0.19270833333333334" />
         <entry key="app/src/main/res/menu/options_menu_main_bar.xml" value="0.190625" />
         <entry key="app/src/main/res/menu/other_devops_products.xml" value="0.190625" />
         <entry key="app/src/main/res/menu/popup_login_menu.xml" value="0.12314814814814815" />

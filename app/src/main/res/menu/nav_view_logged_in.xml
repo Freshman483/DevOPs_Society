@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item android:title="More User Services">
+            <menu>
+               <group android:checkableBehavior="single">
+
+                   <item
+                       android:id="@+id/developersLoggedInForum"
+                       android:icon="@drawable/ic_baseline_speaker_24"
+                       android:title="Developers Forum" />
+
+                   <item
+                       android:id="@+id/activeMembersLoggedIn"
+                       android:icon="@drawable/ic_baseline_person_members"
+                       android:title="Active Members" />
+
+                   <item android:icon="@drawable/ic_baseline_emoji_people_ranking"
+                       android:title="Members Ranking List"
+                       android:id="@+id/membersLoggedInRankingList"/>
+
+               </group>
+
+            </menu>
+
+        </item>
+
+
+    </group>
+
+</menu>

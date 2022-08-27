@@ -107,7 +107,7 @@
                     android:layout_height="0dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="1"
-                    android:src="@drawable/ic_baseline_message_textmessage" />
+                    android:src="@drawable/ic_baseline_message_text_message" />
 
                 <TextView
                     android:layout_width="match_parent"
