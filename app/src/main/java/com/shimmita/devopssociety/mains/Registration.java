@@ -61,7 +61,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import es.dmoral.toasty.Toasty;
 
 public class Registration extends AppCompatActivity {
-
+    public static final String FIREBASE_USER_COLLECTION ="DevOps Users";
 
     public static final int GALLERY_REQUEST_CODE = 100;
     public static final int CAMERA_REQUEST_CODE = 200;
@@ -302,7 +302,7 @@ public class Registration extends AppCompatActivity {
         firebaseStorage = FirebaseStorage.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
-        documentReferenceAccountInformation = firebaseFirestore.collection("DevOps Users");
+        documentReferenceAccountInformation = firebaseFirestore.collection(FIREBASE_USER_COLLECTION);
 
 
         // db = new Database(Registration.this);
@@ -1109,6 +1109,7 @@ public class Registration extends AppCompatActivity {
 
         String keyUsername = "Username";    //usernameReg;
         String keyEmail = "Email";        //emailReg;
+        String keyPhoneNumber="PhoneNumber";
         String keyPassword = "Password";    //passwordReg;
         String keyCounty = "County";        //string1;
         String keyPassion = "Passion";      //string2;
@@ -1132,6 +1133,7 @@ public class Registration extends AppCompatActivity {
 
         mapAccountDetails.put(keyUsername, usernameReg);
         mapAccountDetails.put(keyEmail, emailReg);
+        mapAccountDetails.put(keyPhoneNumber,phoneNumberReg);
         mapAccountDetails.put(keyPassword, passwordReg);
         mapAccountDetails.put(keyCounty, string1);
         mapAccountDetails.put(keyPassion, string2);

@@ -45,7 +45,7 @@ public class LogoutLoggedInFragmentClass extends Fragment {
                         firebaseAuth.signOut();
                         //user Confirmed Exit from the account so lets back him/her to the drawer main starter as the parent activity
                         Toast.makeText(getActivity(), "User Logged Out Successfully", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(getActivity(), DrawerMainStarter.class));
+                        startActivity(new Intent(getActivity(), DrawerMainStarter.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
                         CustomIntent.customType(getActivity(), "fadein-to-fadeout");
                         //
                         dialogInterface.dismiss();

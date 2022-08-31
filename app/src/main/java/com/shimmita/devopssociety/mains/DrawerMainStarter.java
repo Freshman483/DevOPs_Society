@@ -24,6 +24,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.shimmita.devopssociety.R;
 import com.shimmita.devopssociety.fragments_drawer_main.BrowserFragmentClass;
 import com.shimmita.devopssociety.fragments_drawer_main.BuyMeCoffeeFragmentClass;
@@ -47,6 +48,8 @@ import java.util.concurrent.Executor;
 import es.dmoral.toasty.Toasty;
 
 public class DrawerMainStarter extends AppCompatActivity {
+
+    FirebaseAuth firebaseAuth;
 
     private static final int CODE = 202202;
     BiometricManager biometricManager_checking_fingerprint_support;
@@ -216,10 +219,20 @@ public class DrawerMainStarter extends AppCompatActivity {
 
         //try getting intent results from Other Intents which wants to launch a particular fragment menu
         //use bool function so that the menu of the fragments become selected too;
-
         functionCheckIfAnyFragmentIsCalledFromExternalActivities();
-
         //
+
+        //check if auth is null and if not migrate to logged in activity
+        functionCheckFirebaseAuth();
+        //
+    }
+
+    private void functionCheckFirebaseAuth() {
+        firebaseAuth= FirebaseAuth.getInstance();
+        if (firebaseAuth.getCurrentUser()!=null)
+        {
+            startActivity(new Intent(this,LoggedInActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+        }
     }
 
 

@@ -1,6 +1,11 @@
 package com.shimmita.devopssociety.mains;
 
+import static com.shimmita.devopssociety.mains.Registration.FIREBASE_USER_COLLECTION;
+
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -14,8 +19,17 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.shimmita.devopssociety.R;
 import com.shimmita.devopssociety.fragments_loggedin.ActiveMembersLoggedInFragmentClass;
 import com.shimmita.devopssociety.fragments_loggedin.DevelopersForumLoggedInFragmentClass;
@@ -25,10 +39,27 @@ import com.shimmita.devopssociety.fragments_loggedin.LogoutLoggedInFragmentClass
 import com.shimmita.devopssociety.fragments_loggedin.MembersRankingListLoggedInFragmentClass;
 import com.shimmita.devopssociety.fragments_loggedin.MessagingLoggedInFragmentClass;
 import com.shimmita.devopssociety.fragments_loggedin.ProfileLoggedInFragmentClass;
+import com.shimmita.devopssociety.modal.RetrieveFirebaseCredentialsFromFirestore;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class LoggedInActivity extends AppCompatActivity {
+    private static final String TAG = "LoggedInActivity";
+
+    //firebase globals
+    ProgressDialog progressDialog;
+    Handler handler;
+    //firebase Globals
+    String firebaseUser;
+    FirebaseAuth firebaseAuth;
+    FirebaseFirestore firebaseFirestore;
+    FirebaseStorage firebaseStorage;
+    StorageReference storageReference;
+    DocumentReference documentReference;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+    //
+
 
     DrawerLayout drawerLayoutLoggedInUser;
     NavigationView navigationViewLoggedInUser;
@@ -46,6 +77,25 @@ public class LoggedInActivity extends AppCompatActivity {
         //setting the title for logged in window on action bar
         this.setTitle("Logged In Successfully");
         //
+        //init of firebase Globals
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = null;
+        //collection reference and fireStore init inside the function to download the data from firestorm to avoid null object invocation from current user
+        //which may lead to app crushing
+
+        //firebase database and database reference init
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
+        //firebaseStorage and Storage reference init;
+        firebaseStorage = FirebaseStorage.getInstance();
+        storageReference = firebaseStorage.getReference();
+        //
+
+        callFunctionDownloadDataFromFirestore();
+        //
+
+
+        Log.d(TAG, "onCreate: LoggedIn");
 
         //init of main variables
         drawerLayoutLoggedInUser = findViewById(R.id.drawerLayoutLoggedInUser);
@@ -62,7 +112,7 @@ public class LoggedInActivity extends AppCompatActivity {
         //
 
         //making profile fragment the default on launch of the logged in activity
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_UserLoggedIn_frameLayout, new ProfileLoggedInFragmentClass()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_UserLoggedIn_frameLayout, new ProfileLoggedInFragmentClass()).commitNow();
         //
 
         //adding listener to bottomNavigationViewUserLoggedIn
@@ -98,7 +148,7 @@ public class LoggedInActivity extends AppCompatActivity {
                         break;
                 }
                 //return the selected fragment appropriately
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_UserLoggedIn_frameLayout, fragmentSelectedLoggedIn).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_UserLoggedIn_frameLayout, fragmentSelectedLoggedIn).commitNow();
                 //
                 return true;
             }
@@ -142,7 +192,7 @@ public class LoggedInActivity extends AppCompatActivity {
                 }
 
                 //return the appropriately selected fragment class
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_UserLoggedIn_frameLayout, fragmentSelectedLoggedIn).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_UserLoggedIn_frameLayout, fragmentSelectedLoggedIn).commitNow();
                 //
 
                 return true;
@@ -155,11 +205,54 @@ public class LoggedInActivity extends AppCompatActivity {
         View view = navigationViewLoggedInUser.inflateHeaderView(R.layout.header_minor_details_user_logged_in_nav_view);
         TextView textView = view.findViewById(R.id.drawerUsername);
         textView.setText("Welcome Douglas");
-        CircleImageView circleImageView=view.findViewById(R.id.drawerPicture);
+        CircleImageView circleImageView = view.findViewById(R.id.drawerPicture);
         circleImageView.setImageResource(R.drawable.developer_image);
 
         //
 
+
+    }
+
+    private void callFunctionDownloadDataFromFirestore() {
+        //init of collection reference and firebase user of the currently logged in
+        firebaseUser = firebaseAuth.getCurrentUser().getUid();
+        //controlling firebase Auth null issues
+        if (firebaseUser==null)
+        {
+            return;
+        }
+        //
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        documentReference = firebaseFirestore.collection(FIREBASE_USER_COLLECTION).document(firebaseUser);
+
+
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()) {
+                    Log.d(TAG, "onSuccess: ValueOF Snapshot->" + documentSnapshot.getData());
+
+                    RetrieveFirebaseCredentialsFromFirestore retrieveFirebaseCredentialsFromFirestore = documentSnapshot.toObject(RetrieveFirebaseCredentialsFromFirestore.class);
+
+                    //returns converted value from firebase
+                    Log.d(TAG, "\nonSuccess: Username->" + retrieveFirebaseCredentialsFromFirestore.getUsername());
+                    Log.d(TAG, "\nonSuccess: University->" + retrieveFirebaseCredentialsFromFirestore.getUniversity());
+                    Log.d(TAG, "\nonSuccess: County->" + retrieveFirebaseCredentialsFromFirestore.getCounty());
+                    Log.d(TAG, "\nonSuccess: Password->" + retrieveFirebaseCredentialsFromFirestore.getPassword());
+                    Log.d(TAG, "\nonSuccess: Passion->" + retrieveFirebaseCredentialsFromFirestore.getPassion());
+                    Log.d(TAG, "\nonSuccess: Email->" + retrieveFirebaseCredentialsFromFirestore.getEmail());
+                    Log.d(TAG, "\nonSuccess: Role->" + retrieveFirebaseCredentialsFromFirestore.getRole());
+                    Log.d(TAG, "\nonSuccess: PhoneNumber->" + retrieveFirebaseCredentialsFromFirestore.getPhoneNumber());
+                    Log.d(TAG, "\nonSuccess: Occupation->" + retrieveFirebaseCredentialsFromFirestore.getOccupation()+"\n");
+
+
+
+
+
+
+                }
+            }
+        });
 
     }
 
