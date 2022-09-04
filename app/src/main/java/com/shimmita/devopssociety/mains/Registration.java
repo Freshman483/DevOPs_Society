@@ -61,7 +61,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import es.dmoral.toasty.Toasty;
 
 public class Registration extends AppCompatActivity {
-    public static final String FIREBASE_USER_COLLECTION ="DevOps Users";
+    public static final String FIREBASE_USER_COLLECTION = "DevOps Users";
+    public static final String  PROFILE_IMAGE_PATH_IN_RDB = "ProfileImagePaths";
 
     public static final int GALLERY_REQUEST_CODE = 100;
     public static final int CAMERA_REQUEST_CODE = 200;
@@ -1109,7 +1110,7 @@ public class Registration extends AppCompatActivity {
 
         String keyUsername = "Username";    //usernameReg;
         String keyEmail = "Email";        //emailReg;
-        String keyPhoneNumber="PhoneNumber";
+        String keyPhoneNumber = "PhoneNumber";
         String keyPassword = "Password";    //passwordReg;
         String keyCounty = "County";        //string1;
         String keyPassion = "Passion";      //string2;
@@ -1133,7 +1134,7 @@ public class Registration extends AppCompatActivity {
 
         mapAccountDetails.put(keyUsername, usernameReg);
         mapAccountDetails.put(keyEmail, emailReg);
-        mapAccountDetails.put(keyPhoneNumber,phoneNumberReg);
+        mapAccountDetails.put(keyPhoneNumber, phoneNumberReg);
         mapAccountDetails.put(keyPassword, passwordReg);
         mapAccountDetails.put(keyCounty, string1);
         mapAccountDetails.put(keyPassion, string2);
@@ -1281,10 +1282,7 @@ public class Registration extends AppCompatActivity {
         progressDialogImageUrlToRealTimeDatabase.show();
 
         //
-        //
-
-
-        String imagePathLocally = "ProfileImagePaths";
+        //NB constant profile image path in rdb ="ProfileImagePath"
 
         String keyImageUriLocally = "imagePath";
         String valueStoredUrl = task.getResult().toString();
@@ -1292,7 +1290,7 @@ public class Registration extends AppCompatActivity {
         Map<String, Object> mapImageUrlToRealtimeDatabase = new HashMap<>();
         mapImageUrlToRealtimeDatabase.put(keyImageUriLocally, valueStoredUrl);
 
-        databaseReference = firebaseDatabase.getReference().child(imagePathLocally).child(firebaseUser).child(usernameReg); //imagePaths-userID-name-map
+        databaseReference = firebaseDatabase.getReference().child(PROFILE_IMAGE_PATH_IN_RDB).child(firebaseUser).child(usernameReg); //imagePaths-userID-name-map
 
         databaseReference.setValue(mapImageUrlToRealtimeDatabase).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -1406,10 +1404,22 @@ public class Registration extends AppCompatActivity {
                 .setPositiveButton("Ok,check internet", (dialogInterface, i) -> {
                     startActivity(new Intent(Settings.ACTION_DATA_ROAMING_SETTINGS));
                 })
+                .setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                })
                 .setNegativeButton("Buy Data Bundles", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:*544#")));
+                    }
+                })
+                .setNeutralButton("Ok,Just Dismiss", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
                     }
                 })
                 .create()
@@ -1483,6 +1493,12 @@ public class Registration extends AppCompatActivity {
                     .setTitle("Internet Check")
                     .setMessage("detected no Internet Connection !")
                     .setCancelable(false)
+                    .setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    })
                     .setPositiveButton("Open For Me", (dialogInterface, i) -> {
                         startActivity(new Intent(Settings.ACTION_DATA_ROAMING_SETTINGS));
                         dialogInterface.dismiss();

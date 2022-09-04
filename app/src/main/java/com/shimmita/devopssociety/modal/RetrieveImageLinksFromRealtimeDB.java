@@ -1,20 +1,20 @@
 package com.shimmita.devopssociety.modal;
 
 public class RetrieveImageLinksFromRealtimeDB {
-    private String imageUrl;
+    private String imagePath;
 
     public RetrieveImageLinksFromRealtimeDB() {
     }
 
-    public RetrieveImageLinksFromRealtimeDB(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public RetrieveImageLinksFromRealtimeDB(String imagePath) {
+        this.imagePath = imagePath;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }

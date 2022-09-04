@@ -190,6 +190,12 @@ public class Login extends AppCompatActivity {
                                 .setPositiveButton("Ok,check internet", (dialogInterface, i) -> {
                                     startActivity(new Intent(Settings.ACTION_DATA_ROAMING_SETTINGS));
                                 })
+                                .setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        dialogInterface.dismiss();
+                                    }
+                                })
                                 .setNegativeButton("Buy Data Bundles", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {

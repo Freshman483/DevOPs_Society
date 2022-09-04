@@ -4,13 +4,13 @@
     android:id="@+id/mainContainerHeaderLoggedInUserRelativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="5dp"
-    android:background="#877878">
+    android:background="#877878"
+    android:padding="5dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="#201F1F"
+        app:cardBackgroundColor="@color/black"
         app:cardCornerRadius="30dp">
 
         <LinearLayout
@@ -69,19 +69,6 @@
 
 
             <TextView
-                android:id="@+id/drawerPassion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="5dp"
-                android:gravity="center_horizontal"
-                android:text="Passion Passion"
-                android:textColor="@color/purple_200"
-                android:textSize="16sp"
-                android:textStyle="italic" />
-
-
-            <TextView
                 android:id="@+id/drawerEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -103,6 +90,20 @@
                 android:text="+000000001"
                 android:textColor="@color/purple_200"
                 android:textStyle="italic" />
+
+
+            <TextView
+                android:id="@+id/drawerPassion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:gravity="center_horizontal"
+                android:text="Passion Passion"
+                android:textColor="@color/purple_200"
+                android:textSize="16sp"
+                android:textStyle="italic" />
+
 
             <TextView
                 android:id="@+id/drawerAccountType"
