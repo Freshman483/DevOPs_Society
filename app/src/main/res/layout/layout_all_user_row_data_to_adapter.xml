@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:background="@color/black"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="225dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        app:cardBackgroundColor="#DFDEDD"
+        app:cardCornerRadius="30dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/imageViewPicture"
+                android:layout_width="130dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="1dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/developer_image"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="@string/titleOfallUsersAdapterLayout"
+                android:textAllCaps="true"
+                android:textColor="#501C62"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/imageViewPicture"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewUniversity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="10dp"
+                android:text="Maasai Mara University"
+                android:textColor="#045801"
+                android:textStyle="italic|bold"
+                app:layout_constraintStart_toEndOf="@+id/imageViewPicture"
+                app:layout_constraintTop_toBottomOf="@+id/textViewUsername" />
+
+            <TextView
+                android:id="@+id/textViewEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="10dp"
+                android:autoLink="email"
+                android:text="something@gmail.com"
+                android:textColor="@color/teal_700"
+                android:textStyle="italic"
+                app:layout_constraintStart_toEndOf="@+id/imageViewPicture"
+                app:layout_constraintTop_toBottomOf="@+id/textViewUniversity" />
+
+            <TextView
+                android:id="@+id/textViewPhoneNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="10dp"
+                android:autoLink="phone"
+                android:text="+2547885578909"
+                android:textColor="@color/teal_700"
+                android:textStyle="italic"
+                app:layout_constraintStart_toEndOf="@+id/imageViewPicture"
+                app:layout_constraintTop_toBottomOf="@+id/textViewEmail" />
+
+            <TextView
+                android:id="@+id/textViewPassion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="10dp"
+                android:text="Android Programming (software)"
+                android:textColor="#9E58F3"
+                android:textStyle="italic"
+                app:layout_constraintStart_toEndOf="@+id/imageViewPicture"
+                app:layout_constraintTop_toBottomOf="@+id/textViewPhoneNumber" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonContactUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="10dp"
+                android:text="Click Me To Contact the User"
+                android:textAllCaps="false"
+                android:textColor="#17546F"
+                android:textStyle="italic"
+                app:layout_constraintStart_toEndOf="@+id/imageViewPicture"
+                app:layout_constraintTop_toBottomOf="@+id/textViewPassion" />
+
+            <TextView
+                android:id="@+id/textViewAccountRole"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="40dp"
+                android:text="Normal Account"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/buttonContactUser"
+                app:layout_constraintHorizontal_bias="0.457"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewPicture" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

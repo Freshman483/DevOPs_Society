@@ -13,13 +13,13 @@ public class RetrieveFirebaseCredentialsFromFirestore {
             County,
             AdminChatSend,
             AdminChatReceive,
-            PhoneNumber;
+            PhoneNumber,imagePath;
 
 
     public RetrieveFirebaseCredentialsFromFirestore() {
     }
 
-    public RetrieveFirebaseCredentialsFromFirestore(String username, String university, String role, String password, String passion, String occupation, String knowledge, String gender, String email, String county, String adminChatSend, String adminChatReceive, String phoneNumber) {
+    public RetrieveFirebaseCredentialsFromFirestore(String username, String university, String role, String password, String passion, String occupation, String knowledge, String gender, String email, String county, String adminChatSend, String adminChatReceive, String phoneNumber,String imagePath) {
         this.Username = username;
         this.University = university;
         this.Role = role;
@@ -33,6 +33,15 @@ public class RetrieveFirebaseCredentialsFromFirestore {
         this.AdminChatSend = adminChatSend;
         this.AdminChatReceive = adminChatReceive;
         this.PhoneNumber = phoneNumber;
+        this.imagePath=imagePath;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public String getPhoneNumber() {

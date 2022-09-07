@@ -49,9 +49,8 @@ import es.dmoral.toasty.Toasty;
 
 public class DrawerMainStarter extends AppCompatActivity {
 
-    FirebaseAuth firebaseAuth;
-
     private static final int CODE = 202202;
+    FirebaseAuth firebaseAuth;
     BiometricManager biometricManager_checking_fingerprint_support;
     Executor executor;
     BiometricPrompt biometricPrompt_functionality_implementation;
@@ -78,7 +77,7 @@ public class DrawerMainStarter extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //home fragment should be here(default pane)
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerFrameLayout, new PrivacyAndPolicyFragmentClass()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerFrameLayout, new HomeFragmentClass()).commit();
         //
 
 
@@ -228,10 +227,11 @@ public class DrawerMainStarter extends AppCompatActivity {
     }
 
     private void functionCheckFirebaseAuth() {
-        firebaseAuth= FirebaseAuth.getInstance();
-        if (firebaseAuth.getCurrentUser()!=null)
-        {
-            startActivity(new Intent(this,LoggedInActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+        firebaseAuth = FirebaseAuth.getInstance();
+        if (firebaseAuth.getCurrentUser() != null) {
+            //make it not do anything to avoid conflicting with the devOps official since it wont be launched but directly to the logged page!
+            //Todo:clarify issue of firebase auth not null since there is some conflicts with devops officials of drawer main starter
+            //startActivity(new Intent(this, LoggedInActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
         }
     }
 
@@ -258,6 +258,10 @@ public class DrawerMainStarter extends AppCompatActivity {
                     break;
                 case "exit":
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerFrameLayout, new ExitAppFragmentClass()).commit();
+                    break;
+
+                case  "officials":
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerFrameLayout,new DevOpsOfficialsFragmentClass()).commit();
                     break;
 
             }
@@ -414,4 +418,14 @@ public class DrawerMainStarter extends AppCompatActivity {
     }
 //
 
+  /*  //override on startMethod so that if also the Current User is null stop here else direct him into the account profile directly
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        //check if auth is null and if not migrate to logged in activity
+        functionCheckFirebaseAuth();
+        //
+    }
+    //*/
 }

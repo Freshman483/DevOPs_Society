@@ -67,7 +67,6 @@ public class LoggedInActivity extends AppCompatActivity {
     FirebaseStorage firebaseStorage;
     StorageReference storageReference;
     DocumentReference documentReference;
-    FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     //
 

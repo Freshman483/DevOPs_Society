@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // db = new Database(MainActivity.this);
+        //
+
         constraintLayout_parent = findViewById(R.id.parent);
         appCompatButton_start = findViewById(R.id.button_start);
         imageView = findViewById(R.id.imageView);
@@ -167,8 +169,8 @@ public class MainActivity extends AppCompatActivity {
         });
         materialAlertDialogBuilder.setNegativeButton(R.string.negBtn, (dialog, which) -> {
             //back the user to the drawer main activity since its the parent activity in the apoplication
-            startActivity(new Intent(MainActivity.this, DrawerMainStarter.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    .putExtra("fragment", "home"));
+            startActivity(new Intent(MainActivity.this, DrawerMainStarter.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                   );
             CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");
             //
 

@@ -44,6 +44,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -62,7 +63,7 @@ import es.dmoral.toasty.Toasty;
 
 public class Registration extends AppCompatActivity {
     public static final String FIREBASE_USER_COLLECTION = "DevOps Users";
-    public static final String  PROFILE_IMAGE_PATH_IN_RDB = "ProfileImagePaths";
+    public static final String PROFILE_IMAGE_PATH_IN_RDB = "ProfileImagePaths";
 
     public static final int GALLERY_REQUEST_CODE = 100;
     public static final int CAMERA_REQUEST_CODE = 200;
@@ -71,7 +72,7 @@ public class Registration extends AppCompatActivity {
     FirebaseAuth auth;
     String firebaseUser;
     FirebaseFirestore firebaseFirestore;
-    CollectionReference documentReferenceAccountInformation;
+    CollectionReference collectionReferenceAccountInformation;
     FirebaseStorage firebaseStorage;      //upload image
     StorageReference storageReference;
     FirebaseDatabase firebaseDatabase;   //write to realtime
@@ -303,7 +304,7 @@ public class Registration extends AppCompatActivity {
         firebaseStorage = FirebaseStorage.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
-        documentReferenceAccountInformation = firebaseFirestore.collection(FIREBASE_USER_COLLECTION);
+        collectionReferenceAccountInformation = firebaseFirestore.collection(FIREBASE_USER_COLLECTION);
 
 
         // db = new Database(Registration.this);
@@ -840,7 +841,6 @@ public class Registration extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
-
                         new MaterialAlertDialogBuilder(Registration.this)
                                 .setTitle("Payment Confirmation")
                                 .setIcon(R.drawable.ic_baseline_payment_24)
@@ -1147,7 +1147,7 @@ public class Registration extends AppCompatActivity {
         mapAccountDetails.put(keyAdminChatReceive, valueAdminChatReceive);
 
         //adding firestore the data
-        documentReferenceAccountInformation.document(firebaseUser).set(mapAccountDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+        collectionReferenceAccountInformation.document(firebaseUser).set(mapAccountDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
@@ -1158,7 +1158,7 @@ public class Registration extends AppCompatActivity {
                     new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
                             .setTitle("Registration Step 2/3 Successful!")
                             .setCancelable(false)
-                            .setMessage(usernameReg + " You have successfully Completed Step Two Of registration Process You're are allowed to make the last step " +
+                            .setMessage("(" + usernameReg + ")  You have successfully Completed Step Two Of registration Process You're are allowed to make the last step " +
                                     "of registration")
                             .setIcon(R.drawable.ic_baseline_check)
                             .setPositiveButton("Lets Complete", new DialogInterface.OnClickListener() {
@@ -1181,7 +1181,7 @@ public class Registration extends AppCompatActivity {
                     new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
                             .setTitle("Something Went Wrong!")
                             .setCancelable(false)
-                            .setMessage(usernameReg + " Your Registration  Process Halted Due To:\n" + task.getException().getMessage())
+                            .setMessage("(" + usernameReg + ")  Your Registration  Process Halted Due To:\n" + task.getException().getMessage())
                             .setPositiveButton("Retry Registration", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -1209,9 +1209,6 @@ public class Registration extends AppCompatActivity {
         //showing the progress
         progressDialogLocallyImage.show();
 
-        //
-        //
-
         String profileImagesLocally = "ProfileImages";
 
         storageReference = firebaseStorage.getReference().child(profileImagesLocally).child(firebaseUser).child(usernameReg);
@@ -1228,7 +1225,7 @@ public class Registration extends AppCompatActivity {
                     new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
                             .setTitle("Registration Step 3/3 Successful!")
                             .setCancelable(false)
-                            .setMessage(usernameReg + " You have successfully Completed the Last Step Of registration Process, accept to Finish the Process " +
+                            .setMessage("(" + usernameReg + ")  You have successfully Completed the Last Step Of registration Process, accept to Finish the Process " +
                                     "of registration")
                             .setIcon(R.drawable.ic_baseline_check)
                             .setPositiveButton("Accept", (dialogInterface, i) -> {
@@ -1253,7 +1250,7 @@ public class Registration extends AppCompatActivity {
                     new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
                             .setTitle("Something Went Wrong !")
                             .setCancelable(false)
-                            .setMessage(usernameReg + " your registration halted due to:\n" + task.getException().getMessage())
+                            .setMessage("(" + usernameReg + ")your registration halted due to:\n" + task.getException().getMessage())
                             .setPositiveButton("Lets Try Again Registration", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -1287,9 +1284,21 @@ public class Registration extends AppCompatActivity {
         String keyImageUriLocally = "imagePath";
         String valueStoredUrl = task.getResult().toString();
 
+
+        //creating a map to merge the image uRI to firebase fireStore also
+        //in this situation we will have two image paths of RDB and Also Firestore thus enhanced redundancy
+        Map<String, Object> mapMergeImageUriToFirestore = new HashMap<>();
+        mapMergeImageUriToFirestore.put(keyImageUriLocally, valueStoredUrl);
+        //trying to merge the original fireBaseFirestore credentials with the image Url gotten which is to be stored in RDB
+        collectionReferenceAccountInformation.document(firebaseUser).set(mapMergeImageUriToFirestore, SetOptions.merge());
+        //
+
+        //creating a map to save the image into The RDB
         Map<String, Object> mapImageUrlToRealtimeDatabase = new HashMap<>();
         mapImageUrlToRealtimeDatabase.put(keyImageUriLocally, valueStoredUrl);
+        //
 
+        //starting the operations of saving the image into the RDB
         databaseReference = firebaseDatabase.getReference().child(PROFILE_IMAGE_PATH_IN_RDB).child(firebaseUser).child(usernameReg); //imagePaths-userID-name-map
 
         databaseReference.setValue(mapImageUrlToRealtimeDatabase).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -1332,7 +1341,7 @@ public class Registration extends AppCompatActivity {
         new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
                 .setIcon(R.drawable.ic_baseline_check)
                 .setCancelable(false)
-                .setTitle(usernameReg + "\nRegistered Successfully")
+                .setTitle("(" + usernameReg + ")\nRegistered Successfully")
                 .setMessage("\nCongratulations!,Your Registration Was Successful And your Information Is Kept Securely\nWelcome To DevOps Society and Explore The Unseen Technology To Be Seen!")
                 .setPositiveButton("Ok,view Registration Details", new DialogInterface.OnClickListener() {
                     @Override
@@ -1353,9 +1362,8 @@ public class Registration extends AppCompatActivity {
         new MaterialAlertDialogBuilder(Registration.this)
                 .setTitle("REGISTRATION SUCCESSFUL\n\n")
                 .setMessage("\t(Account Holder: " + usernameReg.toUpperCase(Locale.ROOT) + ")\n" +
-                        "\nWelcome To Developers  Society Family, Your Credentials Are Now Saved Successfully" +
-                        "Please Don't Forget Your Username,Email and Password!." +
-                        "These Are the Unique Identifiers of Your DevOps Society Account.\n" +
+                        "\nWelcome To Developers Society Team Kenya, " +
+                        "The Followings Are the Unique Identifiers of Your DevOps Society Account:\n" +
                         "\nUSERNAME: " + usernameReg + "\n\nEMAIL: " + emailReg + "\n\nPASSWORD: " + passwordReg + "\n" +
                         "\n\nYour Other Selected Details Are:\n" + "" +
                         "\nCOUNTY: " + string1 + "\n" +
@@ -1367,6 +1375,12 @@ public class Registration extends AppCompatActivity {
                         "\nACCOUNT TYPE: " + string7_role_status_check + "\n\n")
                 .setIcon(R.drawable.ic_baseline_check_24)
                 .setCancelable(false)
+                .setNeutralButton("ok dismiss", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                })
                 .setPositiveButton("Ok,Login", (dialog, which) -> {
                     dialog.cancel();
                     startActivity(new Intent(Registration.this, Login.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
@@ -1496,6 +1510,7 @@ public class Registration extends AppCompatActivity {
                     .setNeutralButton("Ok", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
+
                             dialogInterface.dismiss();
                         }
                     })

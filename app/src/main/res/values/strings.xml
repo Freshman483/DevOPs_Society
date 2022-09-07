@@ -214,5 +214,7 @@
 
     </string>
     <string name="name_name"><u>Name Name</u></string>
+    <string name="titleOfallUsersAdapterLayout"><u>Jonathan Wekesa</u></string>
+    <string name="login_window"><u>Login Window</u></string>
 
 </resources>

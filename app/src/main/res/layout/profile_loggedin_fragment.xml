@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="5dp"
-    android:background="#E6E6E4"
+    android:layout_margin="1dp"
+    android:background="#1E1E19"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
@@ -160,15 +160,40 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="15dp"
+                android:visibility="gone"
                 android:gravity="center_horizontal"
                 android:text="Upgrade Account"
                 android:textAllCaps="false"
                 android:textColor="#B92F05"
                 android:textSize="@dimen/paddingSmall" />
 
-
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonVerifyEmailProfile"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Verify Your Email Address !"
+                android:textAllCaps="false"
+                android:textColor="#795A0C"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>
