@@ -3,17 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
-    android:background="@color/black"
+    android:background="#A7A5A5"
     android:gravity="center"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="225dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        app:cardBackgroundColor="#DFDEDD"
+        android:layout_height="250dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        app:cardBackgroundColor="#C7C6C5"
         app:cardCornerRadius="30dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,13 +20,14 @@
             android:layout_height="match_parent"
             android:padding="8dp">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imageViewPicture"
                 android:layout_width="130dp"
                 android:layout_height="150dp"
-                android:layout_marginStart="1dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/developer_image"
+                app:civ_border_color="#191CD8"
+                app:civ_border_width="1.5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,6 +39,7 @@
                 android:text="@string/titleOfallUsersAdapterLayout"
                 android:textAllCaps="true"
                 android:textColor="#501C62"
+                android:textSize="22sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/imageViewPicture"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -48,9 +49,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:text="Maasai Mara University"
                 android:textColor="#045801"
+                android:textSize="21sp"
                 android:textStyle="italic|bold"
                 app:layout_constraintStart_toEndOf="@+id/imageViewPicture"
                 app:layout_constraintTop_toBottomOf="@+id/textViewUsername" />
@@ -60,11 +62,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                android:layout_marginTop="10dp"
-                android:autoLink="email"
+                android:layout_marginTop="12dp"
                 android:text="something@gmail.com"
-                android:textColor="@color/teal_700"
-                android:textStyle="italic"
+                android:textColor="#495849"
+                android:textSize="18sp"
+                android:textStyle="italic|bold"
                 app:layout_constraintStart_toEndOf="@+id/imageViewPicture"
                 app:layout_constraintTop_toBottomOf="@+id/textViewUniversity" />
 
@@ -73,11 +75,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                android:layout_marginTop="10dp"
-                android:autoLink="phone"
+                android:layout_marginTop="12dp"
                 android:text="+2547885578909"
-                android:textColor="@color/teal_700"
-                android:textStyle="italic"
+                android:textColor="#495849"
+                android:textSize="18sp"
+                android:textStyle="italic|bold"
                 app:layout_constraintStart_toEndOf="@+id/imageViewPicture"
                 app:layout_constraintTop_toBottomOf="@+id/textViewEmail" />
 
@@ -86,23 +88,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="12dp"
                 android:text="Android Programming (software)"
                 android:textColor="#9E58F3"
-                android:textStyle="italic"
+                android:textSize="16sp"
+                android:textStyle="italic|bold"
                 app:layout_constraintStart_toEndOf="@+id/imageViewPicture"
                 app:layout_constraintTop_toBottomOf="@+id/textViewPhoneNumber" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/buttonContactUser"
+                style="@style/TextAppearance.AppCompat.Widget.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="18dp"
                 android:text="Click Me To Contact the User"
                 android:textAllCaps="false"
-                android:textColor="#17546F"
-                android:textStyle="italic"
+                android:textColor="#091692"
+                android:textStyle="italic|bold"
                 app:layout_constraintStart_toEndOf="@+id/imageViewPicture"
                 app:layout_constraintTop_toBottomOf="@+id/textViewPassion" />
 
@@ -110,15 +114,26 @@
                 android:id="@+id/textViewAccountRole"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="40dp"
                 android:text="Normal Account"
-                android:textStyle="italic"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="#6B2C03"
+                android:textSize="16sp"
+                android:textStyle="bold|italic"
                 app:layout_constraintEnd_toStartOf="@+id/buttonContactUser"
                 app:layout_constraintHorizontal_bias="0.457"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageViewPicture" />
+
+            <TextView
+                android:id="@+id/textViewCounterNumberAllUsers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:gravity="end|right"
+                android:text="1"
+                android:textColor="#AE340D"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

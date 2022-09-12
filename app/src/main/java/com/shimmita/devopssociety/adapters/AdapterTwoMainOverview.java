@@ -16,7 +16,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shimmita.devopssociety.R;
-import com.shimmita.devopssociety.mains.DisplayProgrammingOnRecyclerOverview1;
+import com.shimmita.devopssociety.mains.DisplayProgrammingLanguagesOnRecyclerOverview1;
 import com.shimmita.devopssociety.mains.SpeechClass;
 
 public class AdapterTwoMainOverview extends RecyclerView.Adapter<AdapterTwoMainOverview.Viewholder> {
@@ -63,7 +63,7 @@ public class AdapterTwoMainOverview extends RecyclerView.Adapter<AdapterTwoMainO
                 } else {
                     if (descriptionTitle[position].contains("Software")) {
                         view.startAnimation(animationForLocked);
-                        context.startActivity(new Intent(context.getApplicationContext(), DisplayProgrammingOnRecyclerOverview1.class));
+                        context.startActivity(new Intent(context.getApplicationContext(), DisplayProgrammingLanguagesOnRecyclerOverview1.class));
                         new SpeechClass(context, descriptionTitle[position] + " Launched");
                     } else {
                         view.startAnimation(animationForLocked);

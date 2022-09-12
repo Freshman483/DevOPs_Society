@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.shimmita.devopssociety.R;
 import com.shimmita.devopssociety.adapters.AdapterTwoMainOverview;
 
-public class OverviewMainActivity extends AppCompatActivity {
+public class OverviewLearningServicesMainActivity extends AppCompatActivity {
     int[] imagesDisplayMainOverview;
     int[] imageLocksMainOverview;
     String[] descriptionTitleOverview;
@@ -53,31 +53,29 @@ public class OverviewMainActivity extends AppCompatActivity {
                         "Windows OS",
                         "Dark Web",
                         "Hacking Techniques",
-                        "Virus Techniques",
-                        "Lets Chat"
+                        "Virus Techniques"
 
                 };
         imagesDisplayMainOverview = new int[]
                 {
-                        R.drawable.ic_baseline_offline_bolt_24,
-                        R.drawable.ic_baseline_offline_bolt_24,
+                        R.drawable.hacking7,
+                        R.drawable.hacking4,
                         R.drawable.wordpress,
                         R.drawable.dropbox,
-                        R.drawable.ic_baseline_offline_bolt_24,
-                        R.drawable.ic_baseline_offline_bolt_24,
+                        R.drawable.machine_learning,
+                        R.drawable.hacking8,
                         R.drawable.android2,
                         R.drawable.apple,
                         R.drawable.cloud,
                         R.drawable.docker,
                         R.drawable.ic_baseline_settings_24,
-                        R.drawable.ic_baseline_offline_bolt_24,
+                        R.drawable.hacking2,
                         R.drawable.ic_baseline_notes_24,
                         R.drawable.linuxdoll,
                         R.drawable.windows,
-                        R.drawable.ic_baseline_offline_bolt_24,
-                        R.drawable.ic_baseline_offline_bolt_24,
-                        R.drawable.ic_baseline_offline_bolt_24,
-                        R.drawable.whatsappp
+                        R.drawable.hacking5,
+                        R.drawable.hacker_masked1,
+                        R.drawable.virus,
 
                 };
 

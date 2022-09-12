@@ -3,14 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="5dp"
-    app:cardBackgroundColor="@android:color/secondary_text_dark"
+    app:cardBackgroundColor="#FA844E"
     app:cardCornerRadius="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="10dp"
         android:orientation="vertical"
         android:weightSum="3">
 
@@ -19,16 +17,17 @@
             android:id="@+id/cardViewOnlineMessagingOption"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:layout_marginBottom="5dp"
             android:layout_weight="1"
+            app:cardBackgroundColor="#190F27"
             app:cardCornerRadius="10dp">
 
             <LinearLayout
+                android:id="@+id/linearChatMeOnline"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:id="@+id/linearChatMeOnline"
                 android:weightSum="2">
 
                 <ImageView
@@ -44,7 +43,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/online_chatting"
-                    android:textColor="@android:color/background_dark" />
+                    android:textColor="@color/teal_700"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
@@ -55,17 +55,17 @@
             android:id="@+id/cardViewEmailingOption"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="10dp"
-
+            android:layout_margin="5dp"
             android:layout_marginBottom="5dp"
             android:layout_weight="1"
+            app:cardBackgroundColor="#190F27"
             app:cardCornerRadius="10dp">
 
             <LinearLayout
+                android:id="@+id/linearChatMeEmail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:id="@+id/linearChatMeEmail"
                 android:weightSum="2">
 
                 <ImageView
@@ -81,7 +81,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/email_chatting"
-                    android:textColor="@android:color/background_dark" />
+                    android:textColor="@color/teal_700"
+                    android:textSize="14sp" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -91,14 +92,15 @@
             android:id="@+id/cardViewNormalSms"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:layout_weight="1"
+            app:cardBackgroundColor="#190F27"
             app:cardCornerRadius="10dp">
 
             <LinearLayout
+                android:id="@+id/linearChatMeMessage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/linearChatMeMessage"
                 android:orientation="vertical"
                 android:weightSum="2">
 
@@ -116,7 +118,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/normal_sms"
-                    android:textColor="@android:color/background_dark" />
+                    android:textColor="@color/teal_700"
+                    android:textSize="14sp" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>

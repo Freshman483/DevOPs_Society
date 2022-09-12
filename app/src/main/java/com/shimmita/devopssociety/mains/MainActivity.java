@@ -210,7 +210,7 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.account_overview:
                     Toasty.custom(getApplicationContext(), "DevOps Overview Page", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
-                    startActivity(new Intent(MainActivity.this, OverviewMainActivity.class));
+                    startActivity(new Intent(MainActivity.this, OverviewLearningServicesMainActivity.class));
                     return true;
 
 

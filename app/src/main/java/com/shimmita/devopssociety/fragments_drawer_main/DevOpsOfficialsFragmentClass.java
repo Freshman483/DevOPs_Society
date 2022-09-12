@@ -28,6 +28,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.shimmita.devopssociety.R;
@@ -124,6 +125,10 @@ public class DevOpsOfficialsFragmentClass extends Fragment {
                     }).setNeutralButton("no dismiss", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
+                            //directing the user back to the Drawer Main Starter
+                            startActivity(new Intent(getActivity(), DrawerMainStarter.class));
+                            CustomIntent.customType(getActivity(), "fadein-to-fadeout");
+                            //
                             //dismiss the dialog
                             dialogInterface.dismiss();
                             //
@@ -169,10 +174,10 @@ public class DevOpsOfficialsFragmentClass extends Fragment {
         Log.d(TAG, "\ncallFunctionCredentialsFromFirestore: inside");
         //fireStore Begin
 
-        //credentials
 
-        //collectionReference data get
-        collectionReference.get().addOnSuccessListener(getActivity(), new OnSuccessListener<QuerySnapshot>() {
+        //collectionReference data get after ordering by the username:(u can order by any field available i.e phone,uni,county,etc)
+
+        collectionReference.orderBy("Username", Query.Direction.ASCENDING).get().addOnSuccessListener(getActivity(), new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 //data of credentials from fireStore

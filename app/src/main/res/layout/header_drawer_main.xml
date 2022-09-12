@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="2dp"
-    app:cardBackgroundColor="@color/teal_200"
-    app:cardCornerRadius="50dp">
+    app:cardBackgroundColor="@color/black"
+    app:cardCornerRadius="30dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="3dp"
         android:layout_gravity="center"
+        android:layout_marginTop="3dp"
         android:orientation="vertical"
         android:padding="3dp">
 
@@ -20,20 +20,19 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="3dp"
-            android:textStyle="bold"
             android:gravity="center_horizontal"
             android:text="@string/powered_by_devops_society_of_kenya"
             android:textAllCaps="true"
-            android:textColor="#F86402"
-            android:textSize="19sp" />
-
+            android:textColor="#FB7D29"
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="fitXY"
-            android:src="@drawable/imagee_hacker" />
+            android:src="@drawable/hacking8" />
 
 
         <TextView
@@ -43,7 +42,7 @@
             android:layout_marginTop="3dp"
             android:gravity="center_horizontal"
             android:text="Founder: Shimita Douglas"
-            android:textColor="#2F5405"
+            android:textColor="#76DC01"
 
             android:textSize="17sp"
             android:textStyle="italic" />
@@ -55,7 +54,7 @@
             android:layout_marginTop="3dp"
             android:gravity="center_horizontal"
             android:text="Student:   Maseno University"
-            android:textColor="#2F5405"
+            android:textColor="#76DC01"
             android:textColorLink="#EF62ED"
             android:textSize="16sp"
             android:textStyle="italic" />
@@ -69,7 +68,7 @@
             android:autoLink="phone"
             android:gravity="center_horizontal"
             android:text="Contact:   +254757450727"
-            android:textColor="#2F5405"
+            android:textColor="#76DC01"
             android:textColorLink="#EF62ED"
             android:textSize="16sp"
             android:textStyle="italic" />

@@ -42,10 +42,10 @@
             android:name=".mains.MakePayments"
             android:exported="false" />
         <activity
-            android:name=".mains.OverviewMainActivity"
+            android:name=".mains.OverviewLearningServicesMainActivity"
             android:exported="false" />
         <activity
-            android:name=".mains.DisplayProgrammingOnRecyclerOverview1"
+            android:name=".mains.DisplayProgrammingLanguagesOnRecyclerOverview1"
             android:exported="false" />
         <activity
             android:name=".mains.ForeignerAccount"

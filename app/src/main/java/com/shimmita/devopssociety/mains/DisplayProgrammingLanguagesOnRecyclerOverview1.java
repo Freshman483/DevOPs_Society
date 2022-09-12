@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.shimmita.devopssociety.R;
 import com.shimmita.devopssociety.adapters.MyAdapter;
 
-public class DisplayProgrammingOnRecyclerOverview1 extends AppCompatActivity {
-    private static final String TAG = "DisplayProgrammingOnRecyclerOverview1";
+public class DisplayProgrammingLanguagesOnRecyclerOverview1 extends AppCompatActivity {
+    private static final String TAG = "DisplayProgrammingLanguagesOnRecyclerOverview1";
     RecyclerView recyclerView;
 
     int[] imageDisplayConstructor;  //missing images RxJava,GO,Flutter,React,Angular,Rust,C#,Vb,Html
@@ -85,7 +85,7 @@ public class DisplayProgrammingOnRecyclerOverview1 extends AppCompatActivity {
                 {
                         R.drawable.python,
                         R.drawable.java,
-                        R.drawable.ic_baseline_offline_bolt_24,
+                        R.drawable.rxjava,
                         R.drawable.javascript,
                         R.drawable.kotlin,
                         R.drawable.go,
@@ -130,13 +130,13 @@ public class DisplayProgrammingOnRecyclerOverview1 extends AppCompatActivity {
                         R.drawable.ic_baseline_lock_24,
                 };
 
-        myAdapter = new MyAdapter(DisplayProgrammingOnRecyclerOverview1.this, imageDisplayConstructor, imageLocksConstructor, titlesConstructor, descriptionConstructor);
+        myAdapter = new MyAdapter(DisplayProgrammingLanguagesOnRecyclerOverview1.this, imageDisplayConstructor, imageLocksConstructor, titlesConstructor, descriptionConstructor);
         recyclerView.setAdapter(myAdapter);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayProgrammingOnRecyclerOverview1.this, LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayProgrammingLanguagesOnRecyclerOverview1.this, LinearLayoutManager.VERTICAL, false);
         linearLayoutManager.setSmoothScrollbarEnabled(true);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(DisplayProgrammingOnRecyclerOverview1.this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(DisplayProgrammingLanguagesOnRecyclerOverview1.this));
 
         recyclerView.setKeepScreenOn(true);
 

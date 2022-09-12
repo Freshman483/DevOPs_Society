@@ -4,6 +4,7 @@ import static androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRON
 import static androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -42,10 +43,12 @@ import com.shimmita.devopssociety.fragments_drawer_main.PrivacyAndPolicyFragment
 import com.shimmita.devopssociety.fragments_drawer_main.RateAppFragmentClass;
 import com.shimmita.devopssociety.fragments_drawer_main.ShareAppFragmentClass;
 import com.shimmita.devopssociety.fragments_drawer_main.TechnologicalTrendsFragmentClass;
+import com.shimmita.devopssociety.fragments_loggedin.LearningLoggedInFragmentClass;
 
 import java.util.concurrent.Executor;
 
 import es.dmoral.toasty.Toasty;
+import maes.tech.intentanim.CustomIntent;
 
 public class DrawerMainStarter extends AppCompatActivity {
 
@@ -76,8 +79,16 @@ public class DrawerMainStarter extends AppCompatActivity {
         actionBarDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //home fragment should be here(default pane)
+        /*//home fragment should be here(default pane)
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerFrameLayout, new HomeFragmentClass()).commit();
+        //*/
+
+
+        //making it become frozen after finishing it
+        //making the selected fragment be learningLoggedIn for its development purposes
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerFrameLayout,new LearningLoggedInFragmentClass()).commit();
+        //
+
         //
 
 
@@ -229,9 +240,59 @@ public class DrawerMainStarter extends AppCompatActivity {
     private void functionCheckFirebaseAuth() {
         firebaseAuth = FirebaseAuth.getInstance();
         if (firebaseAuth.getCurrentUser() != null) {
-            //make it not do anything to avoid conflicting with the devOps official since it wont be launched but directly to the logged page!
-            //Todo:clarify issue of firebase auth not null since there is some conflicts with devops officials of drawer main starter
-            //startActivity(new Intent(this, LoggedInActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            //ask the user if she/he wants to directly go to the account profile or dismiss
+
+            new androidx.appcompat.app.AlertDialog.Builder(this)
+                    .setTitle("Account Migration")
+                    .setCancelable(false)
+                    .setIcon(R.drawable.ic_baseline_info_24)
+                    .setMessage("android has detected that you logged in to your account and is trying to figure out what is your motive." +
+                            "do you want to proceed directly into your account or just logout from the account and continue with the current page you are into?.")
+                    .setPositiveButton("Proceed To Account", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            //start intent service to migrate into the account logged activity
+                            startActivity(new Intent(DrawerMainStarter.this, LoggedInActivity.class).putExtra("message", "Welcome Back"));
+                            CustomIntent.customType(DrawerMainStarter.this, "fadein-to-fadeout");
+                            //
+                            //dismiss the dialog to avoid window leaking which can lead to unconditional behaviour
+                            dialogInterface.dismiss();
+                            //
+                        }
+                    }).setNegativeButton("Stay on this Page", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            //alert the user showing that the application will be restarted
+                            new MaterialAlertDialogBuilder(DrawerMainStarter.this)
+                                    .setTitle("App Restart")
+                                    .setCancelable(false)
+                                    .setIcon(R.drawable.ic_baseline_info_24)
+                                    .setMessage("DevOps Society Team Kenya Application Will Be Restarted;No Data loss Will Happen,You Agree On This?")
+                                    .setPositiveButton("doesn't matter, do it for me please", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            //logout the user by help of firebase auth
+                                            FirebaseAuth.getInstance().signOut();
+                                            //
+                                            //activity to clear any open window and signing out the user using firebase Auth variable
+                                            startActivity(new Intent(DrawerMainStarter.this, DrawerMainStarter.class).
+                                                    addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                                            //
+                                            //kill everything and restart
+                                            finish();
+                                            //
+
+                                            //dismiss the dialog interface
+                                            dialogInterface.dismiss();
+                                            //
+                                        }
+                                    }).create().show();
+                            //
+
+
+                        }
+                    }).create().show();
+            //
         }
     }
 
@@ -260,8 +321,9 @@ public class DrawerMainStarter extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerFrameLayout, new ExitAppFragmentClass()).commit();
                     break;
 
-                case  "officials":
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerFrameLayout,new DevOpsOfficialsFragmentClass()).commit();
+                case "officials":
+                case "all_members":
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerFrameLayout, new DevOpsOfficialsFragmentClass()).commit();
                     break;
 
             }

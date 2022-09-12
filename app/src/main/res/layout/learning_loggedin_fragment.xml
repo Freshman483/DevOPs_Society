@@ -1,15 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nestedViewNothingImplementedHere"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:text="Learning Fragment"
-        android:textSize="25sp" />
+        android:layout_marginTop="5dp"
+        android:background="#DAD396"
+        android:padding="5dp">
 
-</RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="2dp"
+            android:weightSum="4">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:cardCornerRadius="30dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/exploreAvailableServices"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/textViewExploreServices"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewExploreServices">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/circleImageExploreServices"
+                        android:layout_width="99dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/hacking4"
+                        app:civ_border_color="@color/purple_700"
+                        app:civ_border_width="2dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textViewExploreServices"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Explore Available Services"
+                        android:textColor="#AD11C8"
+                        android:textSize="22sp"
+                        android:textStyle="bold|italic"
+                        app:layout_constraintStart_toEndOf="@+id/circleImageExploreServices"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="30dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/exploreProgrammingWorld"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/textViewExploreProgrammingLanguages"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewExploreProgrammingLanguages">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/circleImageExploreProgrammingLanguages"
+                        android:layout_width="99dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/hacking1"
+                        app:civ_border_color="@color/purple_700"
+                        app:civ_border_width="2dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textViewExploreProgrammingLanguages"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Explore Programming World"
+                        android:textColor="#AD11C8"
+                        android:textSize="22sp"
+                        android:textStyle="bold|italic"
+                        app:layout_constraintStart_toEndOf="@+id/circleImageExploreProgrammingLanguages"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="30dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/exploreAvailableCareers"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/textViewExploreCareersDeeply"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewExploreCareersDeeply">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/circleImageExploreCareersDeeply"
+                        android:layout_width="99dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/career"
+                        app:civ_border_color="@color/purple_500"
+                        app:civ_border_width="2dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textViewExploreCareersDeeply"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Explore Available IT Careers"
+                        android:textColor="#2B7247"
+                        android:textSize="22sp"
+                        android:textStyle="bold|italic"
+                        app:layout_constraintStart_toEndOf="@+id/circleImageExploreCareersDeeply"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="30dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/exploreCareerMentor"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/textViewExploreExploreCareerMentors"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewExploreExploreCareerMentors">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/circleImageExploreCareerMentors"
+                        android:layout_width="99dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/mentor"
+                        app:civ_border_color="@color/purple_500"
+                        app:civ_border_width="2dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textViewExploreExploreCareerMentors"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Explore Career Mentors"
+                        android:textColor="#2B7247"
+                        android:textSize="22sp"
+                        android:textStyle="bold|italic"
+                        app:layout_constraintStart_toEndOf="@+id/circleImageExploreCareerMentors"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</LinearLayout>
