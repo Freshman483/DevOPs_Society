@@ -1,9 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:padding="@dimen/paddingSmall"
     tools:context=".mains.OverallPDFUPload">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circleImageViewPdfImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="5dp"
+            android:scaleType="centerCrop"
+            android:src="@color/black"
+            app:civ_border_color="@color/purple_700"
+            app:civ_border_width="2dp" />
+
+        <TextView
+            android:id="@+id/textViewDisplayPdfImageUri"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="pdf Image Uri here"
+            android:textColor="#6A5894"
+            android:textSize="18sp"
+            android:textStyle="bold|italic" />
+
+        <EditText
+            android:id="@+id/editTextPdfName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:hint="enter the name of the pdf file" />
+
+
+        <EditText
+            android:id="@+id/editTextPdfAuthorName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:hint="enter the name of the Author for this pdf file" />
+
+        <Button
+            android:id="@+id/buttonSelectPdfFile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Select a Pdf File"
+            android:textAllCaps="false"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/textViewDisplayPdfFileUri"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:text="pdf File Uri Here"
+            android:textColor="#6A5894"
+            android:textSize="18sp"
+            android:textStyle="bold|italic" />
+
+        <Spinner
+            android:id="@+id/spinnerMainPathVariable"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/buttonSubmitPdfToCloudStorage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="post Data To Cloud Storage" />
+
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

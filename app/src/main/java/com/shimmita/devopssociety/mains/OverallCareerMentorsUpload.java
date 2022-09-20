@@ -132,7 +132,7 @@ public class OverallCareerMentorsUpload extends AppCompatActivity {
         //
 
         //log the current user
-       // Log.d(TAG, "onCreate: Current User:=>" + FirebaseAuth.getInstance().getCurrentUser().getUid());
+        // Log.d(TAG, "onCreate: Current User:=>" + FirebaseAuth.getInstance().getCurrentUser().getUid());
         //
 
     }
@@ -274,14 +274,14 @@ public class OverallCareerMentorsUpload extends AppCompatActivity {
                 //checking conditions to ensure  that the data returned was indeed not null
                 if (data != null && data.getData() != null) {
                     //obtaining the data that is in the form of Uri
-                    Uri uriDataResult = data.getData();
                     //setting the image with uri dat obtained which contains data held from the internal  storage
-                    imageUriCareerMentors = uriDataResult;
+                    imageUriCareerMentors = data.getData();
                     //setting the image with the uri data
                     circleImageViewCareerMentors.setImageURI(imageUriCareerMentors);
                     //
                     //logging the data of the uri on the debugging console
                     Log.d(TAG, "onActivityResult: ImageURI=>" + imageUriCareerMentors);
+
                     //
 
                 }

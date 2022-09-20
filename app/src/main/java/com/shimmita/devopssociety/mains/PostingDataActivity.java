@@ -19,7 +19,7 @@ public class PostingDataActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_posting_data);
         //setting the tittle of this activity to match the legitimacy of its relevance
-        this.setTitle("Posting Data Activity");
+        this.setTitle("Developer Activity Posting Data");
         //
 
     }
@@ -66,6 +66,11 @@ public class PostingDataActivity extends AppCompatActivity {
         Toast.makeText(this, "Post Programming Software Selected", Toast.LENGTH_SHORT).show();
         //
         //begin coding here
+        //migrating the activity to OverallODF class
+        startActivity(new Intent(this,OverallPDFUPload.class));
+        //animating the intent  migration
+        CustomIntent.customType(this,"fadein-to-fadeout");
+        //
 
 
         //end code
