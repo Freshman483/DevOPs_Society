@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
 
         // db = new Database(MainActivity.this);
         //
-
         constraintLayout_parent = findViewById(R.id.parent);
         appCompatButton_start = findViewById(R.id.button_start);
         imageView = findViewById(R.id.imageView);
@@ -54,8 +53,15 @@ public class MainActivity extends AppCompatActivity {
         this.setTitle("DevOPS Society Home");
 
 
-        AlertUserWelcomeHome();
+        //disabling the alert dialog welcome to the DevOps Society Dialog For Some Reasons i.e annoying the user Everytime they Logged In/
+        //launch this main activity
+        //TODO:after figuring out how to control the display of the alertDialog implement it here,
+        // temporarily is disabled the alert Dialog
+        //
+         AlertUserWelcomeHome();
+        //function that will be triggered when the imageView Animation of the Main activity is clicked
         imageViewOnclickListener();
+        //
 
     }
 
@@ -210,9 +216,17 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.account_overview:
                     Toasty.custom(getApplicationContext(), "DevOps Overview Page", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
-                    startActivity(new Intent(MainActivity.this, OverviewLearningServicesMainActivity.class));
+                    //put extra to the intent which will lock all the  images of Services Offered to the the members and reason being that this should be
+                    //logged in Order to Open the service
+
+                    String key="data_from_intent_launch";
+                    String value="lock_services_intent_is_from_main_over_view";
+
+                    startActivity(new Intent(MainActivity.this, ExploreLearningServicesMainActivity.class)
+                            .putExtra(key,value));
                     return true;
 
+                    //
 
                 case R.id.account_share:
                     Toasty.custom(getApplicationContext(), "Share And Promote DevOps Society", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();

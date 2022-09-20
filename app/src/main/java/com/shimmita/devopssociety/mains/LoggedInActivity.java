@@ -181,6 +181,8 @@ public class LoggedInActivity extends AppCompatActivity {
         navigationViewLoggedInUser.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+
                 switch (item.getItemId()) {
                     case R.id.developersLoggedInForum:
 
@@ -335,6 +337,7 @@ public class LoggedInActivity extends AppCompatActivity {
                                 //account type or role
                                 textViewDrawerAccountRole.setText(retrieveFirebaseCredentialsFromFirestore.getRole());
                                 //
+
 
                             } else {
                                 Log.d(TAG, "\nonDataChange: Snapshot not exist");

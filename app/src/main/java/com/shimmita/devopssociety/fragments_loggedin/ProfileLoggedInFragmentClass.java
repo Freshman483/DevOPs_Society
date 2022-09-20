@@ -41,6 +41,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.shimmita.devopssociety.R;
 import com.shimmita.devopssociety.mains.Login;
+import com.shimmita.devopssociety.mains.PostingDataActivity;
 import com.shimmita.devopssociety.modal.RetrieveFirebaseCredentialsFromFirestore;
 import com.shimmita.devopssociety.modal.RetrieveImageLinksFromRealtimeDB;
 
@@ -51,6 +52,8 @@ import maes.tech.intentanim.CustomIntent;
 
 public class ProfileLoggedInFragmentClass extends Fragment {
     private static final String TAG = "ProfileLoggedInFragment";
+    private static final String DEVELOPERS_NAME = "shimita douglas";
+    private static final String COMMANDER_ADMINSTRATOR = "commanderadmin";
 
     //creating progress dialog and dismiss it when data arrives
     ProgressDialog progressDialog;
@@ -80,7 +83,10 @@ public class ProfileLoggedInFragmentClass extends Fragment {
             textViewUserNameLoggedInPhoneNumber,
             textViewUserNameLoggedInAccountType,
             textViewAccountDescriptionText;
-    AppCompatButton buttonUpgradeAccount, buttonVerifyEmail;
+    AppCompatButton buttonUpgradeAccount,
+            buttonVerifyEmail,
+            buttonCommand;
+
     Button buttonChangeProfilePicture;
 //
 
@@ -98,6 +104,8 @@ public class ProfileLoggedInFragmentClass extends Fragment {
         buttonUpgradeAccount = view.findViewById(R.id.buttonUpgradeAccount);
         buttonVerifyEmail = view.findViewById(R.id.buttonVerifyEmailProfile);
         buttonChangeProfilePicture = view.findViewById(R.id.buttonChangeProfilePicture);
+        buttonCommand=view.findViewById(R.id.buttonCommander);
+
 
         //values Home fragment init from firebase
         circleImageViewAccountProfilePicture = view.findViewById(R.id.headerProfilePicture);
@@ -186,8 +194,32 @@ public class ProfileLoggedInFragmentClass extends Fragment {
         functionButtonVerifyEmailClicked();
         //
 
+        //setting onclick listener on the buttonCommander
+        buttonCommand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //call  function to start intent to another acttivity where we will add posting data functionality to the DevOps Society Kenya
+                callFunctionPostingDataDevOpsSociety();
+                //
+            }
+        });
+        //
 
         return view;
+    }
+
+    private void callFunctionPostingDataDevOpsSociety() {
+        //toasty account migration was successfully
+
+        //
+        //creating an intent to trigger migration into the posting data profile
+        requireActivity().startActivity(new Intent(requireActivity(), PostingDataActivity.class));
+        //
+        //animating the account migration
+        CustomIntent.customType(requireActivity(),"fadein-to-fadeout");
+        //
+
     }
 
     private void functionButtonVerifyEmailClicked() {
@@ -381,6 +413,19 @@ public class ProfileLoggedInFragmentClass extends Fragment {
                                 textViewUsernameLoggedInCounty.setText(retrieveFirebaseCredentialsFromFirestore.getCounty());
                                 //account role
                                 textViewUserNameLoggedInAccountType.setText(retrieveFirebaseCredentialsFromFirestore.getRole());
+                                //checking If the account role and Name contains or is equal to Developers Name,and  commanderAdmin is role,then we set
+                                //the button commander Visibility to visible else we set the button commander invisible because all users are not developers
+                                //but one of em is he.me;
+                                //when we click the button commander we will be directed to an activity to post data which will be available fo all users for access
+
+                                if (textViewUsernameLoggedInName.getText().toString().toUpperCase(Locale.ROOT).equals(DEVELOPERS_NAME)
+                                &&textViewUserNameLoggedInAccountType.getText().toString().toUpperCase(Locale.ROOT).equals(COMMANDER_ADMINSTRATOR))
+                                {
+                                    buttonCommand.setVisibility(View.VISIBLE);
+                                }
+
+
+
                                 //passion
                                 textViewUsernameLoggedInPassion.setText(retrieveFirebaseCredentialsFromFirestore.getPassion());
                                 //

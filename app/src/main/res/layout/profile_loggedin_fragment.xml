@@ -160,12 +160,12 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="15dp"
-                android:visibility="gone"
                 android:gravity="center_horizontal"
                 android:text="Upgrade Account"
                 android:textAllCaps="false"
                 android:textColor="#B92F05"
-                android:textSize="@dimen/paddingSmall" />
+                android:textSize="@dimen/paddingSmall"
+                android:visibility="gone" />
 
         </LinearLayout>
 
@@ -192,6 +192,14 @@
                 android:textColor="#795A0C"
                 android:textStyle="bold" />
 
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonCommander"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:text="Commander"
+                android:textColor="#C51162"
+                android:textStyle="bold" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

@@ -55,7 +55,7 @@ public class DevOpsOfficialsFragmentClass extends Fragment {
     RecyclerView recyclerView;
     //
 
-    //declaration of the MyAdapter
+    //declaration of the MyAdapterDisplayProgrammingLanguages
     MyAdapterAllUsers myAdapterAllUsers;
     //
     //declaration of arrayLists of Images And Data from Firestore
@@ -84,7 +84,6 @@ public class DevOpsOfficialsFragmentClass extends Fragment {
         progressDialog.create();
         progressDialog.show();
         //
-
 
         //code here using Viewer mode
         firebaseAuth = FirebaseAuth.getInstance();
@@ -257,6 +256,8 @@ public class DevOpsOfficialsFragmentClass extends Fragment {
         }
         //
         //ends
+
+
     }
 
 }

@@ -21,34 +21,38 @@ import com.shimmita.devopssociety.R;
 import com.shimmita.devopssociety.mains.SpeechClass;
 import com.shimmita.devopssociety.mains.VibratorLowly;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+import es.dmoral.toasty.Toasty;
+
+public class MyAdapterDisplayProgrammingLanguages extends RecyclerView.Adapter<MyAdapterDisplayProgrammingLanguages.ViewHolder> {
     Context context;
     int[]imageDisplayConstructor;
     int[]imageLocksConstructor;
     String[] titlesConstructor;
     String[] descriptionConstructor;
+    String reason;
     Animation animation;
 
-    public MyAdapter(Context context, int[] imageDisplayConstructor, int[] imageLocksConstructor, String[] titlesConstructor, String[] descriptionConstructor)
+    public MyAdapterDisplayProgrammingLanguages(Context context, int[] imageDisplayConstructor, int[] imageLocksConstructor, String[] titlesConstructor, String[] descriptionConstructor, String reason)
     {
         this.context = context;
         this.imageDisplayConstructor = imageDisplayConstructor;
         this.imageLocksConstructor = imageLocksConstructor;
         this.titlesConstructor = titlesConstructor;
         this.descriptionConstructor = descriptionConstructor;
+        this.reason=reason;
 
     }
 
     @NonNull
     @Override
-    public MyAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyAdapterDisplayProgrammingLanguages.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(context).inflate(R.layout.row_data,parent,false);
-        return new MyAdapter.ViewHolder(view);
+        return new MyAdapterDisplayProgrammingLanguages.ViewHolder(view);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
-    public void onBindViewHolder(@NonNull MyAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull MyAdapterDisplayProgrammingLanguages.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
       holder.imageViewDisplay.setImageResource(imageDisplayConstructor[position]);
       holder.imageViewLocks.setImageResource(imageLocksConstructor[position]);
       holder.textViewTitle.setText(titlesConstructor[position]);
@@ -61,17 +65,22 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
               //animation
               animation=AnimationUtils.loadAnimation(context,R.anim.push_right_in);
               view.startAnimation(animation);
+
+              //storing the value of the title at that given index inside the title_held
+              String title_held=titlesConstructor[position];
               //
 
-              String title_held=titlesConstructor[position];
-
-              Toast.makeText(context, "DevOPS Says You Need Login in To Unlock !", Toast.LENGTH_LONG).show();
+              //crating a toast that will be displayed showing that the reason to why the programming language locked
+              //its value is from the constructor ==reason;
+              Toasty.custom(context, reason, R.drawable.android2, R.color.teal_700, Toasty.LENGTH_LONG, true, true).show();
+              //
 
               if (title_held.equals("HTML"))
               {
                   title_held="Language for Generating The User interface Mostly On Websites";
               }
-              new SpeechClass(context,"Please Login To Unlock "+title_held+" Programming");
+              //let the speech baby bot talks from the reason perspective
+              new SpeechClass(context,reason+","+title_held);
               new VibratorLowly(context);
           }
           else

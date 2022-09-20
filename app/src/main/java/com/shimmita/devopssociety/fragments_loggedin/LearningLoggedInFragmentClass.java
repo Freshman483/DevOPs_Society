@@ -21,7 +21,8 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.shimmita.devopssociety.R;
 import com.shimmita.devopssociety.mains.DisplayProgrammingLanguagesOnRecyclerOverview1;
-import com.shimmita.devopssociety.mains.OverviewLearningServicesMainActivity;
+import com.shimmita.devopssociety.mains.ExploreLearningServicesMainActivity;
+import com.shimmita.devopssociety.mains.PersistentCareerSAndMentors;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -280,7 +281,7 @@ public class LearningLoggedInFragmentClass extends Fragment {
 
 
                         //adding if condition to make decisions decisively
-                        if (adapterView.getItemAtPosition(i).toString().contains("what's in here?click to find out")) {
+                        if (adapterView.getItemAtPosition(i).toString().equals("what's in here?click to find out")) {
                             //dismiss listPopUpWindowAfterClicking Item
                             listPopupWindow.dismiss();
                             //
@@ -289,15 +290,16 @@ public class LearningLoggedInFragmentClass extends Fragment {
                             functionShowAlertDialogAboutCareers();
                             //
 
-                        } else if (adapterView.getItemAtPosition(i).toString().contains("open explore careers in IT")) {
+                        } else if (adapterView.getItemAtPosition(i).toString().equals("open explore career in IT")) {
+                            //intent to persistent sheet activity containing the careers and mentors
+                            startActivity(new Intent(getActivity(),PersistentCareerSAndMentors.class));
+                            CustomIntent.customType(requireActivity(),"fadein-to-fadeout");
+                            //
+
                             //dismiss listPopUpWindowAfterClicking Item
                             listPopupWindow.dismiss();
                             //
 
-                            //
-
-
-                            //
 
                         } else if (adapterView.getItemAtPosition(i).toString().contains("dismiss this window")) {
                             //dismiss the list PopUp
@@ -391,9 +393,15 @@ public class LearningLoggedInFragmentClass extends Fragment {
 
     private void functionOpenProgrammingLanguages() {
         //start an intent which will trigger off the opening of the Programming languages present in that particular activity
-        requireActivity().startActivity(new Intent(requireActivity(), DisplayProgrammingLanguagesOnRecyclerOverview1.class));
+        //lets put a string extra which will make the all programming languages get locked, because the intent opens the programming languages only for
+        //a preview session not for learning as this will be done in the explore services only
+        String keyLock = "data_from_intent_launch";
+        String putLockOnTheLanguages = "locked_from_explore_programming_world";
+
+        requireActivity().startActivity(new Intent(requireActivity(), DisplayProgrammingLanguagesOnRecyclerOverview1.class).
+                putExtra(keyLock, putLockOnTheLanguages));
         //starting the intent animation  when the activity launches
-        CustomIntent.customType(requireActivity(),"fadein-to-fadeout");
+        CustomIntent.customType(requireActivity(), "fadein-to-fadeout");
         //
         //toasty the successful launch
         Toasty.custom(requireActivity(), "Successfully Launched", R.drawable.android2, R.color.teal_700, Toasty.LENGTH_LONG, true, true).show();
@@ -402,8 +410,10 @@ public class LearningLoggedInFragmentClass extends Fragment {
 
     private void functionOpenLearningServicesOfGridViewStyle() {
 
-        //creation of intent that will gonna trigger of opening of this intent service
-        requireActivity().startActivity(new Intent(requireActivity(), OverviewLearningServicesMainActivity.class));
+        //creation of intent that will gonna trigger of opening of the services offered in gridView style. its the main center of learning where
+        //the user will select a course from the variety offered;
+        requireActivity().startActivity(new Intent(requireActivity(), ExploreLearningServicesMainActivity.class));
+        //
         //starting the intent animation design using the custom intent library
         CustomIntent.customType(requireActivity(), "fadein-to-fadeout");
         //Toasting the successful launch

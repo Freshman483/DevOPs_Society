@@ -652,9 +652,7 @@ public class Registration extends AppCompatActivity {
         if (requestCode == GALLERY_REQUEST_CODE && data != null && data.getData() != null) {
             if (resultCode == RESULT_OK) {
 
-
                 imageUriPath = data.getData();
-
                 //
                 circleImageView_profile_picture_to_firebase.setImageURI(imageUriPath);
                 //sets the image on the circular
@@ -1027,7 +1025,9 @@ public class Registration extends AppCompatActivity {
                     Log.d(TAG, "\nregistrationCredentialCheck: universityName->" + string6);
                     Log.d(TAG, "\nregistrationCredentialCheck: FloatingButtonEND");
 
+                    //call the function to register the users by passing the username and email into it
                     registerUser(emailReg, passwordReg);
+                    //
 
                 }
 
@@ -1053,7 +1053,7 @@ public class Registration extends AppCompatActivity {
         //defining Progress Dialog
         ProgressDialog pg = new ProgressDialog(Registration.this);
         pg.setTitle(usernameReg.toUpperCase(Locale.ROOT));
-        pg.setMessage("Registering");
+        pg.setMessage("Registering...");
         pg.create();
         pg.show();
 
@@ -1069,10 +1069,12 @@ public class Registration extends AppCompatActivity {
                     //
 
                     pg.dismiss();
+
+                    //alert the user that the first step of registration is done
                     new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
                             .setTitle("Registration Step 1/3 Completed")
                             .setCancelable(false)
-                            .setMessage(usernameReg + " You have successfully Completed Step One Of registration Process You're are allowed to make proceed ")
+                            .setMessage(usernameReg + " You have successfully completed the first step of registration Process, you're are allowed to make proceed ")
                             .setIcon(R.drawable.ic_baseline_check)
                             .setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
                                 @Override
@@ -1127,11 +1129,14 @@ public class Registration extends AppCompatActivity {
         String keyAdminChatReceive = "AdminChatReceive";   //receives from admin
         String valueAdminChatReceive = "Receive";
         //
-        //chat implementation for members to be completed here after grasp of logic
+        //TODO:chat implementation for members to be completed here after grasp of logic
         //
 
+        //defining a map to store the key and value pairs in the firestore
         Map<String, Object> mapAccountDetails = new HashMap<>();
+        //
 
+        //adding key value pair to the map
         mapAccountDetails.put(keyUsername, usernameReg);
         mapAccountDetails.put(keyEmail, emailReg);
         mapAccountDetails.put(keyPhoneNumber, phoneNumberReg);
@@ -1146,20 +1151,21 @@ public class Registration extends AppCompatActivity {
         mapAccountDetails.put(keyAdminChatSend, valueAdminChatSend);
         mapAccountDetails.put(keyAdminChatReceive, valueAdminChatReceive);
 
-        //adding firestore the data
+        //adding fireStore the data
         collectionReferenceAccountInformation.document(firebaseUser).set(mapAccountDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    //dismiss the progress
+                    //dismiss the progress since data store to fireStore Was Successfull
                     progressDialogLocally.dismiss();
                     //
 
+                    //alert the user that the step 2 wof storing the user data was successful
                     new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
                             .setTitle("Registration Step 2/3 Successful!")
                             .setCancelable(false)
-                            .setMessage("(" + usernameReg + ")  You have successfully Completed Step Two Of registration Process You're are allowed to make the last step " +
-                                    "of registration")
+                            .setMessage("(" + usernameReg + ")  You have successfully completed step two of the registration process, You're are allowed to make the last step " +
+                                    "of registration process.")
                             .setIcon(R.drawable.ic_baseline_check)
                             .setPositiveButton("Lets Complete", new DialogInterface.OnClickListener() {
                                 @Override
@@ -1167,17 +1173,17 @@ public class Registration extends AppCompatActivity {
                                     dialogInterface.dismiss();
                                     //call function complete registration of uploading image
                                     functionUploadImageToFirebaseStorage();
-
                                     //
                                 }
                             }).create().show();
 
 
                 } else {
-                    //dismiss progress
+                    //dismiss progress since an exception is possibly thrown
                     progressDialogLocally.dismiss();
                     //
 
+                    //alert the user that something was indeed went wrong
                     new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
                             .setTitle("Something Went Wrong!")
                             .setCancelable(false)
@@ -1196,6 +1202,7 @@ public class Registration extends AppCompatActivity {
 
     }
 
+    //function to up the image to the firebaseStorage
     private void functionUploadImageToFirebaseStorage() {
 
         //progress for setting Profile Picture
@@ -1208,24 +1215,32 @@ public class Registration extends AppCompatActivity {
 
         //showing the progress
         progressDialogLocallyImage.show();
+        //
 
+        //defining the root path in the firebaseStorage for storing the images
         String profileImagesLocally = "ProfileImages";
+        //
 
+        //using the storage reference to reflect in the initialised firebaseStorage of Firebase
         storageReference = firebaseStorage.getReference().child(profileImagesLocally).child(firebaseUser).child(usernameReg);
+        //
+
+        //putting process into the firebaseStorage
         storageReference.putFile(imageUriPath).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
 
                 if (task.isSuccessful()) {
-                    //
+                    //dismiss the dialog since the process of putting the file into the database was a succeed
                     progressDialogLocallyImage.dismiss();
                     //
 
-                    //alerting User that last step is completed
+
+                    //alerting User that last step is completed;the step of storing the data into the firebaseFireStore Succeed
                     new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
                             .setTitle("Registration Step 3/3 Successful!")
                             .setCancelable(false)
-                            .setMessage("(" + usernameReg + ")  You have successfully Completed the Last Step Of registration Process, accept to Finish the Process " +
+                            .setMessage("(" + usernameReg + ")  You have successfully completed the Last step Of registration process, accept to finish the process " +
                                     "of registration")
                             .setIcon(R.drawable.ic_baseline_check)
                             .setPositiveButton("Accept", (dialogInterface, i) -> {
@@ -1236,9 +1251,9 @@ public class Registration extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<Uri> task1) {
                                         //calling the function to carry out the operations off writing the image to realtime database
+                                        //and passing the task parameter which contains the download URI in It
                                         functionAddImageUriToDatabase(task1);
                                         //
-
                                     }
                                 });
 
@@ -1246,7 +1261,12 @@ public class Registration extends AppCompatActivity {
                             }).create().show();
 
                 } else {
+
+                    //dismiss the dialog since an exception is thrown and it should be shown to the user
                     progressDialogLocallyImage.dismiss();
+                    //
+
+                    //the alert dialog that will display the exception
                     new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
                             .setTitle("Something Went Wrong !")
                             .setCancelable(false)
@@ -1266,14 +1286,13 @@ public class Registration extends AppCompatActivity {
     }
 
     private void functionAddImageUriToDatabase(Task<Uri> task) {
-        //
-
+        //creating a progressDialog which will show the process of adding the image to the firebase FireSStore
         ProgressDialog progressDialogImageUrlToRealTimeDatabase = new ProgressDialog(Registration.this);
         progressDialogImageUrlToRealTimeDatabase.setCancelable(false);
         progressDialogImageUrlToRealTimeDatabase.setTitle(usernameReg);
         progressDialogImageUrlToRealTimeDatabase.setMessage("saving account details...");
         progressDialogImageUrlToRealTimeDatabase.create();
-
+        //
 
         //showing the progress
         progressDialogImageUrlToRealTimeDatabase.show();
@@ -1282,8 +1301,9 @@ public class Registration extends AppCompatActivity {
         //NB constant profile image path in rdb ="ProfileImagePath"
 
         String keyImageUriLocally = "imagePath";
+        //the valueStoredUrl contains the image Uri Path
         String valueStoredUrl = task.getResult().toString();
-
+        //
 
         //creating a map to merge the image uRI to firebase fireStore also
         //in this situation we will have two image paths of RDB and Also Firestore thus enhanced redundancy
@@ -1292,15 +1312,14 @@ public class Registration extends AppCompatActivity {
         //trying to merge the original fireBaseFirestore credentials with the image Url gotten which is to be stored in RDB
         collectionReferenceAccountInformation.document(firebaseUser).set(mapMergeImageUriToFirestore, SetOptions.merge());
         //
-
         //creating a map to save the image into The RDB
         Map<String, Object> mapImageUrlToRealtimeDatabase = new HashMap<>();
         mapImageUrlToRealtimeDatabase.put(keyImageUriLocally, valueStoredUrl);
         //
 
-        //starting the operations of saving the image into the RDB
+        //starting the operations of saving the image into the RDB by initialisation of the databaseReference first
         databaseReference = firebaseDatabase.getReference().child(PROFILE_IMAGE_PATH_IN_RDB).child(firebaseUser).child(usernameReg); //imagePaths-userID-name-map
-
+        //performing the operation of saving the image to the realtime database alias RDB
         databaseReference.setValue(mapImageUrlToRealtimeDatabase).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -1309,14 +1328,15 @@ public class Registration extends AppCompatActivity {
                     progressDialogImageUrlToRealTimeDatabase.dismiss();
                     //
 
-                    //first success dialog
+                    //function to show that the registration processes was successful and that user may view the data  supplied
                     functionFinalRegistrationShowDetailedAll();
                     //
-                } else {
-                    //dismiss
-                    progressDialogImageUrlToRealTimeDatabase.dismiss();
 
+                } else {
+                    //dismiss an Exception is thrown and needs it be shown to the user
+                    progressDialogImageUrlToRealTimeDatabase.dismiss();
                     //
+
                     //alert User Of Wrong happening
                     new androidx.appcompat.app.AlertDialog.Builder(Registration.this)
                             .setTitle("Something Went Wrong!")
@@ -1399,15 +1419,18 @@ public class Registration extends AppCompatActivity {
     }
 
 
+    //function step one registration failed with its reason of failure
     private void functionErrorOfRegistrationProcess(Task<AuthResult> task, ProgressDialog pg) {
-
+        //dismiss the progress since error also is a form of result output
         pg.dismiss();
+        //
 
+        //alert the user of the step one registration
         new MakeVibrator(Registration.this);
         new AlertDialog.Builder(this)
                 .setTitle("REGISTRATION FAILED!")
                 .setMessage("Dear (" + usernameReg.toUpperCase(Locale.ROOT) + ") " +
-                        "Your Registration Was Unsuccessful This Might Be Due To:\n" +
+                        "your registration was unsuccessful this might be due to:\n" +
                         "\nMajor Reason:\n" + task.getException().getMessage().toUpperCase(Locale.ROOT) + "\n\nOther Reasons Include:\n" +
                         "\n1.Internet Connectivity Issues,If So Please Turn On The Internet And Retry The Registration Process Again." +
                         "\n " +

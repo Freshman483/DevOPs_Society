@@ -11,10 +11,11 @@
     android:layout_marginBottom="8dp">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="127dp"
-        android:layout_height="127dp"
-        app:cardCornerRadius="15dp"
-        app:contentPadding="5dp"
+        android:layout_width="137dp"
+        android:layout_height="137dp"
+        app:cardCornerRadius="28dp"
+        app:contentPadding="3dp"
+        app:cardBackgroundColor="#F49C4D"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,6 +41,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="10dp"
+                android:textColor="@color/white"
+                android:textStyle="bold|italic"
                 android:text="TextView"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

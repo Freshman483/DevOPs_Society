@@ -76,7 +76,6 @@ public class MyAdapterAllUsers extends RecyclerView.Adapter<MyAdapterAllUsers.My
                 functionPlaySomeAnimationsOnTheButtonClick(view);
                 //
 
-
                 //create a popup menu to show the user what selection he/she is into
                 PopupMenu popupMenu = new PopupMenu(context, view, Gravity.CENTER);
                 popupMenu.inflate(R.menu.all_users_menu_pop_up_in_the_adapter);

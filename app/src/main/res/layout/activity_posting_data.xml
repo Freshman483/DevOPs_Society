@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:contentDescription="nestedScrollViewPostingActivity"
+    tools:context=".mains.PostingDataActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#928C9E"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <Button
+            android:id="@+id/buttonPostCareersInIT"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="functionCareersInIT"
+            android:layout_marginTop="5dp"
+            android:text="Post Careers In  I.T Field"
+            android:textAllCaps="false"
+            android:textColor="#01432E"
+            android:textStyle="bold|italic" />
+
+        <Button
+            android:id="@+id/buttonPostCareerMentorsInIT"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="functionCareerMentors"
+            android:layout_marginTop="5dp"
+            android:text="Post Career Mentors In IT"
+            android:textAllCaps="false"
+            android:textColor="#01432E"
+            android:textStyle="bold|italic" />
+
+        <Button
+            android:id="@+id/buttonPostProgramming"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="functionProgrammingSoftware"
+            android:layout_marginTop="5dp"
+            android:text="Post Programming Software"
+            android:textAllCaps="false"
+            android:textColor="#01432E"
+            android:textStyle="bold|italic" />
+
+        <Button
+            android:id="@+id/buttonPostWebDevelopment"
+            android:onClick="functionWebDevelopment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:text="Post  Web Development"
+            android:textAllCaps="false"
+            android:textColor="#01432E"
+            android:textStyle="bold|italic" />
+
+
+        <Button
+            android:id="@+id/buttonPostDataBaseManagement"
+            android:layout_width="match_parent"
+            android:onClick="functionDatabaseManagement"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:text="Post Database Management"
+            android:textAllCaps="false"
+            android:textColor="#01432E"
+            android:textStyle="bold|italic" />
+
+        <Button
+            android:id="@+id/buttonPostMachineLearning"
+            android:layout_width="match_parent"
+            android:onClick="functionMachineLearning"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:text="Post Machine Learning"
+            android:textAllCaps="false"
+            android:textColor="#01432E"
+            android:textStyle="bold|italic" />
+
+        <Button
+            android:id="@+id/buttonPostArtificialIntelligence"
+            android:layout_width="match_parent"
+            android:onClick="functionArtificialIntelligence"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:text="Post Artificial Intelligence"
+            android:textAllCaps="false"
+            android:textColor="#01432E"
+            android:textStyle="bold|italic" />
+
+
+        <Button
+            android:id="@+id/buttonPostAndroidProgramming"
+            android:onClick="functionAndroidProgramming"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:text="Post Android Programming"
+            android:textAllCaps="false"
+            android:textColor="#01432E"
+            android:textStyle="bold|italic" />
+
+
+        <Button
+            android:id="@+id/buttonPostIOSProgramming"
+            android:onClick="functionIOSProgramming"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:text="Post IOS Programming"
+            android:textAllCaps="false"
+            android:textColor="#01432E"
+            android:textStyle="bold|italic" />
+
+        <Button
+            android:id="@+id/buttonPostCloudComputing"
+            android:layout_width="match_parent"
+            android:onClick="functionCloudComputing"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:text="Post Cloud Computing"
+            android:textAllCaps="false"
+            android:textColor="#01432E"
+            android:textStyle="bold|italic" />
+
+        <Button
+            android:id="@+id/buttonPostContainerisation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:onClick="functionContainerisationDockerOption"
+            android:text="Post Containerisation With Docker"
+            android:textAllCaps="false"
+            android:textColor="#01432E"
+            android:textStyle="bold|italic" />
+
+
+        <Button
+            android:id="@+id/buttonPostReverseEngineering"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:text="Post Reverse Engineering Linux"
+            android:textAllCaps="false"
+            android:onClick="functionReverseEngineering"
+            android:textColor="#01432E"
+            android:textStyle="bold|italic" />
+
+
+        <Button
+            android:id="@+id/buttonPostPenetrationTesting"
+            android:layout_width="match_parent"
+            android:onClick="functionPenetrationTesting"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:text="Post Penetration Testing"
+            android:textAllCaps="false"
+            android:textColor="#01432E"
+            android:textStyle="bold|italic" />
+
+
+        <Button
+            android:id="@+id/buttonPostBestIDES"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:text="Post Best IDES For Programming"
+            android:textAllCaps="false"
+            android:onClick="functionBestIDES"
+            android:textColor="#01432E"
+            android:textStyle="bold|italic" />
+
+        <Button
+            android:id="@+id/buttonPostLinuxOS"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:text="Post Linux Operating Stystem"
+            android:textAllCaps="false"
+            android:onClick="functionLinuxOperatingSystem"
+            android:textColor="#01432E"
+            android:textStyle="bold|italic" />
+
+
+        <Button
+            android:id="@+id/buttonPostWindowsOS"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="functionWindowsOperatingSystem"
+            android:layout_marginTop="5dp"
+            android:text="Post Windows Operating System"
+            android:textAllCaps="false"
+            android:textColor="#01432E"
+            android:textStyle="bold|italic" />
+
+
+        <Button
+            android:id="@+id/buttonPostDarkWeb"
+            android:onClick="functionDarkWebContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:text="Post Dark Web Contents"
+            android:textAllCaps="false"
+            android:textColor="#01432E"
+            android:textStyle="bold|italic" />
+
+
+        <Button
+            android:id="@+id/buttonPostHackingTechniques"
+            android:layout_width="match_parent"
+            android:onClick="functionHackingTechniques"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:text="Post Hacking Techniques"
+            android:textAllCaps="false"
+            android:textColor="#01432E"
+            android:textStyle="bold|italic" />
+
+
+        <Button
+            android:id="@+id/buttonPostVirusTechniques"
+            android:layout_width="match_parent"
+            android:onClick="functionVirusTechniques"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:text="Post Virus Techniques"
+            android:textAllCaps="false"
+            android:textColor="#01432E"
+            android:textStyle="bold|italic" />
+
+
+    </LinearLayout>
+
+
+</androidx.core.widget.NestedScrollView>
