@@ -61,178 +61,18 @@ public class PostingDataActivity extends AppCompatActivity {
         //end code
     }
 
-    public void functionProgrammingSoftware(View view) {
+    public void functionPostPdfServiceToUsers(View view) {
         //toasting the clicked selection
         Toast.makeText(this, "Post Programming Software Selected", Toast.LENGTH_SHORT).show();
         //
         //begin coding here
         //migrating the activity to OverallODF class
-        startActivity(new Intent(this,OverallPDFUPload.class));
+        startActivity(new Intent(this, OverallServicePdfUpload.class));
         //animating the intent  migration
         CustomIntent.customType(this,"fadein-to-fadeout");
         //
-
-
         //end code
     }
 
-    public void functionWebDevelopment(View view) {
-        //toasting the clicked selection
-        Toast.makeText(this, "Post WebDevelopment Selected", Toast.LENGTH_SHORT).show();
-        //
-        //begin coding here
 
-
-        //end code
-    }
-
-    public void functionDatabaseManagement(View view) {
-        //toasting the clicked selection
-        Toast.makeText(this, "Post Database Management Selected", Toast.LENGTH_SHORT).show();
-        //
-        //begin coding here
-
-
-        //end code
-    }
-
-    public void functionMachineLearning(View view) {
-        //toasting the clicked selection
-        Toast.makeText(this, "Post Machine Learning Selected", Toast.LENGTH_SHORT).show();
-        //
-        //begin coding here
-
-
-        //end code
-    }
-
-    public void functionArtificialIntelligence(View view) {
-        //toasting the clicked selection
-        Toast.makeText(this, "Post Artificial Intelligence   Selected", Toast.LENGTH_SHORT).show();
-        //
-        //begin coding here
-
-
-        //end code
-    }
-
-    public void functionAndroidProgramming(View view) {
-        //toasting the clicked selection
-        Toast.makeText(this, "Post Android Programming  Selected", Toast.LENGTH_SHORT).show();
-        //
-        //begin coding here
-
-
-        //end code
-    }
-
-    public void functionIOSProgramming(View view) {
-        //toasting the clicked selection
-        Toast.makeText(this, "Post IOS Programming  Selected", Toast.LENGTH_SHORT).show();
-        //
-        //begin coding here
-
-
-        //end code
-    }
-
-    public void functionCloudComputing(View view) {
-        //toasting the clicked selection
-        Toast.makeText(this, "Post Cloud Computing Selected", Toast.LENGTH_SHORT).show();
-        //
-        //begin coding here
-
-
-        //end code
-    }
-
-    public void functionContainerisationDockerOption(View view) {
-        //toasting the clicked selection
-        Toast.makeText(this, "Post Containerisation  Selected", Toast.LENGTH_SHORT).show();
-        //
-        //begin coding here
-
-
-        //end code
-    }
-
-    public void functionReverseEngineering(View view) {
-        //toasting the clicked selection
-        Toast.makeText(this, "Post Reverse Engineering  Selected", Toast.LENGTH_SHORT).show();
-        //
-        //begin coding here
-
-
-        //end code
-    }
-
-    public void functionPenetrationTesting(View view) {
-        //toasting the clicked selection
-        Toast.makeText(this, "Post Penetration Testing Selected", Toast.LENGTH_SHORT).show();
-        //
-        //begin coding here
-
-
-        //end code
-    }
-
-    public void functionBestIDES(View view) {
-        //toasting the clicked selection
-        Toast.makeText(this, "Post Best IDES Selected", Toast.LENGTH_SHORT).show();
-        //
-        //begin coding here
-
-
-        //end code
-    }
-
-    public void functionWindowsOperatingSystem(View view) {
-        //toasting the clicked selection
-        Toast.makeText(this, "Post Windows Operating System Selected", Toast.LENGTH_SHORT).show();
-        //
-        //begin coding here
-
-
-        //end code
-    }
-
-    public void functionDarkWebContent(View view) {
-        //toasting the clicked selection
-        Toast.makeText(this, "Post Dark Web Content Selected", Toast.LENGTH_SHORT).show();
-        //
-        //begin coding here
-
-
-        //end code
-    }
-
-    public void functionHackingTechniques(View view) {
-        //toasting the clicked selection
-        Toast.makeText(this, "Post Hacking Techniques Selected", Toast.LENGTH_SHORT).show();
-        //
-        //begin coding here
-
-
-        //end code
-    }
-
-    public void functionVirusTechniques(View view) {
-        //toasting the clicked selection
-        Toast.makeText(this, "Post Virus Techniques Selected", Toast.LENGTH_SHORT).show();
-        //
-        //begin coding here
-
-
-        //end code
-    }
-
-    public void functionLinuxOperatingSystem(View view) {
-        //toasting the clicked selection
-        Toast.makeText(this, "Post Linux Operating Systems Selected", Toast.LENGTH_SHORT).show();
-        //
-        //begin coding here
-
-
-        //end code
-    }
 }

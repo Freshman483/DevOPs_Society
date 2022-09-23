@@ -46,7 +46,7 @@ public class LoginAccountFragmentClass extends Fragment implements View.OnClickL
         floatingActionButtonLogin.startAnimation(animation);
         startActivity(new Intent(getActivity(), Login.class));
         CustomIntent.customType(getActivity(), "fadein-to-fadeout");
-        Toasty.custom(getActivity(), "Begin Registration", R.drawable.android2, R.color.purple_700, Toasty.LENGTH_LONG, true, true).show();
+        Toasty.custom(getActivity(), "Begin Login", R.drawable.android2, R.color.purple_700, Toasty.LENGTH_LONG, true, true).show();
 
     }
 }

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:cardBackgroundColor="#DEC8FA"
+    app:contentPadding="@dimen/paddingSmall"
+    app:cardCornerRadius="50dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/buttonLogoutWithSignOut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Exit With Signing Me Out"
+            android:layout_marginBottom="@dimen/paddingSmall"
+            android:textAllCaps="false"
+            android:textColor="#AC5757"
+            android:textStyle="italic" />
+
+        <Button
+            android:id="@+id/buttonLogoutWithoutSignOut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Exit Without Signing Me Out"
+            android:layout_marginBottom="@dimen/paddingSmall"
+            android:textAllCaps="false"
+            android:textColor="#896464"
+            android:textStyle="italic" />
+
+        <Button
+            android:id="@+id/buttonNoneOfTheAbove"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="None Of The Above"
+            android:layout_marginBottom="@dimen/paddingSmall"
+            android:textAllCaps="false"
+            android:textColor="#670E94"
+            android:textStyle="italic" />
+
+        <Button
+            android:id="@+id/buttonHelp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:drawableEnd="@drawable/ic_baseline_emoji_help_people"
+            android:text="Help ?"
+            android:textAllCaps="false"
+            android:textColor="#FF6D00"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewShowHelp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/help_text_backPressed_LoggedIn"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/buttonUnderstoodHelp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:drawableTop="@drawable/ic_baseline_thumb_up_24"
+            android:text="Ok, Gat It"
+            android:textAllCaps="false"
+            android:textColor="@color/purple_700"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

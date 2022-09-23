@@ -1,12 +1,23 @@
 package com.shimmita.devopssociety.mains;
 
+import static com.shimmita.devopssociety.fragments_loggedin.ProfileLoggedInFragmentClass.KEY_ACCOUNT_TYPE;
+import static com.shimmita.devopssociety.fragments_loggedin.ProfileLoggedInFragmentClass.KEY_BUNDLE_DATA_HEADER_LOGGED_PROFILE;
+import static com.shimmita.devopssociety.fragments_loggedin.ProfileLoggedInFragmentClass.KEY_COUNTY;
+import static com.shimmita.devopssociety.fragments_loggedin.ProfileLoggedInFragmentClass.KEY_EMAIL;
+import static com.shimmita.devopssociety.fragments_loggedin.ProfileLoggedInFragmentClass.KEY_IMAGE_PATH;
+import static com.shimmita.devopssociety.fragments_loggedin.ProfileLoggedInFragmentClass.KEY_PASSION;
+import static com.shimmita.devopssociety.fragments_loggedin.ProfileLoggedInFragmentClass.KEY_PHONE;
+import static com.shimmita.devopssociety.fragments_loggedin.ProfileLoggedInFragmentClass.KEY_UNIVERSITY;
+import static com.shimmita.devopssociety.fragments_loggedin.ProfileLoggedInFragmentClass.KEY_USERNAME;
 import static com.shimmita.devopssociety.mains.Registration.FIREBASE_USER_COLLECTION;
 import static com.shimmita.devopssociety.mains.Registration.PROFILE_IMAGE_PATH_IN_RDB;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +32,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentResultListener;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -47,6 +59,7 @@ import com.shimmita.devopssociety.fragments_loggedin.LogoutLoggedInFragmentClass
 import com.shimmita.devopssociety.fragments_loggedin.MembersRankingListLoggedInFragmentClass;
 import com.shimmita.devopssociety.fragments_loggedin.MessagingLoggedInFragmentClass;
 import com.shimmita.devopssociety.fragments_loggedin.ProfileLoggedInFragmentClass;
+import com.shimmita.devopssociety.general_alerts.ClassBottomSheetShow;
 import com.shimmita.devopssociety.modal.RetrieveFirebaseCredentialsFromFirestore;
 import com.shimmita.devopssociety.modal.RetrieveImageLinksFromRealtimeDB;
 
@@ -95,6 +108,7 @@ public class LoggedInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logged_in);
+        Log.d(TAG, "onCreate: LoggedIn");
 
         //setting the title for logged in window on action bar
         this.setTitle("Logged In Successfully");
@@ -102,21 +116,9 @@ public class LoggedInActivity extends AppCompatActivity {
         //init of firebase Globals
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = null;
-        //collection reference and fireStore init inside the function to download the data from firestorm to avoid null object invocation from current user
-        //which may lead to app crushing
-
-        //firebase database and database reference init
-      /*  firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference();*/
         //firebaseStorage and Storage reference init;
         firebaseStorage = FirebaseStorage.getInstance();
         storageReference = firebaseStorage.getReference();
-        //function obtain account details from FireStore
-        callFunctionDownloadDataFromFirestore();
-        //
-
-
-        Log.d(TAG, "onCreate: LoggedIn");
 
         //init of main variables
         drawerLayoutLoggedInUser = findViewById(R.id.drawerLayoutLoggedInUser);
@@ -134,6 +136,8 @@ public class LoggedInActivity extends AppCompatActivity {
 
         //making profile fragment the default on launch of the logged in activity
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_UserLoggedIn_frameLayout, new ProfileLoggedInFragmentClass()).commitNow();
+        //setting the default title to account profile since it is the home profile by default on the loggedInActivity
+        setTitleOfLoggedInMatchingTheCurrentFragment("Account Profile");
         //
 
         //adding listener to bottomNavigationViewUserLoggedIn
@@ -143,27 +147,42 @@ public class LoggedInActivity extends AppCompatActivity {
 
                 switch (item.getItemId()) {
                     case R.id.userLoggedInProfile:
+                        //setting the title of the parent to profile
+                        setTitleOfLoggedInMatchingTheCurrentFragment("Account Profile");
+                        //
                         fragmentSelectedLoggedIn = new ProfileLoggedInFragmentClass();
                         Toast.makeText(LoggedInActivity.this, "profile", Toast.LENGTH_SHORT).show();
                         break;
 
                     case R.id.jobsLoggedIn:
+                        //setting the title of the parent to profile
+                        setTitleOfLoggedInMatchingTheCurrentFragment("Jobs Profile");
+                        //
                         fragmentSelectedLoggedIn = new JobsLoggedInFragmentClass();
                         Toast.makeText(LoggedInActivity.this, "jobs", Toast.LENGTH_SHORT).show();
                         break;
 
                     case R.id.messagingLoggedIn:
+                        //setting the title of the parent to profile
+                        setTitleOfLoggedInMatchingTheCurrentFragment("Message(s) Profile");
+                        //
                         fragmentSelectedLoggedIn = new MessagingLoggedInFragmentClass();
                         Toast.makeText(LoggedInActivity.this, "messaging", Toast.LENGTH_SHORT).show();
                         break;
 
                     case R.id.logoutLoggedInUser:
+                        //setting the title of the parent to profile
+                        setTitleOfLoggedInMatchingTheCurrentFragment("Exit Profile");
+                        //
                         fragmentSelectedLoggedIn = new LogoutLoggedInFragmentClass();
                         Toast.makeText(LoggedInActivity.this, "log out", Toast.LENGTH_SHORT).show();
 
                         break;
 
                     case R.id.LearningLoggedIn:
+                        //setting the title of the parent to profile
+                        setTitleOfLoggedInMatchingTheCurrentFragment("Explore Learning Services Offered");
+                        //
                         fragmentSelectedLoggedIn = new LearningLoggedInFragmentClass();
                         Toast.makeText(LoggedInActivity.this, "learning", Toast.LENGTH_SHORT).show();
                         break;
@@ -236,6 +255,75 @@ public class LoggedInActivity extends AppCompatActivity {
         textViewDrawerAccountRole = view.findViewById(R.id.drawerAccountType);
         textViewDrawerUniversity=view.findViewById(R.id.drawerUniversity);
         //
+
+        //call a function which will determine if we have to fetch data from the firestore again in case data
+        //received from the profile loggedIn  contains any null. if no null set the data received through fragment manager
+        callFunctionDecideFetchingDataForDrawerHeaderFromFireStore();
+        //
+
+        //end of onCreateMethod
+    }
+
+    private void callFunctionDecideFetchingDataForDrawerHeaderFromFireStore() {
+        //getting the data by use of Fragment result listener from the profileLoggedInBundle
+        getSupportFragmentManager().setFragmentResultListener(KEY_BUNDLE_DATA_HEADER_LOGGED_PROFILE, this, new FragmentResultListener() {
+            @Override
+            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+                String imagePath,username,phone,county,email,university,passion,accountType;
+
+                imagePath=result.getString(KEY_IMAGE_PATH);
+                username= result.getString(KEY_USERNAME);
+                phone= result.getString(KEY_PHONE);
+                county=result.getString(KEY_COUNTY);
+                email= result.getString(KEY_EMAIL);
+                university= result.getString(KEY_UNIVERSITY);
+                passion= result.getString(KEY_PASSION);
+                accountType=result.getString(KEY_ACCOUNT_TYPE);
+
+                //calling function that will either data on the drawer header views or downloading the data from fireStore
+
+                callFunctionSetDataDrawerHeaderOrFetchDataFromFiresTore(imagePath,username,phone,county,email,university,passion,accountType);
+                //
+
+            }
+        });
+        //
+
+    }
+
+    private void callFunctionSetDataDrawerHeaderOrFetchDataFromFiresTore(String imagePath, String username, String phone, String county, String email, String university, String passion, String accountType) {
+        //using text utils to check null data and if no null set the views with data else fetch from the Cloud
+        if (TextUtils.isEmpty(imagePath)||TextUtils.isEmpty(username)||TextUtils.isEmpty(phone)||TextUtils.isEmpty(county)||TextUtils.isEmpty(email)||
+        TextUtils.isEmpty(university)||TextUtils.isEmpty(passion)||TextUtils.isEmpty(accountType))
+        {
+            //null data present call function to fetching the data from the cloudFireStore
+            callFunctionDownloadDataFromFirestore();
+            //
+        }
+        else
+        {
+            //set drawer header Views with the data obtained from the profile logged in via bundle using fragment manager
+            //setting the values into the navigation drawer header since all the data we have fetched it
+            //drawer picture
+            Glide.with(LoggedInActivity.this).load(imagePath).into(circleImageViewDrawerPicture);
+            //drawerUsername
+            textViewDrawerUsername.setText(username.toUpperCase(Locale.ROOT));
+            //drawerCounty
+            textViewDrawerCounty.setText(county);
+            //University
+            textViewDrawerUniversity.setText(university);
+            //passion
+            textViewDrawerPassion.setText(passion);
+            //email
+            textViewDrawerEmail.setText(email);
+            //phoneNumber
+            textViewDrawerPhoneNumber.setText(phone);
+            //account type or role
+            textViewDrawerAccountRole.setText(accountType);
+            //
+            //
+
+        }
         //
 
 
@@ -273,27 +361,6 @@ public class LoggedInActivity extends AppCompatActivity {
                     Log.d(TAG, "\nonSuccess: PhoneNumber->" + retrieveFirebaseCredentialsFromFirestore.getPhoneNumber());
                     Log.d(TAG, "\nonSuccess: Occupation->" + retrieveFirebaseCredentialsFromFirestore.getOccupation() + "\n");
 
-                    //putting the  obtained data from the firebase into the bundle bundle
-                    //username
-                    bundle.putString("username", retrieveFirebaseCredentialsFromFirestore.getUsername());
-                    //email
-                    bundle.putString("email", retrieveFirebaseCredentialsFromFirestore.getEmail());
-                    //University
-                    bundle.putString("university", retrieveFirebaseCredentialsFromFirestore.getUniversity());
-                    //phoneNumber
-                    bundle.putString("phone", retrieveFirebaseCredentialsFromFirestore.getPhoneNumber());
-                    //passion
-                    bundle.putString("passion", retrieveFirebaseCredentialsFromFirestore.getPassion());
-                    //county
-                    bundle.putString("county", retrieveFirebaseCredentialsFromFirestore.getCounty());
-                    //account role
-                    bundle.putString("role", retrieveFirebaseCredentialsFromFirestore.getRole());
-                    //occupation
-                    bundle.putString("occupation", retrieveFirebaseCredentialsFromFirestore.getOccupation());
-                    //password
-                    bundle.putString("password", retrieveFirebaseCredentialsFromFirestore.getPassword());
-                    //
-                    //
 
                     //starting the process of obtaining the imageUrl from the RealTime Database
                     databaseReference = FirebaseDatabase.getInstance().getReference().child(PROFILE_IMAGE_PATH_IN_RDB).child(firebaseUser).child(retrieveFirebaseCredentialsFromFirestore.getUsername());
@@ -310,14 +377,6 @@ public class LoggedInActivity extends AppCompatActivity {
                                 RetrieveImageLinksFromRealtimeDB imageLinkFromRDB = snapshot.getValue(RetrieveImageLinksFromRealtimeDB.class);
                                 Log.d(TAG, "\nonDataChange: imageLinkOnly=>" + imageLinkFromRDB.getImagePath());
                                 String url = imageLinkFromRDB.getImagePath().toString();
-
-                                //placing the image url onto the bundle
-                                bundle.putString("url", url);
-                                //
-                                //creating getSupport fragment manager which will then send the value of bundle with help of the reqKey to the fragments requiring this data;
-                                getSupportFragmentManager().setFragmentResult("Key", bundle);
-                                //
-
 
                                 //setting the values into the navigation drawer header since all the data we have fetched it
                                 //drawer picture
@@ -382,4 +441,16 @@ public class LoggedInActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+    //function that will facilitate changing if the title based on the current fragment
+    private void setTitleOfLoggedInMatchingTheCurrentFragment(String title)
+    {
+
+        this.setTitle(title);
+    }
+    //
+
+
+    //end of all
 }

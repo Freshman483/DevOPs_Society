@@ -4,12 +4,16 @@ import static androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRON
 import static androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.MenuItem;
+import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -79,21 +83,16 @@ public class DrawerMainStarter extends AppCompatActivity {
         actionBarDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        /*//home fragment should be here(default pane)
+        //home fragment should be here(default pane)
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerFrameLayout, new HomeFragmentClass()).commit();
+        //
+
+        /*//making it become frozen after finishing it
+        //making the selected fragment be learningLoggedIn for its development purposes
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerFrameLayout, new LearningLoggedInFragmentClass()).commit();
         //*/
 
-
-        //making it become frozen after finishing it
-        //making the selected fragment be learningLoggedIn for its development purposes
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerFrameLayout,new LearningLoggedInFragmentClass()).commit();
-        //
-
-        //
-
-
         //bottomNavigation View With Handlers
-
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -114,11 +113,7 @@ public class DrawerMainStarter extends AppCompatActivity {
                         fragmentSelected = new DevOpsOfficialsFragmentClass();
                         Toasty.custom(DrawerMainStarter.this, "see our official members", R.drawable.ic_baseline_support_agent_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
                         break;
-
-                    case R.id.technoTrends_drawer_bottom_nav:
-                        fragmentSelected = new TechnologicalTrendsFragmentClass();
-                        Toasty.custom(DrawerMainStarter.this, "technological trends", R.drawable.ic_baseline_title_tecno_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();
-                        break;
+                        
 
                     case R.id.other_drawer_bottom_nav:
                         fragmentSelected = new OtherDevOpsProductsFragmentClass();
@@ -223,8 +218,8 @@ public class DrawerMainStarter extends AppCompatActivity {
         });
         //
 
-        //callAuthenticate
-        // fingerprintAuthentication();
+        //callAuthenticate fingerPrint
+         //fingerprintAuthentication();
         //
 
         //try getting intent results from Other Intents which wants to launch a particular fragment menu
@@ -235,6 +230,9 @@ public class DrawerMainStarter extends AppCompatActivity {
         //check if auth is null and if not migrate to logged in activity
         functionCheckFirebaseAuth();
         //
+
+
+        //end of the onCreate Method
     }
 
     private void functionCheckFirebaseAuth() {
@@ -245,14 +243,16 @@ public class DrawerMainStarter extends AppCompatActivity {
             new androidx.appcompat.app.AlertDialog.Builder(this)
                     .setTitle("Account Migration")
                     .setCancelable(false)
-                    .setIcon(R.drawable.ic_baseline_info_24)
-                    .setMessage("android has detected that you logged in to your account and is trying to figure out what is your motive." +
-                            "do you want to proceed directly into your account or just logout from the account and continue with the current page you are into?.")
+                    .setIcon(R.drawable.android2)
+                    .setMessage("android has detected that you previously  logged in to your account and exited without logging out. hence, it's trying to figure out your motive." +
+                            "do you want to proceed directly into your account or just logout from the account and continue with the current page you are at?.")
                     .setPositiveButton("Proceed To Account", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            //start intent service to migrate into the account logged activity
-                            startActivity(new Intent(DrawerMainStarter.this, LoggedInActivity.class).putExtra("message", "Welcome Back"));
+                            //migrating to the logged in profile account (activity)
+                            //
+                            startActivity(new Intent(DrawerMainStarter.this, LoggedInActivity.class).putExtra("message", "Welcome Back")
+                                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                             CustomIntent.customType(DrawerMainStarter.this, "fadein-to-fadeout");
                             //
                             //dismiss the dialog to avoid window leaking which can lead to unconditional behaviour
@@ -271,18 +271,11 @@ public class DrawerMainStarter extends AppCompatActivity {
                                     .setPositiveButton("doesn't matter, do it for me please", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
-                                            //logout the user by help of firebase auth
-                                            FirebaseAuth.getInstance().signOut();
-                                            //
-                                            //activity to clear any open window and signing out the user using firebase Auth variable
-                                            startActivity(new Intent(DrawerMainStarter.this, DrawerMainStarter.class).
-                                                    addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
-                                            //
-                                            //kill everything and restart
-                                            finish();
+                                            //animate restart style
+                                            drawerLayout.startAnimation(AnimationUtils.loadAnimation(DrawerMainStarter.this,R.anim.abc_slide_in_top));
                                             //
 
-                                            //dismiss the dialog interface
+                                            //dismiss the dialog interface to avoid window leaked exceptions
                                             dialogInterface.dismiss();
                                             //
                                         }
@@ -295,6 +288,7 @@ public class DrawerMainStarter extends AppCompatActivity {
             //
         }
     }
+
 
 
     private void functionCheckIfAnyFragmentIsCalledFromExternalActivities() {
@@ -438,7 +432,6 @@ public class DrawerMainStarter extends AppCompatActivity {
         new SpeechClass(DrawerMainStarter.this, "access,denied");
         //
 
-
         //show alert dialog of fingerPrintBypass
         new AlertDialog.Builder(this)
                 .setTitle("Security Guard")
@@ -480,14 +473,5 @@ public class DrawerMainStarter extends AppCompatActivity {
     }
 //
 
-  /*  //override on startMethod so that if also the Current User is null stop here else direct him into the account profile directly
-    @Override
-    protected void onStart() {
-        super.onStart();
 
-        //check if auth is null and if not migrate to logged in activity
-        functionCheckFirebaseAuth();
-        //
-    }
-    //*/
 }

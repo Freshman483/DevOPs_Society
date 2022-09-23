@@ -39,7 +39,7 @@
                 android:drawableEnd="@drawable/ic_baseline_touch_app_here"
                 android:drawableTint="@color/purple_700"
                 android:gravity="center_horizontal"
-                android:text="Click Me To Proceed"
+                android:text="EXPLORE MORE FEATURES"
                 android:textAllCaps="false"
                 android:textSize="20sp"
                 android:textStyle="italic" />

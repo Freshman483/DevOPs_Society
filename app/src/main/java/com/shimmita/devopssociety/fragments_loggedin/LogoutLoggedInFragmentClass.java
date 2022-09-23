@@ -15,7 +15,9 @@ import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.shimmita.devopssociety.R;
+import com.shimmita.devopssociety.general_alerts.ClassBottomSheetShow;
 import com.shimmita.devopssociety.mains.DrawerMainStarter;
+import com.shimmita.devopssociety.mains.LoggedInActivity;
 
 import maes.tech.intentanim.CustomIntent;
 
@@ -33,30 +35,14 @@ public class LogoutLoggedInFragmentClass extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.logout_loggedin_fragment, container, false);
-        firebaseAuth=FirebaseAuth.getInstance();
-        
-        //code here
-        new AlertDialog.Builder(getActivity())
-                .setTitle("Logout Confirmation")
-                .setMessage("Are Sure You Want To Logout From Your Current Account and Back To the Home Activity?")
-                .setPositiveButton("yes,sure", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        firebaseAuth.signOut();
-                        //user Confirmed Exit from the account so lets back him/her to the drawer main starter as the parent activity
-                        Toast.makeText(getActivity(), "User Logged Out Successfully", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(getActivity(), DrawerMainStarter.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
-                        CustomIntent.customType(getActivity(), "fadein-to-fadeout");
-                        //
-                        dialogInterface.dismiss();
-                    }
-                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                }).create().show();
+       //code begins
+
+        //creating the alert of ClassBottomSheet from which the user should select a choice
+        ClassBottomSheetShow classBottomSheetShow=new ClassBottomSheetShow();
+        classBottomSheetShow.show(requireActivity().getSupportFragmentManager(),"show class bottom sheet");
         //
+
+        //code ends
 
         return view;
     }

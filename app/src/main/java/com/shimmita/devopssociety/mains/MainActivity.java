@@ -1,9 +1,12 @@
 package com.shimmita.devopssociety.mains;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -26,7 +29,13 @@ import es.dmoral.toasty.Toasty;
 import maes.tech.intentanim.CustomIntent;
 
 public class MainActivity extends AppCompatActivity {
-
+    public static final String SHARED_PREFERENCE_NAME = "shared_preference";
+    public static final String SHARED_PREFERENCE_KEY = "KEY";
+    private static final String TAG = "MainActivity";
+    //declaration of the shared preference that will control the alertGreeting when this activity launched
+    //the greeting should be done once only;
+    SharedPreferences sharedPreferences;
+    //
     MaterialAlertDialogBuilder materialAlertDialogBuilder;
     ConstraintLayout constraintLayout_parent;
     ImageView imageView;
@@ -52,18 +61,51 @@ public class MainActivity extends AppCompatActivity {
 
         this.setTitle("DevOPS Society Home");
 
-
-        //disabling the alert dialog welcome to the DevOps Society Dialog For Some Reasons i.e annoying the user Everytime they Logged In/
-        //launch this main activity
-        //TODO:after figuring out how to control the display of the alertDialog implement it here,
-        // temporarily is disabled the alert Dialog
-        //
-         AlertUserWelcomeHome();
         //function that will be triggered when the imageView Animation of the Main activity is clicked
         imageViewOnclickListener();
         //
 
+        //initialisation of the shared preference;
+        sharedPreferences = getSharedPreferences(SHARED_PREFERENCE_NAME, MODE_PRIVATE);
+        //
+
+        //function that will go determine if the alert dialog will be shown in response to the value stored inside sharedPreference
+        functionDetermineShowingAlertWelcome();
+        //
+
+        //end of the onCreate
     }
+
+    private void functionDetermineShowingAlertWelcome() {
+        //shared_preference second ini so that we extract the value store inside it to control showing of the dialog
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCE_NAME, MODE_PRIVATE);
+        String valueReturnedFromSharedPreference = sharedPreferences.getString(SHARED_PREFERENCE_KEY, "no");
+
+        //lodging the value for debugging purposes
+        Log.d(TAG, "\nfunctionDetermineShowingAlertWelcome: SharedPreferenceValue:=>" + valueReturnedFromSharedPreference);
+        //
+
+        //
+        //
+        if (!valueReturnedFromSharedPreference.equals("alertShown")) {
+            //show the alert Dialog if and only if the value stored inside shared preference is not
+            //equal to alertShown
+            AlertUserWelcomeHome();
+            //
+        }
+        //making things continue as usual without showing of the alert dialogWelcome which had to click accept to make this
+        //features start functioning, thus without enabling them to continue as usual then application crushes due to runTime Exceptions
+        else {
+            //starting animation and visibility true buttonAppcompat
+            animationDrawable.start();
+            appCompatButton_start.setVisibility(View.VISIBLE);
+            animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.abc_slide_in_top);
+            appCompatButton_start.startAnimation(animation);
+            //
+        }
+        //
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -84,6 +126,10 @@ public class MainActivity extends AppCompatActivity {
                 Toasty.custom(getApplicationContext(), "Refreshing...", R.drawable.ic_baseline_360_24, android.R.color.holo_green_dark, Toasty.LENGTH_SHORT, true, true).show();
                 item.setChecked(!item.isChecked());
                 new VibratorLowly(MainActivity.this);
+
+                //cresting animation for showing refresh on the parent constraint
+                constraintLayout_parent.startAnimation(AnimationUtils.loadAnimation(this, R.anim.abc_fade_in));
+                //
 
                 break;
 
@@ -158,8 +204,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void AlertUserWelcomeHome() {
-        //speech class initialisation
-        new SpeechClass(getApplicationContext(), "Welcome to Developers Society Kenya");
+
         materialAlertDialogBuilder = new MaterialAlertDialogBuilder(this);
         materialAlertDialogBuilder.setTitle(R.string.titleDevOps);
         materialAlertDialogBuilder.setMessage(R.string.description_DevOPs_Alert);
@@ -167,19 +212,40 @@ public class MainActivity extends AppCompatActivity {
         materialAlertDialogBuilder.setIcon(R.drawable.ic_baseline_whatshot_24);
 
         materialAlertDialogBuilder.setPositiveButton(R.string.positBtn, (dialog, which) -> {
+            //starting animation and visibility true buttonAppcompat
             animationDrawable.start();
             appCompatButton_start.setVisibility(View.VISIBLE);
             animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.abc_slide_in_top);
             appCompatButton_start.startAnimation(animation);
-
+            //
+            //dismiss the dialog to avoid window leaked exceptions
+            dialog.dismiss();
+            //
         });
         materialAlertDialogBuilder.setNegativeButton(R.string.negBtn, (dialog, which) -> {
-            //back the user to the drawer main activity since its the parent activity in the apoplication
-            startActivity(new Intent(MainActivity.this, DrawerMainStarter.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                   );
+            //back the user to the drawer main activity since its the parent activity in the application
+            //and clear this task activity
+            startActivity(new Intent(MainActivity.this, DrawerMainStarter.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).
+                    addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            );
             CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");
             //
 
+        });
+        materialAlertDialogBuilder.setNeutralButton("don't show again", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //storing the value alertShown which we will use then to control showing up of the alert such that once accepted no second chance for it to show
+                //up again
+                //initialisation of the shared preference.Editor;
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(SHARED_PREFERENCE_KEY, "alertShown");
+                editor.apply();
+                //
+                //dismiss the alert dialog
+                dialog.dismiss();
+                //
+            }
         });
         materialAlertDialogBuilder.create();
         materialAlertDialogBuilder.show();
@@ -219,14 +285,14 @@ public class MainActivity extends AppCompatActivity {
                     //put extra to the intent which will lock all the  images of Services Offered to the the members and reason being that this should be
                     //logged in Order to Open the service
 
-                    String key="data_from_intent_launch";
-                    String value="lock_services_intent_is_from_main_over_view";
+                    String key = "data_from_intent_launch";
+                    String value = "lock_services_intent_is_from_main_over_view";
 
                     startActivity(new Intent(MainActivity.this, ExploreLearningServicesMainActivity.class)
-                            .putExtra(key,value));
+                            .putExtra(key, value));
                     return true;
 
-                    //
+                //
 
                 case R.id.account_share:
                     Toasty.custom(getApplicationContext(), "Share And Promote DevOps Society", R.drawable.ic_baseline_whatshot_24, R.color.purple_200, Toasty.LENGTH_LONG, true, true).show();

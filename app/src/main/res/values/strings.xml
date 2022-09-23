@@ -26,7 +26,7 @@
         \n
     </string>
     <string name="lets_get_started">Lets Get Started</string>
-    <string name="titleDevOps"><b><u><b><i><u>DEVOPS  SOCIETY KENYA</u></i></b></u></b><i></i></string>
+    <string name="titleDevOps"><b><u><b><i><u>BEST KENYA\'S DEVELOPERS SOCIETY</u></i></b></u></b><i></i></string>
     <string name="positBtn">Accept</string>
     <string name="negBtn">Decline</string>
     <string name="quit_app"><b>Quit This Window</b></string>
@@ -215,5 +215,17 @@
     <string name="name_name"><u>Name Name</u></string>
     <string name="titleOfallUsersAdapterLayout"><u>Jonathan Wekesa</u></string>
     <string name="login_window"><u>Login Window</u></string>
+    <string name="post_a_service_to_the_users">Post A Service To The Users</string>
+    <string name="post_career_mentors_in_it">Post Career Mentors In IT</string>
+    <string name="post_careers_in_i_t_field">Post Careers In I.T Field</string>
+    <string name="help_text_backPressed_LoggedIn"><u><b>Exit With Signing Me Out</b></u>\n
+        \nyou will be exited from your currently logged account and get signed out. therefore you will be required to login again in order to access your account profile again.
+        \n\n<u><b>Exit Without Signing Me Out</b></u>\n
+        \nyou will be exited from your currently logged account without being signed out. hence you will have not to sign in again unless administrative rules about account security drives in; you may be prompted to select your choice on the re-lunching of the application if you want to access you account or not.
+        \n\n<u><b>None Of The Above</b></u>\n
+        \nyou will be forwarded back to your main profile
+
+
+    </string>
 
 </resources>

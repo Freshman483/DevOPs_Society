@@ -19,6 +19,7 @@
         <entry key="app/src/main/res/drawable/gravity_2.xml" value="0.1285" />
         <entry key="app/src/main/res/drawable/ic_baseline_account_login.xml" value="0.116" />
         <entry key="app/src/main/res/drawable/ic_baseline_check.xml" value="0.1045" />
+        <entry key="app/src/main/res/drawable/ic_baseline_hotspot_internet.xml" value="0.1355" />
         <entry key="app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.13" />
         <entry key="app/src/main/res/drawable/ic_baseline_lock_open_24.xml" value="0.13" />
         <entry key="app/src/main/res/drawable/ic_baseline_touch_app_here.xml" value="0.116" />
@@ -34,7 +35,7 @@
         <entry key="app/src/main/res/layout/activity_gridview_for_display_programming.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_gridview_of_overview.xml" value="0.15081521739130435" />
         <entry key="app/src/main/res/layout/activity_logged_in.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_login_index_main_page.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_make_payments.xml" value="0.15904232578024796" />
@@ -49,6 +50,7 @@
         <entry key="app/src/main/res/layout/blank_exit_layout.xml" value="0.15818725951261223" />
         <entry key="app/src/main/res/layout/bottom_sheet_containing_terms_and_condition.xml" value="0.25" />
         <entry key="app/src/main/res/layout/careers_and_mentor_layout.xml" value="0.19270833333333334" />
+        <entry key="app/src/main/res/layout/class_bottom_sheet_show.xml" value="0.33" />
         <entry key="app/src/main/res/layout/developers_forum_loggedin_fragment.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/display_programming_on_recycler_overview1.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_browser.xml" value="0.18" />

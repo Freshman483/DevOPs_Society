@@ -267,10 +267,16 @@ public class MyAdapterAllUsers extends RecyclerView.Adapter<MyAdapterAllUsers.My
             phoneNumberText.setText(phone);
             passionText.setText(passion);
 
-            if (role.toLowerCase().contains("normal"))
+            if (role.toLowerCase().contains("normal")) {
                 role = "normal a/c";
-            accountRoleText.setText(role);
-            //
+                accountRoleText.setText(role);
+                //
+            }
+            else if (role.toLowerCase(Locale.ROOT).contains("admin"))
+            {
+                role="PrimeAdmin";
+                accountRoleText.setText(role);
+            }
 
         }
     }

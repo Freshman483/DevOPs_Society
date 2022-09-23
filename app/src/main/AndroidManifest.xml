@@ -27,22 +27,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".mains.OverallPDFUPload"
+            android:name=".mains.OverallServicePdfUpload"
             android:exported="false" />
         <activity
             android:name=".mains.OverallCareerMentorsUpload"
             android:exported="false" />
         <activity
             android:name=".mains.PostingDataActivity"
-            android:exported="true">
+            android:exported="true" />
 
-            <!-- making this activity launcher temporarily in order to finish its construction implementations -->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".mains.PersistentCareerSAndMentors"
             android:exported="false" />
@@ -53,11 +46,11 @@
             android:name=".mains.DrawerMainStarter"
             android:exported="true">
 
-           <!-- <intent-filter>&lt;!&ndash; disabling this true launcher temporarily&ndash;&gt;
+            <intent-filter><!-- disabling this true launcher temporarily-->
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
         </activity>
         <activity
             android:name=".mains.MakePayments"
@@ -83,8 +76,7 @@
             android:exported="false" />
         <activity
             android:name=".mains.MainActivity"
-            android:exported="false"
-            android:parentActivityName=".mains.DrawerMainStarter">
+            android:exported="false">
             <intent-filter>
 
                 <!-- <action android:name="android.intent.action.MAIN" /> -->

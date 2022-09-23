@@ -41,13 +41,13 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class OverallPDFUPload extends AppCompatActivity {
+public class OverallServicePdfUpload extends AppCompatActivity {
 
     //declaration of the Request Codes for Activity Result Usage;
     public static final int REQUEST_CODE_PDF_IMAGE_CODE = 11111;
     //
     public static final int REQUEST_CODE_PDF_FILE_CODE = 22222;
-    private static final String TAG = "OverallPDFUPload";
+    private static final String TAG = "OverallServicePdfUpload";
     private static Uri PDF_FILE_URI_DATA = null;
     private static Uri PDF_IMAGE_URI_DTA = null;
     //
@@ -89,7 +89,7 @@ public class OverallPDFUPload extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overall_pdfupload);
         //setting the title of the activity
-        this.setTitle("Developer Activity Pdf Upload");
+        this.setTitle("Developer Activity Service Upload");
         //
 
         //initialisation of the declared  Globals
@@ -255,9 +255,9 @@ public class OverallPDFUPload extends AppCompatActivity {
         }
         //else everything is fine make proceed for cloud Firestore Operations
         else {
-
             //determining the path that will be taken concisely when storing the data basing on the valueReturnedByTheSpinner
 
+            //programming Languages (SOFTWARE)
             if (valueReturnedFomTheSpinnerAfterSelection.contains("Programming")) {
                 //log if it contains programming
                 Log.d(TAG, "callFunctionPostingDataToCloudFirebase: " + valueReturnedFomTheSpinnerAfterSelection + " contains programming");
@@ -275,10 +275,11 @@ public class OverallPDFUPload extends AppCompatActivity {
                 //logging for debugging purposes
                 Log.d(TAG, "callFunctionPostingDataToCloudFirebase: " + valueReturnedFomTheSpinnerAfterSelection + " does not contain programming");
                 //
-
                 //the name of value returned will be the root parent
 
-
+                //calling the function which will store pdfFile and promote storing pdfIMage to the firebaseStorage before proceeding to
+                //FirebaseFirestore
+                callFunctionNoSoftwareOrProgrammingUploadToFireBase(valueReturnedFomTheSpinnerAfterSelection);
                 //
 
             }
@@ -289,7 +290,14 @@ public class OverallPDFUPload extends AppCompatActivity {
 
     }
 
-    private void callFunctionSoftwareUploadToFireBase(String valueReturnedFomTheSpinnerAfterSelection) {
+    //function that uploads non programming files to fireStore
+    private void callFunctionNoSoftwareOrProgrammingUploadToFireBase(String valueReturnedFomTheSpinnerAfterSelection) {
+        //rootChild is ValueReturnedFromSpinner
+        //path=>valueReturnedFromSpinner/itemKey(Timer)/resourceValue
+        //example=>PenetrationTesting/8367736478637/pdfFile
+        //
+
+        //begin
 
         String nameOfPDF = editTextEnterPdfName.getText().toString();
 
@@ -302,10 +310,11 @@ public class OverallPDFUPload extends AppCompatActivity {
         //
 
         //initialisation of firebaseStorage to store Pdf file and getting its download uri and passing it to a function to upload
-        //pdf image representative to fireBase Storage and too getting ist download url then passing the two uris to a function
+        //pdf image representative to fireBase Storage and too getting its download url then passing the two uris to a function
         //that will eventually upload pdfName,authorName, downloadable pdfImageUrl and pdFile url to FireStore
-        StorageReference storageReference = firebaseStorage.getReference().child("Software").child(valueReturnedFomTheSpinnerAfterSelection).child(String.valueOf(System.currentTimeMillis()));
-        //path will be=> software/valueReturn/itemKey(timer)/resource
+
+        StorageReference storageReference = firebaseStorage.getReference().child(valueReturnedFomTheSpinnerAfterSelection).child(String.valueOf(System.currentTimeMillis()));
+        //path will be=> valueReturn/itemKey(timer)/resource
         //putting the PDF_URI to Storage
         storageReference.putFile(PDF_FILE_URI_DATA).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -317,17 +326,17 @@ public class OverallPDFUPload extends AppCompatActivity {
                     //
                     //lets begin the process of getting download uri after alerting developer of success
                     //
-                    new AlertDialog.Builder(OverallPDFUPload.this)
-                            .setTitle("PDF UPLOAD")
+                    new AlertDialog.Builder(OverallServicePdfUpload.this)
+                            .setTitle("PDF UPLOAD ")
                             .setCancelable(false)
                             .setIcon(R.drawable.ic_baseline_check)
-                            .setMessage("pdf file " + nameOfPDF + " has been uploaded successfully,lets locate download uri")
+                            .setMessage("pdf file " + nameOfPDF + " has been uploaded successfully,now lets locate its downloadable uri")
                             .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     //progressDialogShowing pdfDownloadLink
-                                    ProgressDialog progressDialogShowProgressGettingDownloadLink = new ProgressDialog(OverallPDFUPload.this);
-                                    progressDialogShowProgressGettingDownloadLink.setTitle("PDF Download URI");
+                                    ProgressDialog progressDialogShowProgressGettingDownloadLink = new ProgressDialog(OverallServicePdfUpload.this);
+                                    progressDialogShowProgressGettingDownloadLink.setTitle("PDF Downloadable URI");
                                     progressDialogShowProgressGettingDownloadLink.setMessage("getting download uri...");
                                     progressDialogShowProgressGettingDownloadLink.setCancelable(false);
                                     progressDialogShowProgressGettingDownloadLink.create();
@@ -347,9 +356,9 @@ public class OverallPDFUPload extends AppCompatActivity {
                                                 //
 
                                                 //alerting the user that the process of getting download uri for the uploaded pdf was successful
-                                                new AlertDialog.Builder(OverallPDFUPload.this)
-                                                        .setTitle("PDF URI")
-                                                        .setMessage("gotten the pdf downloadable pdf uri file successfully")
+                                                new AlertDialog.Builder(OverallServicePdfUpload.this)
+                                                        .setTitle("PDF Downloadable URI Results")
+                                                        .setMessage("gotten the pdf downloadable  uri file successfully")
                                                         .setCancelable(false)
                                                         .setIcon(R.drawable.ic_baseline_check)
                                                         .setPositiveButton("ok,proceed", new DialogInterface.OnClickListener() {
@@ -357,10 +366,11 @@ public class OverallPDFUPload extends AppCompatActivity {
                                                             public void onClick(DialogInterface dialog, int which) {
 
                                                                 //gotten the download uri successfully
-                                                                //calling a functionThat will pass this download uri to it then will reverse it till to the firebase fireStore
+                                                                //calling a functionThat will pass this download uri to it then will traverse it till to the firebase fireStore
                                                                 //for storage; this function will also upload the image representative for uploaded pdf File
                                                                 //
-                                                                callFunctionUploadPdfIMageRepresentative(pdfDownloadableUri);
+
+                                                                callFunctionUploadNoSoftwareImageRepresentative(pdfDownloadableUri);
                                                                 //
                                                                 //dismiss the dialog to avoid window leaked exceptions
                                                                 dialog.dismiss();
@@ -370,7 +380,7 @@ public class OverallPDFUPload extends AppCompatActivity {
                                                 //
                                             } else {
                                                 //error occurred alerting the developer
-                                                new AlertDialog.Builder(OverallPDFUPload.this)
+                                                new AlertDialog.Builder(OverallServicePdfUpload.this)
                                                         .setTitle("PDF URI Download")
                                                         .setIcon(R.drawable.ic_baseline_warning)
                                                         .setCancelable(false)
@@ -409,7 +419,7 @@ public class OverallPDFUPload extends AppCompatActivity {
                     //
 
                     //alert the developer error occurred while uploading the file
-                    new AlertDialog.Builder(OverallPDFUPload.this)
+                    new AlertDialog.Builder(OverallServicePdfUpload.this)
                             .setTitle("Error Encountered")
                             .setCancelable(false)
                             .setIcon(R.drawable.ic_baseline_warning)
@@ -439,12 +449,16 @@ public class OverallPDFUPload extends AppCompatActivity {
             }
         });
 
-        //
 
+        //end
     }
 
-    private void callFunctionUploadPdfIMageRepresentative(String pdfDownloadableUri) {
-        //SoftwarePdfImages(root)/valueReturnedSpinner/key(timer)/value
+    //function that uploads the image of Non Software Based Pdf
+    private void callFunctionUploadNoSoftwareImageRepresentative(String pdfDownloadableUri) {
+        //begin
+        // path=>valueReturnedSpinner/key(timer)/value
+
+        //example=>penetrationTesting/93439493/resourceValue
 
         //progressDialog To Show pdfImage Uploading progress
         ProgressDialog progressDialogPdfImageUploadStatus = new ProgressDialog(this);
@@ -457,9 +471,11 @@ public class OverallPDFUPload extends AppCompatActivity {
 
 
         //initialisation of Storage Reference then beginning the process of uploading pdfImageRepresentative
-        StorageReference storageReference = firebaseStorage.getReference().child("SoftwarePdfImage").child(valueReturnedFomTheSpinnerAfterSelection).child(String.valueOf(System.currentTimeMillis()));
+        StorageReference storageReference = firebaseStorage.getReference().child(valueReturnedFomTheSpinnerAfterSelection).child(String.valueOf(System.currentTimeMillis()));
+        //valueReturnedSpinner/key(timer)/value
         //
-        //beginning the process of putting the images to the storage
+
+        //beginning the process of putting the pdfImage to the storage
         storageReference.putFile(PDF_IMAGE_URI_DTA).addOnCompleteListener(this, new OnCompleteListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
@@ -470,8 +486,9 @@ public class OverallPDFUPload extends AppCompatActivity {
                     //
                     //alerting the developer showing that pdf image representative uploaded successfully and that
                     //next is getting the download uri
-                    new AlertDialog.Builder(OverallPDFUPload.this)
+                    new AlertDialog.Builder(OverallServicePdfUpload.this)
                             .setTitle("Pdf Image Upload")
+                            .setIcon(R.drawable.ic_baseline_check)
                             .setMessage("hey,developer pdf image representing the uploaded pdf file has been uploaded successfully,next is proceed getting the " +
                                     " downloadable uri link of it")
                             .setCancelable(false)
@@ -480,7 +497,7 @@ public class OverallPDFUPload extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which) {
 
                                     //declaring the progressDialogFetchPdfImageUri
-                                    ProgressDialog progressDialogFetchPdfImageUri = new ProgressDialog(OverallPDFUPload.this);
+                                    ProgressDialog progressDialogFetchPdfImageUri = new ProgressDialog(OverallServicePdfUpload.this);
                                     progressDialogFetchPdfImageUri.setTitle("PDF Image URi");
                                     progressDialogFetchPdfImageUri.setCancelable(false);
                                     progressDialogFetchPdfImageUri.setMessage("fetching pdf image uri...");
@@ -501,7 +518,7 @@ public class OverallPDFUPload extends AppCompatActivity {
                                                 String pdfImageUri = task.getResult().toString();
                                                 //
                                                 //alerting the user that the process of getting download uri for the uploaded pdf was successful
-                                                new AlertDialog.Builder(OverallPDFUPload.this)
+                                                new AlertDialog.Builder(OverallServicePdfUpload.this)
                                                         .setTitle("PDF Image Downloadable Link")
                                                         .setMessage("gotten the pdf image downloadable pdf successfully,proceed to the last last step of uploading the file" +
                                                                 "name,author,pdfImagePath and pdfFilePath to the Cloud Firestore For Storage.")
@@ -514,8 +531,7 @@ public class OverallPDFUPload extends AppCompatActivity {
                                                                 //calling a function which will now traverse two uris for pdf file and its corresponding image
                                                                 //where will then upload the files to the fireStore with name,author,pdf FileDownload Uri,pdf Image Download Uri
                                                                 //
-                                                                callFunctionLastStepStoreDataToFireStoreNow(pdfDownloadableUri, pdfImageUri);
-
+                                                                callFunctionLastStepStoreNoSoftwareToFirestoreNow(pdfDownloadableUri, pdfImageUri);
                                                                 //dismiss the dialog to avoid window leaked exceptions
                                                                 dialog.dismiss();
                                                                 //
@@ -530,7 +546,7 @@ public class OverallPDFUPload extends AppCompatActivity {
 
                                                 //alerting the developer
                                                 //alert the developer error occurred while uploading the file
-                                                new AlertDialog.Builder(OverallPDFUPload.this)
+                                                new AlertDialog.Builder(OverallServicePdfUpload.this)
                                                         .setTitle("Error Encountered")
                                                         .setCancelable(false)
                                                         .setIcon(R.drawable.ic_baseline_warning)
@@ -567,7 +583,409 @@ public class OverallPDFUPload extends AppCompatActivity {
 
                     //alerting the developer of the error that has happened
                     //error occurred alerting the developer
-                    new AlertDialog.Builder(OverallPDFUPload.this)
+                    new AlertDialog.Builder(OverallServicePdfUpload.this)
+                            .setTitle("Pdf Image Upload")
+                            .setIcon(R.drawable.ic_baseline_warning)
+                            .setCancelable(false)
+                            .setMessage("hey,developer an error was encountered while uploading the pdf image to cloud storage  pdf file\n" + task.getException().getMessage())
+                            .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                    //dismiss the dialog to avoid window leaked exceptions
+                                    dialog.dismiss();
+                                    //
+                                }
+                            }).create().show();
+                    //
+
+                }
+
+            }
+        });
+
+
+        //end
+    }
+
+    //function that will upload non Software data Files To FireBaseFirestore
+    private void callFunctionLastStepStoreNoSoftwareToFirestoreNow(String pdfDownloadableUri, String pdfImageUri) {
+        //begin
+        //path to fireStore=>valueReturnedFromSpinner(root)=collection/key(timer)=document/resourceValue
+        //example=>PenetrationTesting/48738748/name,author,pdfImagePath,pdfFilePath
+
+        //init of ProgressDialogShowFirebaseFirestoreDataUploadStatus
+        ProgressDialog progressDialogShowFirebaseFirestoreDataUploadStatus = new ProgressDialog(this);
+        progressDialogShowFirebaseFirestoreDataUploadStatus.setTitle("FIRESTORE UPLOAD " + valueReturnedFomTheSpinnerAfterSelection);
+        progressDialogShowFirebaseFirestoreDataUploadStatus.setMessage("uploading to firestore...");
+        progressDialogShowFirebaseFirestoreDataUploadStatus.setCancelable(false);
+        progressDialogShowFirebaseFirestoreDataUploadStatus.create();
+        progressDialogShowFirebaseFirestoreDataUploadStatus.show();
+        //
+
+        //initialisation of Keys and values
+        String keyPdfName = "PdfName";
+        String keyAuthorName = "AuthorName";
+        String keyPdfImagePath = "PdfImagePath";
+        String keyPdfFilePath = "PdfFilePath";
+
+        String valuePdfName = editTextEnterPdfName.getText().toString();
+        String valueAuthorName = editTextEnterAuthorName.getText().toString();
+        //
+
+        //init of Map to store Values in Key Pair format to FireStore
+        Map<String, Object> mapStorePdfData = new HashMap<>();
+        mapStorePdfData.put(keyPdfName, valuePdfName);
+        mapStorePdfData.put(keyAuthorName, valueAuthorName);
+        mapStorePdfData.put(keyPdfImagePath, pdfImageUri);
+        mapStorePdfData.put(keyPdfFilePath, pdfDownloadableUri);
+        //
+
+        //init of FirebaseFirestore and Collection reference for data upload
+        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+        //starting the upload
+        CollectionReference collectionReference = firebaseFirestore.collection(valueReturnedFomTheSpinnerAfterSelection);
+        collectionReference.document(String.valueOf(System.currentTimeMillis())).set(mapStorePdfData).addOnCompleteListener(this, new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    //dismiss the progressDialog Since task of Uploading the Data To FireStore Was Successfully
+                    progressDialogShowFirebaseFirestoreDataUploadStatus.dismiss();
+                    //
+
+                    //alert the developer that the data was saved Successfully
+                    new AlertDialog.Builder(OverallServicePdfUpload.this)
+                            .setTitle("Data Upload Successful")
+                            .setCancelable(false)
+                            .setIcon(R.drawable.ic_baseline_check)
+                            .setMessage("Congratulations the Data Has Been Saved Successfully To The Storage\n" +
+                                    "\nPDF_NAME: " + valuePdfName.toUpperCase(Locale.ROOT) + "\n\nPDF_AUTHOR: " + valueAuthorName.toUpperCase(Locale.ROOT) + "\n\n" +
+                                    "PDF_IMAGE_PATH:\n" + pdfImageUri + "\n\nPDF_FILE_PATH: " + pdfDownloadableUri)
+                            .setPositiveButton("WonderFul", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //dismiss the dialog to avoid Window Leaked Exceptions
+                                    dialog.dismiss();
+                                    //
+                                }
+                            }).create().show();
+
+                    //
+
+
+                } else {
+                    //dismiss the progressDialog to avoid runtime Exceptions from window leaked
+                    progressDialogShowFirebaseFirestoreDataUploadStatus.dismiss();
+                    //
+                    //alert developer an error occurred
+                    new AlertDialog.Builder(OverallServicePdfUpload.this)
+                            .setTitle("Error Encountered")
+                            .setCancelable(false)
+                            .setIcon(R.drawable.ic_baseline_warning)
+                            .setMessage("hey,developer an error was encountered while finalising the process of uploading the data to the FireStore." +
+                                    "\n" + task.getException().getMessage())
+                            .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //dismiss the progress dialog tpo avoid the Exceptions of Window leaked
+                                    dialog.dismiss();
+                                    //
+                                }
+                            }).create().show();
+                    //
+
+
+                }
+            }
+        });
+
+
+        //end
+
+    }
+
+
+    //function that uploads Programming or software fireStore
+    private void callFunctionSoftwareUploadToFireBase(String valueReturnedFomTheSpinnerAfterSelection) {
+
+        String nameOfPDF = editTextEnterPdfName.getText().toString();
+
+        //creating a progressDialog showing the progression of the pdf file as its being uploaded to fireBaseStorage
+        ProgressDialog progressDialogShowPdfFileUploading = new ProgressDialog(this);
+        progressDialogShowPdfFileUploading.setTitle("Uploading " + nameOfPDF);
+        progressDialogShowPdfFileUploading.setCancelable(false);
+        progressDialogShowPdfFileUploading.create();
+        progressDialogShowPdfFileUploading.show();
+        //
+
+        //initialisation of firebaseStorage to store Pdf file and getting its download uri and passing it to a function to upload
+        //pdf image representative to fireBase Storage and too getting ist download url then passing the two uris to a function
+        //that will eventually upload pdfName,authorName, downloadable pdfImageUrl and pdFile url to FireStore
+        StorageReference storageReference = firebaseStorage.getReference().child("Software").child(valueReturnedFomTheSpinnerAfterSelection).child(String.valueOf(System.currentTimeMillis()));
+        //path will be=> software/valueReturn/itemKey(timer)/resource
+        //putting the PDF_URI to Storage
+        storageReference.putFile(PDF_FILE_URI_DATA).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                //task was successful
+                if (task.isSuccessful()) {
+                    //dismiss the progressDialog
+                    progressDialogShowPdfFileUploading.dismiss();
+                    //
+                    //lets begin the process of getting download uri after alerting developer of success
+                    //
+                    new AlertDialog.Builder(OverallServicePdfUpload.this)
+                            .setTitle("PDF UPLOAD")
+                            .setCancelable(false)
+                            .setIcon(R.drawable.ic_baseline_check)
+                            .setMessage("pdf file " + nameOfPDF + " has been uploaded successfully,lets locate download uri")
+                            .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //progressDialogShowing pdfDownloadLink
+                                    ProgressDialog progressDialogShowProgressGettingDownloadLink = new ProgressDialog(OverallServicePdfUpload.this);
+                                    progressDialogShowProgressGettingDownloadLink.setTitle("PDF Download URI");
+                                    progressDialogShowProgressGettingDownloadLink.setMessage("getting download uri...");
+                                    progressDialogShowProgressGettingDownloadLink.setCancelable(false);
+                                    progressDialogShowProgressGettingDownloadLink.create();
+                                    progressDialogShowProgressGettingDownloadLink.show();
+
+                                    //starting the process of obtaining the download Uri
+                                    storageReference.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Uri> task) {
+                                            if (task.isSuccessful()) {
+                                                //dismiss the uriProgressDialog
+                                                progressDialogShowProgressGettingDownloadLink.dismiss();
+                                                //
+
+                                                //storing the downloaded uri into the string variable for traversing
+                                                String pdfDownloadableUri = task.getResult().toString();
+                                                //
+
+                                                //alerting the user that the process of getting download uri for the uploaded pdf was successful
+                                                new AlertDialog.Builder(OverallServicePdfUpload.this)
+                                                        .setTitle("PDF URI")
+                                                        .setMessage("gotten the pdf downloadable pdf uri file successfully")
+                                                        .setCancelable(false)
+                                                        .setIcon(R.drawable.ic_baseline_check)
+                                                        .setPositiveButton("ok,proceed", new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialog, int which) {
+
+                                                                //gotten the download uri successfully
+                                                                //calling a functionThat will pass this download uri to it then will traverse it till to the firebase fireStore
+                                                                //for storage; this function will also upload the image representative for uploaded pdf File
+                                                                //
+                                                                callFunctionUploadPdfIMageRepresentative(pdfDownloadableUri);
+                                                                //
+                                                                //dismiss the dialog to avoid window leaked exceptions
+                                                                dialog.dismiss();
+                                                                //
+                                                            }
+                                                        }).create().show();
+                                                //
+                                            } else {
+                                                //error occurred alerting the developer
+                                                new AlertDialog.Builder(OverallServicePdfUpload.this)
+                                                        .setTitle("PDF URI Download")
+                                                        .setIcon(R.drawable.ic_baseline_warning)
+                                                        .setCancelable(false)
+                                                        .setMessage("hey,developer an error was encountered while fetching the dowwnload uri of the  uploaded " +
+                                                                " pdf file\n" + task.getException().getMessage())
+                                                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialog, int which) {
+
+                                                                //dismiss the dialog to avoid window leaked exceptions
+                                                                dialog.dismiss();
+                                                                //
+                                                            }
+                                                        }).create().show();
+                                                //
+
+
+                                            }
+
+
+                                        }
+                                    });
+
+                                    //dismiss the Alert Dialog to Avoid Window Leaked Runtime Exception
+                                    dialog.dismiss();
+                                    //
+                                }
+                            }).create().show();
+
+                    //
+
+
+                } else {
+                    //dismiss the dialog
+                    progressDialogShowPdfFileUploading.dismiss();
+                    //
+
+                    //alert the developer error occurred while uploading the file
+                    new AlertDialog.Builder(OverallServicePdfUpload.this)
+                            .setTitle("Error Encountered")
+                            .setCancelable(false)
+                            .setIcon(R.drawable.ic_baseline_warning)
+                            .setMessage("hey, developer an error was encountered while uploading the pdf file to the cloud for storage\n" + task.getException().getMessage())
+                            .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //dismiss the dialog
+                                    dialog.dismiss();
+                                    //
+                                }
+                            }).create().show();
+                    //
+
+                }
+
+            }
+        }).addOnProgressListener(this, new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                //getting a double value then converting it into percent
+                Double valueProgression = 100.00 * (snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
+                //
+                int valuePercent = valueProgression.intValue();
+
+                progressDialogShowPdfFileUploading.setMessage("uploaded " + valuePercent + "%");
+            }
+        });
+
+        //
+
+    }
+
+    //function to upload software based pdfImage to Firestore
+    private void callFunctionUploadPdfIMageRepresentative(String pdfDownloadableUri) {
+        //SoftwarePdfImages(root)/valueReturnedSpinner/key(timer)/value
+
+        //progressDialog To Show pdfImage Uploading progress
+        ProgressDialog progressDialogPdfImageUploadStatus = new ProgressDialog(this);
+        progressDialogPdfImageUploadStatus.setTitle("PDF Image Upload");
+        progressDialogPdfImageUploadStatus.setMessage("uploading image of pdf....");
+        progressDialogPdfImageUploadStatus.setCancelable(false);
+        progressDialogPdfImageUploadStatus.create();
+        progressDialogPdfImageUploadStatus.show();
+        //
+
+
+        //initialisation of Storage Reference then beginning the process of uploading pdfImageRepresentative
+        StorageReference storageReference = firebaseStorage.getReference().child("SoftwarePdfImage").child(valueReturnedFomTheSpinnerAfterSelection).child(String.valueOf(System.currentTimeMillis()));
+        //
+        //beginning the process of putting the images to the storage
+        storageReference.putFile(PDF_IMAGE_URI_DTA).addOnCompleteListener(this, new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                //everything okay
+                if (task.isSuccessful()) {
+                    //dismiss the progressDialog
+                    progressDialogPdfImageUploadStatus.dismiss();
+                    //
+                    //alerting the developer showing that pdf image representative uploaded successfully and that
+                    //next is getting the download uri
+                    new AlertDialog.Builder(OverallServicePdfUpload.this)
+                            .setTitle("Pdf Image Upload")
+                            .setMessage("hey,developer pdf image representing the uploaded pdf file has been uploaded successfully,next is proceed getting the " +
+                                    " downloadable uri link of it")
+                            .setCancelable(false)
+                            .setPositiveButton("ok,proceed", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                    //declaring the progressDialogFetchPdfImageUri
+                                    ProgressDialog progressDialogFetchPdfImageUri = new ProgressDialog(OverallServicePdfUpload.this);
+                                    progressDialogFetchPdfImageUri.setTitle("PDF Image URi");
+                                    progressDialogFetchPdfImageUri.setCancelable(false);
+                                    progressDialogFetchPdfImageUri.setMessage("fetching pdf image uri...");
+                                    progressDialogFetchPdfImageUri.create();
+                                    progressDialogFetchPdfImageUri.show();
+                                    //
+                                    //starting the process of downloading the pdf image uri before passing it to the next function of firebaseFirestore for
+                                    //storing the links and names concerning the uploaded pdf file
+                                    storageReference.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Uri> task) {
+
+                                            if (task.isSuccessful()) {
+                                                //dismiss the progressDialog
+                                                progressDialogFetchPdfImageUri.dismiss();
+                                                //
+                                                //storing the downloaded uri into a string
+                                                String pdfImageUri = task.getResult().toString();
+                                                //
+                                                //alerting the user that the process of getting download uri for the uploaded pdf was successful
+                                                new AlertDialog.Builder(OverallServicePdfUpload.this)
+                                                        .setTitle("PDF Image Downloadable Link")
+                                                        .setMessage("gotten the pdf image downloadable pdf successfully,proceed to the last last step of uploading the file" +
+                                                                "name,author,pdfImagePath and pdfFilePath to the Cloud Firestore For Storage.")
+                                                        .setCancelable(false)
+                                                        .setIcon(R.drawable.ic_baseline_check)
+                                                        .setPositiveButton("ok,proceed", new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialog, int which) {
+
+                                                                //calling a function which will now traverse two uris for pdf file and its corresponding image
+                                                                //where will then upload the files to the fireStore with name,author,pdf FileDownload Uri,pdf Image Download Uri
+                                                                //
+                                                                callFunctionLastStepStoreDataToFireStoreNow(pdfDownloadableUri, pdfImageUri);
+
+                                                                //dismiss the dialog to avoid window leaked exceptions
+                                                                dialog.dismiss();
+                                                                //
+                                                            }
+                                                        }).create().show();
+
+                                            } else {
+                                                //error occurred
+                                                //dismiss the progress dialog to avoid runtime Exceptions
+                                                progressDialogFetchPdfImageUri.dismiss();
+                                                //
+
+                                                //alerting the developer
+                                                //alert the developer error occurred while uploading the file
+                                                new AlertDialog.Builder(OverallServicePdfUpload.this)
+                                                        .setTitle("Error Encountered")
+                                                        .setCancelable(false)
+                                                        .setIcon(R.drawable.ic_baseline_warning)
+                                                        .setMessage("hey, developer an error was encountered while fetching the pdf Image downloadable link from the uploaded " +
+                                                                "pdf image representative to firebaseStorage\n" + task.getException().getMessage())
+                                                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialog, int which) {
+                                                                //dismiss the dialog
+                                                                dialog.dismiss();
+                                                                //
+                                                            }
+                                                        }).create().show();
+                                                //
+
+                                            }
+
+
+                                        }
+                                    });
+                                    //
+
+
+                                }
+                            }).create().show();
+
+                    //
+
+                } //error occurred
+                else {
+                    //dismiss the progressDialog
+                    progressDialogPdfImageUploadStatus.dismiss();
+                    //
+
+                    //alerting the developer of the error that has happened
+                    //error occurred alerting the developer
+                    new AlertDialog.Builder(OverallServicePdfUpload.this)
                             .setTitle("Pdf Image Upload")
                             .setIcon(R.drawable.ic_baseline_warning)
                             .setCancelable(false)
@@ -590,6 +1008,7 @@ public class OverallPDFUPload extends AppCompatActivity {
         //
     }
 
+    //function that uploads software based data to FireStore
     private void callFunctionLastStepStoreDataToFireStoreNow(String pdfDownloadableUri, String pdfImageUri) {
         //path to fireStore=>valueReturnedFromSpinner(root)=collection/key(timer)=document/resourceValue
         //example=>java programming/48738748/name,author,pdfImagePath,pdfFilePath
@@ -634,9 +1053,10 @@ public class OverallPDFUPload extends AppCompatActivity {
                     //
 
                     //alert the developer that the data was saved Successfully
-                    new AlertDialog.Builder(OverallPDFUPload.this)
+                    new AlertDialog.Builder(OverallServicePdfUpload.this)
                             .setTitle("Data Upload Successful")
                             .setCancelable(false)
+                            .setIcon(R.drawable.ic_baseline_check)
                             .setMessage("Congratulations the Data Has Been Saved Successfully To The Storage\n" +
                                     "\nPDF_NAME: " + valuePdfName.toUpperCase(Locale.ROOT) + "\n\nPDF_AUTHOR: " + valueAuthorName.toUpperCase(Locale.ROOT) + "\n\n" +
                                     "PDF_IMAGE_PATH:\n" + pdfImageUri + "\n\nPDF_FILE_PATH: " + pdfDownloadableUri)
@@ -657,7 +1077,7 @@ public class OverallPDFUPload extends AppCompatActivity {
                     progressDialogShowFirebaseFirestoreDataUploadStatus.dismiss();
                     //
                     //alert developer an error occurred
-                    new AlertDialog.Builder(OverallPDFUPload.this)
+                    new AlertDialog.Builder(OverallServicePdfUpload.this)
                             .setTitle("Error Encountered")
                             .setCancelable(false)
                             .setIcon(R.drawable.ic_baseline_warning)
@@ -747,7 +1167,7 @@ public class OverallPDFUPload extends AppCompatActivity {
                 //developer cancelled
                 else if (resultCode == RESULT_CANCELED) {
                     //alert the developer of cancellation process
-                    new AlertDialog.Builder(OverallPDFUPload.this)
+                    new AlertDialog.Builder(OverallServicePdfUpload.this)
                             .setTitle("Image File Picking")
                             .setIcon(R.drawable.android2)
                             .setCancelable(false)
@@ -783,7 +1203,7 @@ public class OverallPDFUPload extends AppCompatActivity {
                 //developer cancelled the transaction process
                 else if (resultCode == RESULT_CANCELED) {
                     //alert developer of cancellation
-                    new AlertDialog.Builder(OverallPDFUPload.this)
+                    new AlertDialog.Builder(OverallServicePdfUpload.this)
                             .setTitle("Pdf File Picking")
                             .setIcon(R.drawable.android2)
                             .setCancelable(false)

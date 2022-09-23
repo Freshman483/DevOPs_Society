@@ -38,7 +38,7 @@
                 android:layout_marginBottom="4dp"
                 android:contentDescription="@string/devops_logo"
                 android:scaleType="centerCrop"
-                android:src="@drawable/hacking10"
+                android:src="@drawable/hacker_monitor"
                 app:layout_constraintBottom_toTopOf="@+id/textInput_email"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"

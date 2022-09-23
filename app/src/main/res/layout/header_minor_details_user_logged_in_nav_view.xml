@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mainContainerHeaderLoggedInUserRelativeLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#877878"
+    android:layout_height="wrap_content"
+    android:background="#E2C7EF"
     android:padding="5dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/black"
+        app:cardBackgroundColor="#FFBEBE"
         app:cardCornerRadius="30dp">
 
         <LinearLayout
@@ -24,6 +24,7 @@
                 android:layout_height="150dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:src="@color/teal_200"
                 app:civ_border_color="@color/teal_700"
                 app:civ_border_width="2dp" />
@@ -34,37 +35,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
                 android:gravity="center_horizontal"
                 android:text="Example Example"
-                android:textColor="@color/purple_500"
+                android:textColor="#872DC0"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
-
             <TextView
-                android:id="@+id/drawerUniversity"
+                android:id="@+id/drawerPhoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
                 android:gravity="center_horizontal"
-                android:text="University University"
-                android:textColor="@color/purple_200"
+                android:text="+000000001"
+                android:textColor="#3C176A"
                 android:textSize="16sp"
                 android:textStyle="italic" />
-
 
             <TextView
                 android:id="@+id/drawerCounty"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
                 android:gravity="center_horizontal"
                 android:text="Example County"
-                android:textColor="@color/purple_200"
-                android:textSize="16sp"
+                android:textColor="#3C176A"
+                android:textSize="17sp"
                 android:textStyle="italic" />
 
 
@@ -73,22 +72,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
                 android:gravity="center_horizontal"
                 android:text="example@gmail.com"
-                android:textColor="@color/purple_200"
+                android:textColor="#3C176A"
+                android:textSize="18sp"
                 android:textStyle="italic" />
 
 
             <TextView
-                android:id="@+id/drawerPhoneNumber"
+                android:id="@+id/drawerUniversity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
                 android:gravity="center_horizontal"
-                android:text="+000000001"
-                android:textColor="@color/purple_200"
+                android:text="University University"
+                android:textColor="#3C176A"
+                android:textSize="19sp"
                 android:textStyle="italic" />
 
 
@@ -97,11 +98,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
                 android:gravity="center_horizontal"
                 android:text="Passion Passion"
-                android:textColor="@color/purple_200"
-                android:textSize="16sp"
+                android:textColor="#3C176A"
+                android:textSize="20sp"
                 android:textStyle="italic" />
 
 
@@ -110,11 +111,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
                 android:gravity="end|right"
                 android:padding="6dp"
                 android:text="normal account"
-                android:textColor="#ED7F2B"
-                android:textSize="16sp"
+                android:textColor="#FB7B19"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
 

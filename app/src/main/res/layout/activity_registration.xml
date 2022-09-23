@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/parent_registration_constraint"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@drawable/animation_gradient_list"
     tools:context=".mains.Registration">
 
@@ -22,9 +22,11 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:background="@drawable/animation_gradient_list"
-            app:cardBackgroundColor="#907B50"
-            app:cardCornerRadius="50dp">
+            app:cardBackgroundColor="#C5A69A"
+            app:cardCornerRadius="30dp">
 
 
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -48,7 +50,7 @@
                     android:layout_height="250dp"
                     android:layout_marginTop="1dp"
                     android:background="@drawable/animation_gradient_list"
-                    android:src="@drawable/hacking10" />
+                    android:src="@drawable/hacking1" />
 
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -195,30 +197,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:background="#BBCDA7"
-                    android:text="Level Of Knowledge:"
-                    android:textSize="20sp"
-                    android:textStyle="italic|bold" />
-
-                <Spinner
-                    android:id="@+id/spinner_registration_passion_level_of_knowledge"
-                    style="@style/Widget.AppCompat.Spinner.Underlined"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:background="#614898"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:focusedByDefault="true"
-                    android:saveEnabled="true"
-                    android:scrollbarFadeDuration="@integer/material_motion_duration_long_2"
-                    android:scrollbarSize="@dimen/cardview_default_elevation"
-                    android:spinnerMode="dialog" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:background="#BBCDA7"
                     android:text="Select County:"
@@ -302,6 +280,31 @@
 
                 <Spinner
                     android:id="@+id/spinner_registration_passion"
+                    style="@style/Widget.AppCompat.Spinner.Underlined"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:background="#614898"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:focusedByDefault="true"
+                    android:saveEnabled="true"
+                    android:scrollbarFadeDuration="@integer/material_motion_duration_long_2"
+                    android:scrollbarSize="@dimen/cardview_default_elevation"
+                    android:spinnerMode="dialog" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="#BBCDA7"
+                    android:text="Level Of Knowledge in IT World:"
+                    android:textSize="20sp"
+                    android:textStyle="italic|bold" />
+
+                <Spinner
+                    android:id="@+id/spinner_registration_passion_level_of_knowledge"
                     style="@style/Widget.AppCompat.Spinner.Underlined"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -23,7 +23,6 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -45,10 +44,6 @@ public class OverallCareerMentorsUpload extends AppCompatActivity {
     //
     //declaration of the Request code for permissions
     public static final int REQUEST_CODE_PERMISSIONS = 56445;
-    //declaration variable strings which hold Collection Reference for either career in it(VALUE_CAREER)
-    //or Career Mentors (VALUE_MENTORS)
-    public static  String VALUE_CAREERS = "Careers";
-    public static  String VALUE_MENTORS = "Career Mentors";
     //
     //declaration of the activity tag
     private static final String TAG = "OverallCareerMentors";
@@ -56,8 +51,11 @@ public class OverallCareerMentorsUpload extends AppCompatActivity {
     private static final int REQUEST_CODE_IMAGE_PICK = 9965;
     private static final int REQUEST_CODE_HEAD_TEXT = 9964;
     private static final int REQUEST_CODE_DESCRIPTION = 9963;
+    //declaration variable strings which hold Collection Reference for either career in it(VALUE_CAREER)
+    //or Career Mentors (VALUE_MENTORS)
+    public static String VALUE_CAREERS = "Careers";
+    public static String VALUE_MENTORS = "Career Mentors";
     //
-
     //Declaration Of The String Which will ease data retrieve from EditText
     public static String STRING_HEADING = "";
     public static String STRING_DESCRIPTION = "";
@@ -127,7 +125,7 @@ public class OverallCareerMentorsUpload extends AppCompatActivity {
         //
 
         //function for checking data carried by intent getData and setting the hints for editText heading and Description
-        //relevantly
+        //relevantly also the title of the Activity
         functionCheckIntentData();
         //
 
@@ -147,10 +145,16 @@ public class OverallCareerMentorsUpload extends AppCompatActivity {
                 editTextHeading.setHint("enter file for career heading");
                 editTextDescription.setHint("enter file for career description");
                 //
+                //setting the title of the activity to career etc
+                this.setTitle("Developer Activity Career(s) Upload");
+                //
             } else if (intentGetData.equals("CareerMentors")) {
                 //setting the hints of ediText to a reasonable hint in relation to Mentors
                 editTextHeading.setHint("enter file for mentor heading");
                 editTextDescription.setHint("enter file for mentor description");
+                //
+                //setting the title of the activity to Mentor etc
+                this.setTitle("Developer Activity Mentor(s) Upload");
                 //
 
             }

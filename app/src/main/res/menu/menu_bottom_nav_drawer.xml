@@ -17,10 +17,7 @@
         android:icon="@drawable/ic_baseline_support_agent_24"
         android:title="DevOps Army" />
 
-    <item
-        android:id="@+id/technoTrends_drawer_bottom_nav"
-        android:icon="@drawable/ic_baseline_title_tecno_24"
-        android:title="Tech Trends" />
+
 
     <item
         android:id="@+id/other_drawer_bottom_nav"
